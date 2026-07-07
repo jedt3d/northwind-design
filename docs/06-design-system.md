@@ -16,7 +16,7 @@ Stable, calm, clean. **Light theme only.** Multilingual: Thai, English, Japanese
 - [ ] Number/currency/date formatting conventions per locale
 
 ## 3. Components (spec + states each)
-Component specs for search, sort, table, and master–detail/forms must follow the conventions decided in `reference/lob-ui-patterns.md`.
+Component specs for search, sort, table, and master–detail/forms must follow the conventions decided in `docs/09-lob-ui-patterns.md`.
 
 - [ ] Buttons (primary/secondary/ghost/danger), inputs, select, date picker
 - [ ] **Search field** (list-level filter; mobile expanding variant)

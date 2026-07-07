@@ -51,7 +51,7 @@ Definition of done: all business rules from the Microsoft articles captured per 
 
 | # | Deliverable | File | Audience |
 |---|---|---|---|
-| 0 | **LOB UI-pattern research** (search, sorting, data tables, master–detail & forms) — prerequisite for items 2–4 | `reference/lob-ui-patterns.md` | designer / dev |
+| 0 | **LOB UI-pattern research** (search, sorting, data tables, master–detail & forms) — prerequisite for items 2–4 | `docs/09-lob-ui-patterns.md` | designer / dev |
 | 1 | PRD of the final web app (features, user stories, acceptance criteria) | `docs/03-prd.md` | PM / all |
 | 2 | Wireframes — low-fi sketches, mobile + desktop, every screen | `docs/07-wireframes/` (SVG/HTML) | designer / dev |
 | 3 | UX design document (flows, navigation, states, validation UX, i18n UX) | `docs/05-ux-design.md` | designer / dev |

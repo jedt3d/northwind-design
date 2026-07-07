@@ -33,5 +33,7 @@ Modernizing the Microsoft **Northwind 2.0 Developer Edition** database design in
 5. `docs/05-ux-design.md` — UX design document
 6. `docs/06-design-system.md` — design system (light, calm, clean; th/en/ja)
 7. `docs/07-wireframes/` — mobile + desktop wireframes (low-fi sketches)
+8. `docs/08-workflows.md` — business-logic workflow sketches (Phase 2)
+9. `docs/09-lob-ui-patterns.md` — LOB UI-pattern research (search, sort, tables, master–detail); prerequisite for 5–7
 
 Every document ends with a Thai summary (สรุปภาษาไทย).

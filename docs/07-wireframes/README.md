@@ -2,7 +2,7 @@
 
 Low-fidelity sketches (minimum graphic) for **mobile (360px)** and **desktop (1280px)**, produced in Phase 1 Cycle 1.2. Format: SVG (preferred) or single-file HTML, grayscale boxes + labels only — no colors, no real imagery.
 
-**Prerequisite:** wireframes must apply the conventions from `reference/lob-ui-patterns.md` (search, sorting, tables, master–detail/forms) consistently — every list screen shows the same search/sort/table pattern; every parent-child screen (order, PO) uses the chosen master–detail pattern.
+**Prerequisite:** wireframes must apply the conventions from `../09-lob-ui-patterns.md` (search, sorting, tables, master–detail/forms) consistently — every list screen shows the same search/sort/table pattern; every parent-child screen (order, PO) uses the chosen master–detail pattern.
 
 ## Naming
 `NN-screen-name.mobile.svg` / `NN-screen-name.desktop.svg`

@@ -4,7 +4,7 @@
 
 Purpose: how to design the software so it complies with the BA (business rules), SA (system constraints), and PRD (features) — one coherent experience.
 
-**Prerequisite:** `reference/lob-ui-patterns.md` — the researched conventions for search, sorting, data tables, and master–detail/forms are binding for this document.
+**Prerequisite:** `docs/09-lob-ui-patterns.md` — the researched conventions for search, sorting, data tables, and master–detail/forms are binding for this document.
 
 ## 1. Design principles
 Stable, calm, clean. Light theme only. Content first, low ornamentation, generous whitespace, no surprise motion.
@@ -20,7 +20,7 @@ Stable, calm, clean. Light theme only. Content first, low ornamentation, generou
 - [ ] Inventory adjustment
 - [ ] Run/report a report
 
-## 4. Common LOB interaction patterns (from reference/lob-ui-patterns.md)
+## 4. Common LOB interaction patterns (from docs/09-lob-ui-patterns.md)
 - [ ] Search: chosen convention applied per module list
 - [ ] Sorting: chosen convention (headers on desktop, control on mobile)
 - [ ] Data tables: pagination, density, mobile card transformation
