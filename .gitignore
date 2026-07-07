@@ -1,0 +1,21 @@
+# Secrets — never commit credentials
+env.*.txt
+*.env
+.env*
+
+# PocketBase runtime data
+backend/pb_data/
+backend/pocketbase
+backend/pocketbase.exe
+
+# Node / frontend
+node_modules/
+dist/
+build/
+*.log
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
