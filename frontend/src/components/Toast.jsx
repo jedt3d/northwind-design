@@ -1,4 +1,7 @@
 import { createContext, useCallback, useContext, useRef, useState } from 'react';
+import { AlertCircle, CheckCircle2, Info } from 'lucide-react';
+
+const TOAST_ICONS = { info: Info, success: CheckCircle2, error: AlertCircle };
 
 const ToastContext = createContext(null);
 
@@ -18,11 +21,15 @@ export function ToastProvider({ children }) {
     <ToastContext.Provider value={toast}>
       {children}
       <div className="toast-stack" aria-live="polite">
-        {toasts.map((t) => (
-          <div key={t.id} className={`toast toast--${t.type}`} role={t.type === 'error' ? 'alert' : undefined}>
-            {t.message}
-          </div>
-        ))}
+        {toasts.map((t) => {
+          const Icon = TOAST_ICONS[t.type] || Info;
+          return (
+            <div key={t.id} className={`toast toast--${t.type}`} role={t.type === 'error' ? 'alert' : undefined}>
+              <Icon aria-hidden="true" />
+              {t.message}
+            </div>
+          );
+        })}
       </div>
     </ToastContext.Provider>
   );

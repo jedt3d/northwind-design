@@ -1,5 +1,19 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import {
+  AlertTriangle,
+  BadgeCheck,
+  Building2,
+  ChevronRight,
+  Coins,
+  Package,
+  PackagePlus,
+  PieChart,
+  ShoppingCart,
+  Tags,
+  TrendingUp,
+  Users,
+} from 'lucide-react';
 import { pb, currentUser, currentRole } from '../pb';
 import { useT } from '../i18n/index.jsx';
 import { fetchStockMap } from '../lib/stock';
@@ -15,11 +29,19 @@ import {
   monthlyOrderPoSeries,
 } from '../lib/analytics';
 import StatusBadge from '../components/StatusBadge.jsx';
+import StatCards from '../components/charts/StatCards.jsx';
+import DonutChart from '../components/charts/DonutChart.jsx';
+import AreaTrend from '../components/charts/AreaTrend.jsx';
+import RankBars from '../components/charts/RankBars.jsx';
+import LeaderList from '../components/charts/LeaderList.jsx';
 
-function Panel({ title, empty, items, renderItem }) {
+function Panel({ title, icon: Icon, empty, items, renderItem }) {
   return (
     <section className="panel">
-      <h2 className="panel-title">{title}</h2>
+      <h2 className="panel-title">
+        {Icon && <Icon aria-hidden="true" />}
+        {title}
+      </h2>
       {items === null ? (
         <div className="skeleton panel-skeleton" />
       ) : items.length === 0 ? (
@@ -31,76 +53,13 @@ function Panel({ title, empty, items, renderItem }) {
   );
 }
 
-/** Same CSS-bar pattern as ReportView, with a pastel token color per panel. */
-function BarChart({ rows, color = 'blue', format }) {
-  const max = Math.max(...rows.map((r) => r.value), 1);
-  return (
-    <div className="bar-chart">
-      {rows.map((r, i) => (
-        <div key={i} className="bar-row">
-          <span className="bar-label" title={r.label}>
-            {r.label}
-          </span>
-          <span className="bar-track">
-            <span
-              className={`bar-fill bar-fill--${color}`}
-              style={{ width: `${(Math.max(r.value, 0) / max) * 100}%` }}
-            />
-          </span>
-          <span className="bar-value">{format ? format(r) : r.value}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-/** Paired bars (orders vs POs) per month, counts scaled to a common max. */
-function PairedBarChart({ rows, lang, ordersLabel, posLabel }) {
-  const max = Math.max(...rows.flatMap((r) => [r.orders, r.pos]), 1);
-  return (
-    <div>
-      <div className="chart-legend">
-        <span>
-          <span className="chart-legend-swatch chart-legend-swatch--blue" />
-          {ordersLabel}
-        </span>
-        <span>
-          <span className="chart-legend-swatch chart-legend-swatch--yellow" />
-          {posLabel}
-        </span>
-      </div>
-      <div className="bar-chart">
-        {rows.map((r) => (
-          <div key={r.month} className="pair-group">
-            <div className="bar-row">
-              <span className="bar-label">{r.month}</span>
-              <span className="bar-track">
-                <span className="bar-fill bar-fill--blue" style={{ width: `${(r.orders / max) * 100}%` }} />
-              </span>
-              <span className="bar-value">
-                {r.orders} · {formatMoney(r.orderValue, lang)}
-              </span>
-            </div>
-            <div className="bar-row">
-              <span className="bar-label" />
-              <span className="bar-track">
-                <span className="bar-fill bar-fill--yellow" style={{ width: `${(r.pos / max) * 100}%` }} />
-              </span>
-              <span className="bar-value">
-                {r.pos} · {formatMoney(r.poValue, lang)}
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function ChartPanel({ title, loading, empty, hasData, wide, children }) {
+function ChartPanel({ title, icon: Icon, loading, empty, hasData, wide, children }) {
   return (
     <section className={`panel${wide ? ' panel--wide' : ''}`}>
-      <h2 className="panel-title">{title}</h2>
+      <h2 className="panel-title">
+        {Icon && <Icon aria-hidden="true" />}
+        {title}
+      </h2>
       {loading ? (
         <div className="skeleton panel-skeleton" />
       ) : !hasData ? (
@@ -117,6 +76,7 @@ export default function Dashboard() {
   const role = currentRole();
   const me = currentUser();
   const [lowStock, setLowStock] = useState(null);
+  const [lowCount, setLowCount] = useState(null);
   const [approvals, setApprovals] = useState(null);
   const [myOrders, setMyOrders] = useState(null);
   const [recentPos, setRecentPos] = useState(null);
@@ -141,8 +101,14 @@ export default function Dashboard() {
             .map((p) => ({ ...p, available: stock[p.id] ? stock[p.id].available : 0 }))
             .filter((p) => (p.reorder_level || 0) > 0 && p.available < p.reorder_level);
           setLowStock(low.slice(0, 8));
+          setLowCount(low.length);
         })
-        .catch(() => alive && setLowStock([]));
+        .catch(() => {
+          if (alive) {
+            setLowStock([]);
+            setLowCount(0);
+          }
+        });
     }
     if (showApprovals) {
       pb.collection('purchase_orders')
@@ -225,28 +191,83 @@ export default function Dashboard() {
       categories: topCategoriesByRevenue(raw.orderLines, 10),
       customers: topCustomers(raw.orderLines, 5),
       suppliers: topSuppliers(raw.poLines, 5),
+      // KPI figures derived from the same fetched data (no extra queries).
+      openOrders: raw.orders.filter((o) => ['new', 'invoiced', 'shipped'].includes(o.status)).length,
+      posAwaiting: raw.pos.filter((p) => p.status === 'submitted').length,
+      stockValue: inv.reduce((s, r) => s + r.value, 0),
     };
   }, [raw]);
+
+  const kpis = [
+    {
+      icon: ShoppingCart,
+      tone: 'sage',
+      value: analytics ? analytics.openOrders : '…',
+      caption: t('dash.kpi_open_orders'),
+    },
+    {
+      icon: BadgeCheck,
+      tone: 'amber',
+      value: analytics ? analytics.posAwaiting : '…',
+      caption: t('dash.awaiting_approval'),
+    },
+    ...(showLowStock
+      ? [
+          {
+            icon: AlertTriangle,
+            tone: 'coral',
+            value: lowCount === null ? '…' : lowCount,
+            caption: t('dash.low_stock'),
+          },
+        ]
+      : []),
+    {
+      icon: Coins,
+      tone: 'blue',
+      value: analytics ? formatMoney(analytics.stockValue, lang) : '…',
+      caption: t('dash.kpi_stock_value'),
+    },
+  ];
+
+  const monthChips =
+    analytics && analytics.monthly.length > 0 ? (
+      analytics.monthly.map((r) => (
+        <span key={r.month} className="area-chip">
+          <span className="area-chip-month">{r.month}</span>
+          <span className="area-chip-dot" style={{ background: 'var(--color-sage)' }} />
+          {r.orders} · {formatMoney(r.orderValue, lang)}
+          <span className="area-chip-dot" style={{ background: 'var(--color-blue)' }} />
+          {r.pos} · {formatMoney(r.poValue, lang)}
+        </span>
+      ))
+    ) : null;
 
   return (
     <div>
       <div className="page-header">
         <h1 className="page-title">{t('dash.title')}</h1>
       </div>
+
+      <StatCards items={kpis} />
+
       <div className="dash-grid">
         {showLowStock && (
           <Panel
             title={t('dash.low_stock')}
+            icon={AlertTriangle}
             empty={t('dash.low_stock_empty')}
             items={lowStock}
             renderItem={(p) => (
               <li key={p.id} className="panel-row">
                 <Link to={`/products/${p.id}`} className="panel-link">
-                  <span className="panel-main">{p.product_name}</span>
-                  <span className="panel-sub">
-                    {t('dash.available_short')}: <strong className={p.available <= 0 ? 'text-danger' : ''}>{p.available}</strong>{' '}
-                    · {t('dash.reorder_at', { n: p.reorder_level })}
+                  <span className="panel-link-body">
+                    <span className="panel-main">{p.product_name}</span>
+                    <span className="panel-sub">
+                      {t('dash.available_short')}: <strong className={p.available <= 0 ? 'text-danger' : ''}>{p.available}</strong>{' '}
+                      · {t('dash.reorder_at', { n: p.reorder_level })}
+                    </span>
                   </span>
+                  <ChevronRight aria-hidden="true" />
                 </Link>
               </li>
             )}
@@ -255,17 +276,21 @@ export default function Dashboard() {
         {showApprovals && (
           <Panel
             title={t('dash.awaiting_approval')}
+            icon={BadgeCheck}
             empty={t('dash.awaiting_approval_empty')}
             items={approvals}
             renderItem={(po) => (
               <li key={po.id} className="panel-row">
                 <Link to={`/purchase-orders/${po.id}`} className="panel-link">
-                  <span className="panel-main">
-                    {po.po_number} · {po.expand?.supplier?.company_name || ''}
+                  <span className="panel-link-body">
+                    <span className="panel-main">
+                      {po.po_number} · {po.expand?.supplier?.company_name || ''}
+                    </span>
+                    <span className="panel-sub">
+                      <StatusBadge domain="po" status={po.status} /> {formatDate(po.created, lang)}
+                    </span>
                   </span>
-                  <span className="panel-sub">
-                    <StatusBadge domain="po" status={po.status} /> {formatDate(po.created, lang)}
-                  </span>
+                  <ChevronRight aria-hidden="true" />
                 </Link>
               </li>
             )}
@@ -274,17 +299,21 @@ export default function Dashboard() {
         {showOrders && (
           <Panel
             title={t('dash.my_recent_orders')}
+            icon={ShoppingCart}
             empty={t('dash.my_recent_orders_empty')}
             items={myOrders}
             renderItem={(o) => (
               <li key={o.id} className="panel-row">
                 <Link to={`/orders/${o.id}`} className="panel-link">
-                  <span className="panel-main">
-                    {o.order_number} · {o.expand?.customer?.company_name || ''}
+                  <span className="panel-link-body">
+                    <span className="panel-main">
+                      {o.order_number} · {o.expand?.customer?.company_name || ''}
+                    </span>
+                    <span className="panel-sub">
+                      <StatusBadge domain="order" status={o.status} /> {formatDate(o.order_date, lang)}
+                    </span>
                   </span>
-                  <span className="panel-sub">
-                    <StatusBadge domain="order" status={o.status} /> {formatDate(o.order_date, lang)}
-                  </span>
+                  <ChevronRight aria-hidden="true" />
                 </Link>
               </li>
             )}
@@ -293,17 +322,21 @@ export default function Dashboard() {
         {showPos && (
           <Panel
             title={t('dash.recent_pos')}
+            icon={PackagePlus}
             empty={t('dash.recent_pos_empty')}
             items={recentPos}
             renderItem={(po) => (
               <li key={po.id} className="panel-row">
                 <Link to={`/purchase-orders/${po.id}`} className="panel-link">
-                  <span className="panel-main">
-                    {po.po_number} · {po.expand?.supplier?.company_name || ''}
+                  <span className="panel-link-body">
+                    <span className="panel-main">
+                      {po.po_number} · {po.expand?.supplier?.company_name || ''}
+                    </span>
+                    <span className="panel-sub">
+                      <StatusBadge domain="po" status={po.status} /> {formatDate(po.created, lang)}
+                    </span>
                   </span>
-                  <span className="panel-sub">
-                    <StatusBadge domain="po" status={po.status} /> {formatDate(po.created, lang)}
-                  </span>
+                  <ChevronRight aria-hidden="true" />
                 </Link>
               </li>
             )}
@@ -321,107 +354,121 @@ export default function Dashboard() {
         <div className="dash-grid dash-grid--analytics">
           <ChartPanel
             title={t('dash.top_cat_value')}
+            icon={PieChart}
             loading={!analytics}
             empty={t('dash.no_data')}
             hasData={!!analytics && analytics.invByValue.length > 0}
           >
             {analytics && (
-              <BarChart
-                rows={analytics.invByValue.map((r) => ({ label: r.category, value: r.value }))}
-                color="blue"
-                format={(r) => formatMoney(r.value, lang)}
+              <DonutChart
+                data={analytics.invByValue.map((r) => ({ label: r.category, value: r.value }))}
+                centerCaption={t('common.total')}
+                format={(v) => formatMoney(v, lang)}
               />
             )}
           </ChartPanel>
 
           <ChartPanel
             title={t('dash.top_cat_qty')}
+            icon={PieChart}
             loading={!analytics}
             empty={t('dash.no_data')}
             hasData={!!analytics && analytics.invByQty.length > 0}
           >
             {analytics && (
-              <BarChart
-                rows={analytics.invByQty.map((r) => ({ label: r.category, value: r.qty }))}
-                color="green"
-                format={(r) => r.value}
+              <DonutChart
+                data={analytics.invByQty.map((r) => ({ label: r.category, value: r.qty }))}
+                centerCaption={t('common.total')}
+                colors={[
+                  'var(--color-blue)',
+                  'var(--color-sage)',
+                  'var(--color-amber)',
+                  'var(--color-coral)',
+                  'var(--color-sage-border)',
+                ]}
               />
             )}
           </ChartPanel>
 
           <ChartPanel
             title={t('dash.orders_vs_pos')}
+            icon={TrendingUp}
             loading={!analytics}
             empty={t('dash.no_data')}
             hasData={!!analytics && analytics.monthly.length > 0}
             wide
           >
             {analytics && (
-              <PairedBarChart
+              <AreaTrend
                 rows={analytics.monthly}
-                lang={lang}
-                ordersLabel={t('dash.legend_orders')}
-                posLabel={t('dash.legend_pos')}
+                series={[
+                  { key: 'orderValue', label: t('dash.legend_orders'), color: 'var(--color-sage)' },
+                  { key: 'poValue', label: t('dash.legend_pos'), color: 'var(--color-blue)' },
+                ]}
+                format={(v) => formatMoney(v, lang)}
+                chips={monthChips}
               />
             )}
           </ChartPanel>
 
           <ChartPanel
             title={t('dash.top_products')}
+            icon={Package}
             loading={!analytics}
             empty={t('dash.no_data')}
             hasData={!!analytics && analytics.products.length > 0}
           >
             {analytics && (
-              <BarChart
-                rows={analytics.products.map((r) => ({ label: r.name, value: r.revenue, qty: r.qty }))}
-                color="purple"
-                format={(r) => `${formatMoney(r.value, lang)} (${r.qty})`}
+              <RankBars
+                rows={analytics.products.map((r) => ({ label: r.name, value: r.revenue, sub: r.qty }))}
+                format={(v) => formatMoney(v, lang)}
               />
             )}
           </ChartPanel>
 
           <ChartPanel
             title={t('dash.top_categories')}
+            icon={Tags}
             loading={!analytics}
             empty={t('dash.no_data')}
             hasData={!!analytics && analytics.categories.length > 0}
           >
             {analytics && (
-              <BarChart
-                rows={analytics.categories.map((r) => ({ label: r.name, value: r.revenue, qty: r.qty }))}
-                color="pink"
-                format={(r) => `${formatMoney(r.value, lang)} (${r.qty})`}
+              <RankBars
+                rows={analytics.categories.map((r) => ({ label: r.name, value: r.revenue, sub: r.qty }))}
+                format={(v) => formatMoney(v, lang)}
+                color="blue"
               />
             )}
           </ChartPanel>
 
           <ChartPanel
             title={t('dash.top_customers')}
+            icon={Users}
             loading={!analytics}
             empty={t('dash.no_data')}
             hasData={!!analytics && analytics.customers.length > 0}
           >
             {analytics && (
-              <BarChart
-                rows={analytics.customers.map((r) => ({ label: r.name, value: r.revenue }))}
-                color="green"
-                format={(r) => formatMoney(r.value, lang)}
+              <LeaderList
+                rows={analytics.customers.map((r) => ({ name: r.name, value: r.revenue }))}
+                format={(v) => formatMoney(v, lang)}
               />
             )}
           </ChartPanel>
 
           <ChartPanel
             title={t('dash.top_suppliers')}
+            icon={Building2}
             loading={!analytics}
             empty={t('dash.no_data')}
             hasData={!!analytics && analytics.suppliers.length > 0}
           >
             {analytics && (
-              <BarChart
-                rows={analytics.suppliers.map((r) => ({ label: r.name, value: r.spend }))}
-                color="red"
-                format={(r) => formatMoney(r.value, lang)}
+              <LeaderList
+                rows={analytics.suppliers.map((r) => ({ name: r.name, value: r.spend }))}
+                format={(v) => formatMoney(v, lang)}
+                color="blue"
               />
             )}
           </ChartPanel>

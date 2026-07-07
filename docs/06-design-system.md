@@ -148,3 +148,41 @@ Search, sort, table, and master–detail specs implement the conventions of `doc
 ## สรุปภาษาไทย
 
 ระบบดีไซน์ "Northwind Calm" ใช้ธีมสว่างเท่านั้น โทนสีหลักเป็นกลาง (แผ่นเนื้อหาเกือบขาวบนพื้นเทาอ่อน) สีพาสเทลสงวนไว้สำหรับป้ายสถานะโดยจับคู่พื้นอ่อนกับตัวอักษรเฉดเข้มที่ผ่าน WCAG AA ครบทุกสถานะของใบสั่งขาย ใบสั่งซื้อ และรายการย่อย ฟอนต์ทั้งหมดมาจาก Google Fonts (Inter + Noto Sans Thai + Noto Sans JP) สเกลตัวอักษร 11/13/14/16/20/28 ระยะห่างฐาน 4px มุมโค้ง 6/8/12/16 เบรกพอยต์ 360/768/1024/1440 พร้อมสเปกคอมโพเนนต์ครบ (ช่องค้นหา หัวตารางเรียงได้ ตาราง/การ์ด line-item editor, lookup picker ฯลฯ) โทเคนทั้งหมดถูกเขียนเป็น CSS custom properties ใน `design/tokens.css` และบังคับเขียน CSS ล้วนแบบ BEM-lite
+
+---
+
+## Greenish v2 (2026-07-08)
+
+Re-skin of the visual layer to match the approved "Rocanville-style" dashboard reference. Functionality, DOM contracts (`.status-badge`, `.nw-table*`, `.lookup-picker*`, login ids) and the i18n key set are unchanged; old token names remain valid aliases.
+
+### Palette
+- **Canvas / cards** — page background `--color-canvas #E5E4E1` (warm light gray); all content sits on floating near-white cards `--color-surface #FBFAF9`. Ink: primary `#1F1F1D`, secondary `#6F6F6B` (spec `#8B8B88` kept as `--color-ink-soft` for large/caption use only, darkened for WCAG AA elsewhere), hairlines `#E8E7E4`.
+- **Sage / olive identity** — `--color-sage #66755A` (solid chips, primary chart series), `--color-sage-tile #E2E5DD`, `--color-sage-border #C9CFC0`, `--color-sage-soft #EEF0EA` (row hover tint).
+- **Accents** — vivid green `--color-green-vivid #3FA45B` (positive statuses: allocated / approved, white text); amber `--color-amber #F0B049` (warning tags: submitted, on-order, low stock, dark text); coral `--color-coral #F07C6C` on pale pink `--color-coral-tile #FADBD7` (danger / no-stock / cancelled); bright blue `--color-blue #4E86EE` + `--color-blue-tile #D9E7F8` (links, selected icon-chips, secondary chart series).
+- Status badge mapping now runs through these accents (see `--badge-*` tokens); badges are pills.
+
+### Radii & elevation
+- Cards `--radius-card 20px`, inner tiles `--radius-tile 12px`, all controls/chips/buttons `--radius-pill 999px`.
+- Shadows are soft and diffuse: `--shadow-card 0 8px 24px rgba(28,28,26,0.07)`; hover lift `--shadow-lift`; overlays `--shadow-overlay`.
+- Nav: active item = solid dark pill `#1E1E1C` with white icon + label; inactive = transparent gray, hover = light pill `#EFEEEB`. Primary buttons are dark pills; secondary = white pill with hairline; danger = coral pill.
+
+### Icons
+`lucide-react` (tree-shaken named imports). Usage map: sidebar nav (LayoutDashboard, ShoppingCart, PackagePlus, Package, Tags, Warehouse, Building2, BarChart3, Users, Settings), page actions (Plus on New buttons), document actions (FileText Invoice, Truck Ship, CheckCircle2 Close, XCircle Cancel, Send Submit, BadgeCheck Approve, Inbox Receive), search fields (Search), panel/KPI titles, empty states (Inbox), mobile card affordance (ChevronRight), toasts (Info/CheckCircle2/AlertCircle), language pill (Globe). Icons are always `aria-hidden` and additive — accessible names stay text-based.
+
+### Chart components (`frontend/src/components/charts/`, plain SVG/CSS, no library)
+- `StatCards` — KPI row: icon in soft sage circle, big number, uppercase caption.
+- `DonutChart` — animated stroke draw-in (~600 ms), center total, legend chips with values + %, hover highlights segment ↔ legend.
+- `AreaTrend` — smooth gradient area chart with dots and month labels; overlaid translucent series (sage + blue); per-month value chips keep numbers auditable.
+- `RankBars` — rounded gradient bars with rank chip and right-aligned value; width grows on mount.
+- `LeaderList` — avatar-initial circle + name + pill progress + value.
+- `SegmentedProgress` — multicolor segmented pill (coral→amber→green→blue) for order fulfillment and PO receiving.
+- `AvailabilityBar` — thin per-row sage bar vs reorder marker in stock tables.
+All chart values come from the existing `lib/analytics.js` / `lib/calc.js` helpers; numbers always remain visible next to graphics.
+
+### Motion rules
+- Cards/panels fade-up on mount (240 ms ease-out, 8 px translate) with staggered `animation-delay` on dashboard panels and stat cards.
+- Bars grow from zero width (`scaleX`), donut strokes draw in (~600 ms), areas fade in.
+- Hover: interactive card lift (`translateY(-2px)` + deeper shadow, 160 ms); button press `scale(0.98)`; toast slide-in; drawer slide; skeleton shimmer.
+- No parallax, no looping animation; everything is disabled under `@media (prefers-reduced-motion: reduce)`.
+
+**สรุปภาษาไทย:** ธีม "Greenish v2" ปรับผิวหน้าแอปทั้งหมดเป็นสไตล์แดชบอร์ดอ้างอิง — พื้นหลังเทาอุ่น #E5E4E1 การ์ดลอยสีเกือบขาวมุมโค้ง 20px เงานุ่ม เอกลักษณ์สีเขียวเสจ #66755A พร้อมสีเน้นเขียวสด/เหลืองอำพัน/คอรัล/น้ำเงินสำหรับป้ายสถานะ ปุ่มและชิปทรงแคปซูล เมนูที่เลือกเป็นแคปซูลสีเข้ม เพิ่มไอคอน lucide ทั่วทั้งแอป กราฟ SVG ใหม่ (โดนัท กราฟพื้นที่ แท่งอันดับ ลีดเดอร์ลิสต์ แถบความคืบหน้าหลายสี) และแอนิเมชันแบบละมุนที่ปิดอัตโนมัติเมื่อผู้ใช้ตั้งค่า reduced motion — ฟังก์ชันการทำงาน คีย์ i18n และโครงสร้าง DOM เดิมไม่เปลี่ยนแปลง

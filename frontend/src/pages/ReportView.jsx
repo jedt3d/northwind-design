@@ -5,29 +5,15 @@ import { useT } from '../i18n/index.jsx';
 import { formatDate, formatMoney, lineTotal, monthKey } from '../lib/calc';
 import { fetchStockMap } from '../lib/stock';
 import StatusBadge from '../components/StatusBadge.jsx';
+import AreaTrend from '../components/charts/AreaTrend.jsx';
+import RankBars from '../components/charts/RankBars.jsx';
+import AvailabilityBar from '../components/charts/AvailabilityBar.jsx';
 
 function defaultRange() {
   const to = new Date();
   const from = new Date();
   from.setMonth(from.getMonth() - 3);
   return { from: from.toISOString().slice(0, 10), to: to.toISOString().slice(0, 10) };
-}
-
-function BarChart({ rows, valueKey, labelKey, format }) {
-  const max = Math.max(...rows.map((r) => r[valueKey]), 1);
-  return (
-    <div className="bar-chart">
-      {rows.map((r, i) => (
-        <div key={i} className="bar-row">
-          <span className="bar-label">{r[labelKey]}</span>
-          <span className="bar-track">
-            <span className="bar-fill" style={{ width: `${(r[valueKey] / max) * 100}%` }} />
-          </span>
-          <span className="bar-value">{format(r[valueKey])}</span>
-        </div>
-      ))}
-    </div>
-  );
 }
 
 /** Fetch invoiced order lines in a date range (order.invoice_date). */
@@ -136,7 +122,18 @@ export default function ReportView() {
       if (chartRows.length === 0) return <div className="empty-state"><div className="empty-state-title">{t('reports.no_data')}</div></div>;
       return (
         <>
-          <BarChart rows={chartRows} valueKey="value" labelKey="label" format={(v) => formatMoney(v, lang)} />
+          <AreaTrend
+            rows={chartRows.map((r) => ({ month: r.label, value: r.value }))}
+            series={[{ key: 'value', label: t('reports.revenue'), color: 'var(--color-sage)' }]}
+            format={(v) => formatMoney(v, lang)}
+            chips={chartRows.map((r) => (
+              <span key={r.label} className="area-chip">
+                <span className="area-chip-month">{r.label}</span>
+                <span className="area-chip-dot" style={{ background: 'var(--color-sage)' }} />
+                {formatMoney(r.value, lang)}
+              </span>
+            ))}
+          />
           <table className="nw-table report-table">
             <thead>
               <tr>
@@ -171,7 +168,10 @@ export default function ReportView() {
       if (rows.length === 0) return <div className="empty-state"><div className="empty-state-title">{t('reports.no_data')}</div></div>;
       return (
         <>
-          <BarChart rows={rows.slice(0, 10)} valueKey="revenue" labelKey="name" format={(v) => formatMoney(v, lang)} />
+          <RankBars
+            rows={rows.slice(0, 10).map((r) => ({ label: r.name, value: r.revenue, sub: r.qty }))}
+            format={(v) => formatMoney(v, lang)}
+          />
           <table className="nw-table report-table">
             <thead>
               <tr>
@@ -221,7 +221,10 @@ export default function ReportView() {
                 <td className="nw-table-td--right">{r.onHold}</td>
                 <td className="nw-table-td--right">{r.available}</td>
                 <td className="nw-table-td--right">{r.reorder_level ?? 0}</td>
-                <td>{r.low && <span className="type-chip type-chip--warn">{t('products.low_stock')}</span>}</td>
+                <td>
+                  <AvailabilityBar available={r.available} reorder={r.reorder_level || 0} target={r.target_level || 0} />{' '}
+                  {r.low && <span className="type-chip type-chip--warn">{t('products.low_stock')}</span>}
+                </td>
               </tr>
             ))}
           </tbody>

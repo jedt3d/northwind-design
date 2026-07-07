@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { ArrowLeftRight, SlidersHorizontal } from 'lucide-react';
 import { pb } from '../pb';
 import { useT } from '../i18n/index.jsx';
 import { fetchStockMap } from '../lib/stock';
@@ -85,9 +86,11 @@ export default function InventoryOnHand() {
         <h1 className="page-title">{t('inv.onhand_title')}</h1>
         <div className="page-actions">
           <Link to="/inventory/transactions" className="btn btn--secondary">
+            <ArrowLeftRight aria-hidden="true" />
             {t('inv.tx_title')}
           </Link>
           <Link to="/inventory/adjustment" className="btn btn--primary">
+            <SlidersHorizontal aria-hidden="true" />
             {t('inv.adjust_action')}
           </Link>
         </div>

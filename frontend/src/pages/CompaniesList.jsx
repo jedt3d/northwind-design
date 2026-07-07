@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Plus } from 'lucide-react';
 import { pb } from '../pb';
 import { useT } from '../i18n/index.jsx';
 import { formatMoney } from '../lib/calc';
@@ -91,6 +92,7 @@ export default function CompaniesList() {
         <h1 className="page-title">{t('companies.title')}</h1>
         <div className="page-actions">
           <button type="button" className="btn btn--primary" onClick={() => navigate('/companies/new')}>
+            <Plus aria-hidden="true" />
             {t('companies.new')}
           </button>
         </div>

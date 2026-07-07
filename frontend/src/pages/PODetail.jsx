@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { BadgeCheck, CheckCircle2, Inbox, Send, XCircle } from 'lucide-react';
 import { pb, errMsg, currentRole } from '../pb';
 import { useT } from '../i18n/index.jsx';
 import { formatDate, formatMoney, visiblePoActions, canReceive } from '../lib/calc';
@@ -7,6 +8,9 @@ import StatusBadge from '../components/StatusBadge.jsx';
 import LookupSelect from '../components/LookupSelect.jsx';
 import ConfirmDialog from '../components/ConfirmDialog.jsx';
 import { useToast } from '../components/Toast.jsx';
+import SegmentedProgress from '../components/charts/SegmentedProgress.jsx';
+
+const ACTION_ICONS = { submit: Send, approve: BadgeCheck, close: CheckCircle2, cancel: XCircle };
 
 function personName(rec) {
   if (!rec) return '—';
@@ -187,18 +191,22 @@ export default function PODetail() {
           </h1>
         </div>
         <div className="page-actions">
-          {actions.map((a) => (
-            <button
-              key={a.key}
-              type="button"
-              className={`btn ${a.key === 'cancel' ? 'btn--danger' : 'btn--primary'}`}
-              disabled={!a.enabled || busy}
-              title={a.reason ? t(a.reason) : undefined}
-              onClick={() => runAction(a.key)}
-            >
-              {t(actionLabel[a.key])}
-            </button>
-          ))}
+          {actions.map((a) => {
+            const Icon = ACTION_ICONS[a.key];
+            return (
+              <button
+                key={a.key}
+                type="button"
+                className={`btn ${a.key === 'cancel' ? 'btn--danger' : 'btn--primary'}`}
+                disabled={!a.enabled || busy}
+                title={a.reason ? t(a.reason) : undefined}
+                onClick={() => runAction(a.key)}
+              >
+                {Icon && <Icon aria-hidden="true" />}
+                {t(actionLabel[a.key])}
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -234,6 +242,23 @@ export default function PODetail() {
 
       <section className="lines-section">
         <h2 className="section-title">{t('po.lines')}</h2>
+        {lines.length > 0 &&
+          ['submitted', 'approved', 'closed'].includes(po.status) &&
+          (() => {
+            const ordered = lines.reduce((s, l) => s + (Number(l.quantity) || 0), 0);
+            const received = lines.reduce((s, l) => s + (l.posted_to_inventory ? Number(l.quantity) || 0 : 0), 0);
+            if (ordered <= 0) return null;
+            return (
+              <SegmentedProgress
+                label={t('po.receiving_progress')}
+                pct={(received / ordered) * 100}
+                segments={[
+                  { value: received, color: 'var(--color-green-vivid)', label: t('reports.received') },
+                  { value: ordered - received, color: 'var(--color-amber)', label: t('reports.outstanding') },
+                ]}
+              />
+            );
+          })()}
         <div className="nw-table-wrap nw-table-wrap--always">
           <table className="nw-table">
             <thead>
@@ -296,6 +321,7 @@ export default function PODetail() {
                     <td className="nw-table-td--right">
                       {canReceive(po, l, role) && (
                         <button type="button" className="btn btn--primary btn--sm" disabled={busy} onClick={() => receiveLine(l)}>
+                          <Inbox aria-hidden="true" />
                           {t('po.receive')}
                         </button>
                       )}

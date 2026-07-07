@@ -92,6 +92,8 @@ export default {
   'dash.legend_orders': 'ใบสั่งขาย',
   'dash.legend_pos': 'ใบสั่งซื้อ',
   'dash.no_data': 'ยังไม่มีข้อมูล',
+  'dash.kpi_open_orders': 'ออเดอร์ที่เปิดอยู่',
+  'dash.kpi_stock_value': 'มูลค่าสต๊อก',
 
   'companies.title': 'บริษัท',
   'companies.new': 'เพิ่มบริษัท',
@@ -186,6 +188,7 @@ export default {
   'orders.ship_go': 'ยืนยันการจัดส่ง',
   'orders.need_shipper': 'กรุณาเลือกผู้จัดส่งก่อนดำเนินการ',
   'orders.err_no_lines': 'กรุณาเพิ่มรายการสินค้าอย่างน้อยหนึ่งรายการ',
+  'orders.progress': 'ความคืบหน้าคำสั่งขาย',
   'orders.err_not_allocated': 'ทุกรายการต้องมีสถานะ “จัดสรรแล้ว” ก่อนออกใบแจ้งหนี้',
   'orders.create_po_for_line': 'สร้างใบสั่งซื้อ',
   'orders.new_customer': '＋ ลูกค้าใหม่',
@@ -227,6 +230,7 @@ export default {
   'po.err_not_received': 'ต้องรับสินค้าครบทุกรายการก่อนปิดใบสั่งซื้อ',
   'po.err_received_no_cancel': 'มีการรับสินค้าเข้าสต๊อกแล้ว — ไม่สามารถยกเลิกใบสั่งซื้อได้',
   'po.receive_done': 'รับสินค้าและบันทึกเข้าสต๊อกแล้ว',
+  'po.receiving_progress': 'ความคืบหน้าการรับสินค้า',
 
   'inv.onhand_title': 'สต๊อกคงคลัง',
   'inv.tx_title': 'รายการเคลื่อนไหวสต๊อก',

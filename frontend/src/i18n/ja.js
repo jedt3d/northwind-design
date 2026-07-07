@@ -92,6 +92,8 @@ export default {
   'dash.legend_orders': '受注',
   'dash.legend_pos': '発注',
   'dash.no_data': 'まだデータがありません。',
+  'dash.kpi_open_orders': '進行中の注文',
+  'dash.kpi_stock_value': '在庫金額',
 
   'companies.title': '取引先',
   'companies.new': '取引先を追加',
@@ -186,6 +188,7 @@ export default {
   'orders.ship_go': '出荷を確定',
   'orders.need_shipper': '続行するには運送会社を選択してください。',
   'orders.err_no_lines': '先に明細を1件以上追加してください。',
+  'orders.progress': '出荷進捗',
   'orders.err_not_allocated': '請求するには全明細が「引当済み」である必要があります。',
   'orders.create_po_for_line': '発注書を作成',
   'orders.new_customer': '＋ 新規顧客',
@@ -227,6 +230,7 @@ export default {
   'po.err_not_received': '完了するには全明細の入荷登録が必要です。',
   'po.err_received_no_cancel': '既に入荷済みのため、この発注はキャンセルできません。',
   'po.receive_done': '入荷を登録し、在庫に計上しました。',
+  'po.receiving_progress': '入荷進捗',
 
   'inv.onhand_title': '手持在庫',
   'inv.tx_title': '在庫取引履歴',
