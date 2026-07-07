@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { ChevronRight, Inbox, Search } from 'lucide-react';
 import { useT } from '../i18n/index.jsx';
 
 const PER_PAGE = 20;
@@ -114,6 +115,7 @@ export default function DataTable({
         <div className="data-table-toolbar">
           {searchable && (
             <div className="search-field">
+              <Search className="search-field-icon" aria-hidden="true" />
               <input
                 type="search"
                 className="input search-field-input"
@@ -252,6 +254,7 @@ export default function DataTable({
                         : undefined
                     }
                   >
+                    {onRowClick && <ChevronRight className="nw-card-chevron" aria-hidden="true" />}
                     <div className="nw-card-title">{cardTitle ? cardTitle(item) : cellValue(columns[0], item)}</div>
                     <div className="nw-card-body">
                       {cardBody
@@ -268,6 +271,7 @@ export default function DataTable({
 
           {!loading && items.length === 0 && (
             <div className="empty-state">
+              <Inbox className="empty-state-icon" aria-hidden="true" />
               <div className="empty-state-title">
                 {search ? t('common.no_results', { q: search }) : emptyLabel || t('common.empty')}
               </div>

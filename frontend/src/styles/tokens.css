@@ -1,76 +1,94 @@
-/* Northwind Calm — design tokens (docs/06-design-system.md)
-   Light theme only. Source palette: design/screenshots/README.md §3,
-   with pastel label text darkened for WCAG AA. */
+/* Northwind Greenish v2 — design tokens (docs/06-design-system.md §Greenish v2)
+   Light theme only. Warm-gray canvas, floating near-white cards, sage/olive
+   identity with vivid-green / amber / coral / blue accents.
+   Old "Calm" token names are kept as working aliases. */
 
 :root {
   /* ---------- Color: neutrals / chrome ---------- */
-  --color-canvas: #e5e6e8;        /* page background */
-  --color-surface: #fbfbfa;       /* main elevated sheet */
-  --color-surface-2: #f4f4f3;     /* pills, inactive chips, table stripe */
-  --color-border-hairline: #e3e3e1;
-  --color-text-primary: #111111;
-  --color-text-secondary: #6b6b69; /* darkened from observed #8a8a88 for AA on surface */
-  --color-text-disabled: #9c9c9a;
-  --color-selected-dark: #1a1a1a;  /* active chip/segment, tooltip bg */
+  --color-canvas: #e5e4e1;         /* warm light-gray page background */
+  --color-surface: #fbfaf9;        /* floating near-white card */
+  --color-surface-2: #efeeeb;      /* pills, inactive chips, hover, table stripe */
+  --color-border-hairline: #e8e7e4;
+  --color-text-primary: #1f1f1d;
+  --color-text-secondary: #6f6f6b; /* darkened from spec #8b8b88 for WCAG AA */
+  --color-ink-soft: #8b8b88;       /* spec secondary ink — captions on large text only */
+  --color-text-disabled: #9c9c98;
+  --color-selected-dark: #1e1e1c;  /* dark pill: active nav, primary button, tooltip */
   --color-on-dark: #ffffff;
-  --color-focus-ring: #1d4e7a;
+  --color-focus-ring: #4e86ee;
 
-  /* ---------- Color: semantic ---------- */
-  --color-positive: #157a43;       /* darkened from ~#1fa55a for AA text use */
-  --color-positive-bg: #c9f0dc;
-  --color-warning: #7a5b00;
-  --color-warning-bg: #fae8b8;
-  --color-danger: #a4302a;
-  --color-danger-bg: #f9d2ce;
-  --color-info: #1d4e7a;
-  --color-info-bg: #cfe5f7;
+  /* ---------- Color: Greenish v2 accents ---------- */
+  --color-sage: #66755a;           /* sage/olive primary — solid chips, main series */
+  --color-sage-strong: #545f4a;    /* pressed / darker sage */
+  --color-sage-tile: #e2e5dd;      /* light sage tile fill */
+  --color-sage-border: #c9cfc0;    /* sage hairline */
+  --color-sage-soft: #eef0ea;      /* row-hover sage tint */
+  --color-green-vivid: #3fa45b;    /* positive status badge (white text) */
+  --color-amber: #f0b049;          /* warning chip (dark text) */
+  --color-amber-tile: #faecd2;
+  --color-coral: #f07c6c;          /* danger accent */
+  --color-coral-tile: #fadbd7;     /* pale pink danger fill */
+  --color-coral-ink: #a4392a;      /* AA text on coral-tile */
+  --color-blue: #4e86ee;           /* links, selected icon-chips, 2nd chart series */
+  --color-blue-tile: #d9e7f8;
+  --color-blue-ink: #2f5fb3;       /* AA text on blue-tile */
 
-  /* ---------- Color: data/status pastels (fill + AA text pair) ---------- */
-  --color-data-blue-bg: #cfe5f7;   --color-data-blue-text: #1d4e7a;
-  --color-data-red-bg: #f9d2ce;    --color-data-red-text: #a4302a;
-  --color-data-yellow-bg: #fae8b8; --color-data-yellow-text: #7a5b00;
-  --color-data-green-bg: #c9f0dc;  --color-data-green-text: #157a43;
-  --color-data-pink-bg: #f9d3ef;   --color-data-pink-text: #94317c;
-  --color-data-purple-bg: #e3d9f6; --color-data-purple-text: #5b3fa8;
-  --color-data-gray-bg: #ececea;   --color-data-gray-text: #55554f;
+  /* ---------- Color: semantic (aliases retuned to v2) ---------- */
+  --color-positive: #2f7d43;
+  --color-positive-bg: #ddefe0;
+  --color-warning: #8a6116;
+  --color-warning-bg: var(--color-amber-tile);
+  --color-danger: #c14f3e;
+  --color-danger-bg: var(--color-coral-tile);
+  --color-info: #3467c4;
+  --color-info-bg: var(--color-blue-tile);
+
+  /* ---------- Color: data/status pastels (legacy alias pairs) ---------- */
+  --color-data-blue-bg: var(--color-blue-tile);   --color-data-blue-text: var(--color-blue-ink);
+  --color-data-red-bg: var(--color-coral-tile);   --color-data-red-text: var(--color-coral-ink);
+  --color-data-yellow-bg: var(--color-amber-tile);--color-data-yellow-text: var(--color-warning);
+  --color-data-green-bg: var(--color-positive-bg);--color-data-green-text: var(--color-positive);
+  --color-data-pink-bg: #f7dcef;   --color-data-pink-text: #94317c;
+  --color-data-purple-bg: #e5ddf5; --color-data-purple-text: #5b3fa8;
+  --color-data-gray-bg: #ecebe8;   --color-data-gray-text: #55554f;
 
   /* ---------- Status badge mapping: orders ---------- */
-  --badge-order-new-bg: var(--color-data-blue-bg);
-  --badge-order-new-text: var(--color-data-blue-text);
-  --badge-order-invoiced-bg: var(--color-data-yellow-bg);
-  --badge-order-invoiced-text: var(--color-data-yellow-text);
-  --badge-order-shipped-bg: var(--color-data-purple-bg);
-  --badge-order-shipped-text: var(--color-data-purple-text);
-  --badge-order-closed-bg: var(--color-data-green-bg);
-  --badge-order-closed-text: var(--color-data-green-text);
-  --badge-order-cancelled-bg: var(--color-data-gray-bg);
-  --badge-order-cancelled-text: var(--color-data-gray-text);
+  --badge-order-new-bg: var(--color-blue-tile);
+  --badge-order-new-text: var(--color-blue-ink);
+  --badge-order-invoiced-bg: var(--color-amber);
+  --badge-order-invoiced-text: #4a3510;
+  --badge-order-shipped-bg: var(--color-blue);
+  --badge-order-shipped-text: #ffffff;
+  --badge-order-closed-bg: var(--color-sage);
+  --badge-order-closed-text: #ffffff;
+  --badge-order-cancelled-bg: var(--color-coral-tile);
+  --badge-order-cancelled-text: var(--color-coral-ink);
 
   /* ---------- Status badge mapping: purchase orders ---------- */
   --badge-po-new-bg: var(--color-data-gray-bg);
   --badge-po-new-text: var(--color-data-gray-text);
-  --badge-po-submitted-bg: var(--color-data-blue-bg);
-  --badge-po-submitted-text: var(--color-data-blue-text);
-  --badge-po-approved-bg: var(--color-data-yellow-bg);
-  --badge-po-approved-text: var(--color-data-yellow-text);
-  --badge-po-closed-bg: var(--color-data-green-bg);
-  --badge-po-closed-text: var(--color-data-green-text);
-  --badge-po-cancelled-bg: var(--color-data-red-bg);
-  --badge-po-cancelled-text: var(--color-data-red-text);
+  --badge-po-submitted-bg: var(--color-amber);
+  --badge-po-submitted-text: #4a3510;
+  --badge-po-approved-bg: var(--color-green-vivid);
+  --badge-po-approved-text: #ffffff;
+  --badge-po-closed-bg: var(--color-sage);
+  --badge-po-closed-text: #ffffff;
+  --badge-po-cancelled-bg: var(--color-coral-tile);
+  --badge-po-cancelled-text: var(--color-coral-ink);
 
   /* ---------- Status badge mapping: order lines ---------- */
   --badge-line-none-bg: var(--color-data-gray-bg);
   --badge-line-none-text: var(--color-data-gray-text);
-  --badge-line-allocated-bg: var(--color-data-green-bg);
-  --badge-line-allocated-text: var(--color-data-green-text);
-  --badge-line-on-order-bg: var(--color-data-blue-bg);
-  --badge-line-on-order-text: var(--color-data-blue-text);
-  --badge-line-no-stock-bg: var(--color-data-red-bg);
-  --badge-line-no-stock-text: var(--color-data-red-text);
-  --badge-line-invoiced-bg: var(--color-data-yellow-bg);
-  --badge-line-invoiced-text: var(--color-data-yellow-text);
-  --badge-line-shipped-bg: var(--color-data-purple-bg);
-  --badge-line-shipped-text: var(--color-data-purple-text);
+  --badge-line-allocated-bg: var(--color-green-vivid);
+  --badge-line-allocated-text: #ffffff;
+  --badge-line-on-order-bg: var(--color-amber);
+  --badge-line-on-order-text: #4a3510;
+  --badge-line-no-stock-bg: var(--color-coral-tile);
+  --badge-line-no-stock-text: var(--color-coral-ink);
+  --badge-line-invoiced-bg: var(--color-blue-tile);
+  --badge-line-invoiced-text: var(--color-blue-ink);
+  --badge-line-shipped-bg: var(--color-blue);
+  --badge-line-shipped-text: #ffffff;
 
   /* ---------- Typography ---------- */
   --font-family-base: "Inter", "Noto Sans Thai", "Noto Sans JP", sans-serif;
@@ -97,15 +115,20 @@
   --space-7: 48px;
   --space-8: 64px;
 
-  /* ---------- Radius ---------- */
-  --radius-sm: 6px;    /* badges, data labels */
-  --radius-md: 8px;    /* inputs, buttons, dropdowns */
-  --radius-lg: 12px;   /* cards, modals */
-  --radius-xl: 16px;   /* main content sheet */
+  /* ---------- Radius (Greenish v2: large + pills) ---------- */
+  --radius-sm: 8px;      /* small data labels */
+  --radius-md: 10px;     /* dropdown items, small tiles */
+  --radius-lg: 12px;     /* inner tiles, modals, panels */
+  --radius-xl: 20px;     /* floating cards / main sheet */
+  --radius-card: 20px;   /* alias: card radius */
+  --radius-tile: 12px;   /* alias: inner tile radius */
+  --radius-pill: 999px;  /* controls, chips, buttons, badges */
 
-  /* ---------- Elevation (max 2 levels) ---------- */
-  --shadow-sheet: 0 1px 3px rgba(17, 17, 17, 0.06);
-  --shadow-overlay: 0 8px 24px rgba(17, 17, 17, 0.16);
+  /* ---------- Elevation (soft diffuse) ---------- */
+  --shadow-sheet: 0 8px 24px rgba(28, 28, 26, 0.07);
+  --shadow-card: 0 8px 24px rgba(28, 28, 26, 0.07);
+  --shadow-lift: 0 14px 32px rgba(28, 28, 26, 0.11);
+  --shadow-overlay: 0 16px 40px rgba(28, 28, 26, 0.18);
 
   /* ---------- Layout ---------- */
   --breakpoint-mobile: 360px;
@@ -113,14 +136,16 @@
   --breakpoint-desktop: 1024px;
   --breakpoint-wide: 1440px;
   --content-max-width: 1200px;
-  --sidebar-width: 220px;
-  --topbar-height: 56px;
+  --sidebar-width: 232px;
+  --topbar-height: 64px;
   --bottomnav-height: 56px;
   --table-row-height: 44px;
   --touch-target-min: 44px;
 
   /* ---------- Motion ---------- */
-  --motion-fast: 150ms;
-  --motion-base: 250ms;
+  --motion-fast: 160ms;
+  --motion-base: 240ms;
+  --motion-slow: 600ms;
   --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+  --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }

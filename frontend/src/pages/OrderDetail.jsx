@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { CheckCircle2, FileText, Trash2, Truck, XCircle } from 'lucide-react';
 import { pb, errMsg, currentRole } from '../pb';
 import { useT } from '../i18n/index.jsx';
 import { formatDate, formatMoney, lineTotal, orderTotals, visibleOrderActions } from '../lib/calc';
@@ -9,6 +10,9 @@ import LookupSelect from '../components/LookupSelect.jsx';
 import ConfirmDialog from '../components/ConfirmDialog.jsx';
 import FormField from '../components/FormField.jsx';
 import { useToast } from '../components/Toast.jsx';
+import SegmentedProgress from '../components/charts/SegmentedProgress.jsx';
+
+const ACTION_ICONS = { invoice: FileText, ship: Truck, close: CheckCircle2, cancel: XCircle };
 
 export default function OrderDetail() {
   const { id } = useParams();
@@ -221,20 +225,25 @@ export default function OrderDetail() {
           </h1>
         </div>
         <div className="page-actions">
-          {actions.map((a) => (
-            <button
-              key={a.key}
-              type="button"
-              className={`btn ${a.key === 'cancel' ? 'btn--danger' : 'btn--primary'}`}
-              disabled={!a.enabled || busy}
-              title={a.reason ? t(a.reason) : undefined}
-              onClick={() => runAction(a.key)}
-            >
-              {t(actionLabel[a.key])}
-            </button>
-          ))}
+          {actions.map((a) => {
+            const Icon = ACTION_ICONS[a.key];
+            return (
+              <button
+                key={a.key}
+                type="button"
+                className={`btn ${a.key === 'cancel' ? 'btn--danger' : 'btn--primary'}`}
+                disabled={!a.enabled || busy}
+                title={a.reason ? t(a.reason) : undefined}
+                onClick={() => runAction(a.key)}
+              >
+                {Icon && <Icon aria-hidden="true" />}
+                {t(actionLabel[a.key])}
+              </button>
+            );
+          })}
           {canDelete && (
             <button type="button" className="btn btn--ghost text-danger" disabled={busy} onClick={() => setConfirmDelete(true)}>
+              <Trash2 aria-hidden="true" />
               {t('common.delete')}
             </button>
           )}
@@ -328,6 +337,25 @@ export default function OrderDetail() {
 
       <section className="lines-section">
         <h2 className="section-title">{t('orders.lines')}</h2>
+        {lines.length > 0 &&
+          (() => {
+            const count = (s) => lines.filter((l) => l.status === s).length;
+            const done = count('allocated') + count('invoiced') + count('shipped');
+            return (
+              <SegmentedProgress
+                label={t('orders.progress')}
+                pct={(done / lines.length) * 100}
+                segments={[
+                  { value: count('no_stock'), color: 'var(--color-coral)', label: t('status.line.no_stock') },
+                  { value: count('none'), color: 'var(--color-text-disabled)', label: t('status.line.none') },
+                  { value: count('on_order'), color: 'var(--color-amber)', label: t('status.line.on_order') },
+                  { value: count('allocated'), color: 'var(--color-green-vivid)', label: t('status.line.allocated') },
+                  { value: count('invoiced'), color: 'var(--color-sage)', label: t('status.line.invoiced') },
+                  { value: count('shipped'), color: 'var(--color-blue)', label: t('status.line.shipped') },
+                ]}
+              />
+            );
+          })()}
         <div className="nw-table-wrap nw-table-wrap--always">
           <table className="nw-table">
             <thead>

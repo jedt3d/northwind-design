@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Inbox, Plus } from 'lucide-react';
 import { pb, errMsg } from '../pb';
 import { useT } from '../i18n/index.jsx';
 import FormField from '../components/FormField.jsx';
@@ -76,6 +77,7 @@ export default function Categories() {
         <h1 className="page-title">{t('categories.title')}</h1>
         <div className="page-actions">
           <button type="button" className="btn btn--primary" onClick={startNew}>
+            <Plus aria-hidden="true" />
             {t('categories.new')}
           </button>
         </div>
@@ -123,6 +125,7 @@ export default function Categories() {
         <div className="skeleton page-skeleton" />
       ) : items.length === 0 ? (
         <div className="empty-state">
+          <Inbox className="empty-state-icon" aria-hidden="true" />
           <div className="empty-state-title">{t('categories.empty')}</div>
         </div>
       ) : (

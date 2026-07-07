@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { LogIn } from 'lucide-react';
 import { pb, login, errMsg } from '../pb';
 import { useT, LANGS } from '../i18n/index.jsx';
+import { LogoMark } from '../components/Layout.jsx';
 
 export default function Login() {
   const { t, lang, setLang } = useT();
@@ -52,6 +54,9 @@ export default function Login() {
             </button>
           ))}
         </div>
+        <div className="login-logo">
+          <LogoMark size={36} />
+        </div>
         <h1 className="login-title">{t('login.title')}</h1>
         <p className="login-subtitle">{t('login.subtitle')}</p>
         <form onSubmit={onSubmit} noValidate>
@@ -89,6 +94,7 @@ export default function Login() {
             </div>
           )}
           <button type="submit" className="btn btn--primary login-submit" disabled={busy}>
+            <LogIn aria-hidden="true" />
             {busy ? t('login.signing_in') : t('login.submit')}
           </button>
         </form>

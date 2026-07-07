@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Plus } from 'lucide-react';
 import { pb } from '../pb';
 import { useT } from '../i18n/index.jsx';
 import { formatDate } from '../lib/calc';
@@ -46,6 +47,7 @@ export default function PurchaseOrdersList() {
         <h1 className="page-title">{t('po.title')}</h1>
         <div className="page-actions">
           <button type="button" className="btn btn--primary" onClick={() => navigate('/purchase-orders/new')}>
+            <Plus aria-hidden="true" />
             {t('po.new')}
           </button>
         </div>

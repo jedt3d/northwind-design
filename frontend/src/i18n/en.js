@@ -92,6 +92,8 @@ export default {
   'dash.legend_orders': 'Orders',
   'dash.legend_pos': 'Purchase orders',
   'dash.no_data': 'No data yet.',
+  'dash.kpi_open_orders': 'Open orders',
+  'dash.kpi_stock_value': 'Stock value',
 
   'companies.title': 'Companies',
   'companies.new': 'New company',
@@ -185,6 +187,7 @@ export default {
   'orders.ship_title': 'Ship order',
   'orders.ship_go': 'Confirm shipment',
   'orders.need_shipper': 'Select a shipper to continue.',
+  'orders.progress': 'Fulfillment',
   'orders.err_no_lines': 'Add at least one line item first.',
   'orders.err_not_allocated': 'Every line must be Allocated before invoicing.',
   'orders.create_po_for_line': 'Create PO',
@@ -227,6 +230,7 @@ export default {
   'po.err_not_received': 'All lines must be received before closing.',
   'po.err_received_no_cancel': 'Stock was already received — the PO can no longer be cancelled.',
   'po.receive_done': 'Line received and posted to inventory.',
+  'po.receiving_progress': 'Receiving',
 
   'inv.onhand_title': 'Inventory on hand',
   'inv.tx_title': 'Inventory transactions',
