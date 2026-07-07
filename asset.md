@@ -22,7 +22,8 @@ SQL scripts or data files taken from external repositories are logged here the s
 
 | # | File in repo | Description | Original URL | Source / License |
 |---|---|---|---|---|
-| — | *(e.g., legacy Northwind SQL used for seed data)* | | https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs | Microsoft sql-server-samples (MIT) |
+| 1 | `backend/seed/seed.mjs` | Product/category/company names and price points adapted from the classic Northwind sample data | https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs | Microsoft sql-server-samples (MIT) |
+| 2 | *(binary, not committed)* PocketBase v0.39.5 | Backend runtime downloaded at deploy time | https://github.com/pocketbase/pocketbase/releases/tag/v0.39.5 | PocketBase (MIT) |
 
 ## Considered (searched, not used)
 

@@ -1,0 +1,16 @@
+[Unit]
+Description=Northwind PocketBase
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/northwind
+ExecStart=/opt/northwind/pocketbase serve --http 127.0.0.1:8090 --dir /opt/northwind/pb_data --migrationsDir /opt/northwind/pb_migrations --hooksDir /opt/northwind/pb_hooks --publicDir /opt/northwind/pb_public
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=8192
+
+[Install]
+WantedBy=multi-user.target

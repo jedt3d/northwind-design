@@ -6,7 +6,9 @@ async function login(page, user = "admin", pass = "password") {
   await page.locator("#login-password").fill(pass);
   await page.getByRole("button", { name: /sign in/i }).click();
   await expect(page).not.toHaveURL(/login/, { timeout: 10000 });
-  await expect(page.locator("select").first()).toBeVisible({ timeout: 10000 });
+  const langSelect = page.locator("select").first();
+  await expect(langSelect).toBeVisible({ timeout: 10000 });
+  await langSelect.selectOption("en"); // deterministic language for all tests
 }
 
 /** Open a LookupSelect inside the FormField labeled `label`, search, pick option containing `optionText`. */
