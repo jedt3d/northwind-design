@@ -6,7 +6,7 @@
 Single-server web application: PocketBase (SQLite) backend exposing REST API + server-side hooks; React SPA frontend; Nginx reverse proxy with TLS.
 
 ## 2. Architecture
-- [ ] Component diagram (Mermaid): browser → Nginx → PocketBase; static SPA served by Nginx
+- [ ] Component diagram (D2): browser → Nginx → PocketBase; static SPA served by Nginx
 - [ ] Data flow for auth, CRUD, file/image serving
 
 ## 3. Functional requirements (per module)

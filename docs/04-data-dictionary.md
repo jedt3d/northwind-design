@@ -9,7 +9,7 @@
 - Enum values listed with meaning and allowed transitions where applicable
 
 ## 2. ERD (modernized from Northwind 2.0)
-- [ ] Mermaid `erDiagram` covering all collections below
+- [ ] D2 ERD (`.d2` source + rendered SVG in `docs/diagrams/`) covering all collections below
 
 ## 3. Collections (to be fully specified)
 | Collection | Source (Northwind 2.0) | Notes |

@@ -43,7 +43,7 @@ Goal: every deliverable a BA, SA, PM, DBA, and designer needs — before any cod
 | 2 | Business Requirements Document (BRD) | `docs/01-business-requirements.md` | Business Analyst |
 | 3 | System Requirements Specification (SRS) | `docs/02-system-requirements.md` | System Analyst |
 | 4 | Data Dictionary & DB description guideline | `docs/04-data-dictionary.md` | DBA |
-| 5 | ERD (Mermaid) of the modernized schema | inside data dictionary | DBA / SA |
+| 5 | ERD (D2) of the modernized schema | inside data dictionary | DBA / SA |
 
 Definition of done: all business rules from the Microsoft articles captured per module; every entity, field, type, and relationship documented; ERD renders; Thai summary in each doc.
 
@@ -103,6 +103,7 @@ Definition of done: app usable on mobile and desktop in all three languages; dep
 - **Git**: `main` is stable; work on `phase-1/*` and `phase-2/*` branches; conventional commits (`docs:`, `feat:`, `fix:`, `chore:`); one commit theme per commit; tag at each cycle end (`v0.1-design`, `v0.2-backend`, `v1.0`).
 - **Secrets**: `env.*.txt` and any credentials are git-ignored. Never commit credentials.
 - **Images/assets**: product, people, and other images come from public/free resources only. Every image used or considered is logged in `asset.md` — file name + original source URL. No unlisted assets in the repo.
+- **Diagrams**: all diagrams in every document (ERD, architecture, workflows, wireframes) use **D2** — never Mermaid. Commit the `.d2` source plus rendered SVG (shared diagrams in `docs/diagrams/`, wireframes in `docs/07-wireframes/`).
 - **Docs**: every article ends with a Thai summary section (สรุปภาษาไทย).
 - **Tracking**: each cycle's checklist lives at the top of its primary deliverable; PLAN.md is the single source of truth for scope.
 
