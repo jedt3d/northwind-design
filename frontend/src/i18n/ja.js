@@ -122,6 +122,8 @@ export default {
   'companies.none_related': '関連する伝票はありません。',
   'companies.delete_confirm': '取引先「{name}」を削除しますか？この操作は取り消せません。',
 
+  'products.upload_image': '画像をアップロード',
+  'products.image_hint': 'サムネイルをクリックすると拡大表示',
   'products.title': '商品',
   'products.new': '商品を追加',
   'products.create_title': '商品を追加',

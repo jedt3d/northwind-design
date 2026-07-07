@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Plus } from 'lucide-react';
+import ImageLightbox from '../components/ImageLightbox.jsx';
 import { pb } from '../pb';
 import { useT } from '../i18n/index.jsx';
 import { formatMoney } from '../lib/calc';
@@ -13,6 +14,7 @@ export default function ProductsList() {
   const [categoryFilter, setCategoryFilter] = useState('');
   const [categories, setCategories] = useState([]);
   const [stockMap, setStockMap] = useState({});
+  const [lightbox, setLightbox] = useState(null); // {src, alt}
 
   useEffect(() => {
     let alive = true;
@@ -46,6 +48,27 @@ export default function ProductsList() {
   const isLow = (p) => !p.discontinued && (p.reorder_level || 0) > 0 && availableOf(p) < p.reorder_level;
 
   const columns = [
+    {
+      key: 'image',
+      label: '',
+      render: (p) =>
+        p.image ? (
+          <img
+            className="prod-thumb prod-thumb--sm"
+            src={pb.files.getURL(p, p.image, { thumb: '128x128' })}
+            alt={p.product_name}
+            loading="lazy"
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightbox({ src: pb.files.getURL(p, p.image, { thumb: '1024x1024f' }), alt: p.product_name });
+            }}
+          />
+        ) : (
+          <div className="prod-thumb prod-thumb--sm prod-thumb--empty" aria-hidden="true">
+            {(p.product_name || '?').slice(0, 1)}
+          </div>
+        ),
+    },
     { key: 'product_code', label: t('products.code'), sort: 'product_code' },
     { key: 'product_name', label: t('products.name'), sort: 'product_name' },
     { key: 'category', label: t('products.category'), render: (p) => p.expand?.category?.category_name || '' },
@@ -123,6 +146,7 @@ export default function ProductsList() {
           </>
         )}
       />
+      {lightbox && <ImageLightbox src={lightbox.src} alt={lightbox.alt} onClose={() => setLightbox(null)} />}
     </div>
   );
 }

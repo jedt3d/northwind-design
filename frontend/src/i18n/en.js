@@ -122,6 +122,8 @@ export default {
   'companies.none_related': 'No documents.',
   'companies.delete_confirm': 'Delete company “{name}”? This cannot be undone.',
 
+  'products.upload_image': 'Upload image',
+  'products.image_hint': 'Click the thumbnail to enlarge',
   'products.title': 'Products',
   'products.new': 'New product',
   'products.create_title': 'New product',

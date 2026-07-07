@@ -122,6 +122,8 @@ export default {
   'companies.none_related': 'ไม่มีเอกสาร',
   'companies.delete_confirm': 'ลบบริษัท “{name}” หรือไม่? การลบไม่สามารถย้อนกลับได้',
 
+  'products.upload_image': 'อัปโหลดรูปภาพ',
+  'products.image_hint': 'คลิกรูปย่อเพื่อขยาย',
   'products.title': 'สินค้า',
   'products.new': 'เพิ่มสินค้า',
   'products.create_title': 'เพิ่มสินค้า',

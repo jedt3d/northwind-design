@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import ImageLightbox from '../components/ImageLightbox.jsx';
 import { pb, errMsg, currentUser, currentRole } from '../pb';
 import { useT } from '../i18n/index.jsx';
 import { suggestedReorderQty } from '../lib/calc';
@@ -39,6 +40,10 @@ export default function ProductDetail() {
   const [error, setError] = useState('');
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [reordering, setReordering] = useState(false);
+  const [record, setRecord] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
+  const [lightbox, setLightbox] = useState(false);
 
   useEffect(() => {
     if (isNew) return;
@@ -48,6 +53,7 @@ export default function ProductDetail() {
       .getOne(id, { expand: 'category,supplier' })
       .then((rec) => {
         if (!alive) return;
+        setRecord(rec);
         setForm({ ...EMPTY, ...rec });
         setLabels({
           category: rec.expand?.category?.category_name || '',
@@ -91,13 +97,17 @@ export default function ProductDetail() {
       quantity_per_unit: form.quantity_per_unit,
       discontinued: !!form.discontinued,
     };
+    if (imageFile) body.image = imageFile;
     try {
       if (isNew) {
         const rec = await pb.collection('products').create(body);
         toast(t('common.saved'), 'success');
         navigate(`/products/${rec.id}`, { replace: true });
       } else {
-        await pb.collection('products').update(id, body);
+        const rec = await pb.collection('products').update(id, body);
+        setRecord(rec);
+        setImageFile(null);
+        setImagePreview('');
         toast(t('common.saved'), 'success');
       }
     } catch (err) {
@@ -212,6 +222,36 @@ export default function ProductDetail() {
       )}
 
       <form onSubmit={save}>
+        <section className="image-field">
+          {imagePreview || (record && record.image) ? (
+            <img
+              className="prod-thumb"
+              src={imagePreview || pb.files.getURL(record, record.image, { thumb: '128x128' })}
+              alt={form.product_name || 'product'}
+              onClick={() => !imagePreview && setLightbox(true)}
+            />
+          ) : (
+            <div className="prod-thumb prod-thumb--empty" aria-hidden="true">{(form.product_name || '?').slice(0, 1)}</div>
+          )}
+          <div className="image-field-actions">
+            <label className="btn btn--secondary image-field-upload">
+              {t('products.upload_image')}
+              <input
+                type="file"
+                accept="image/png,image/jpeg,image/webp,image/svg+xml"
+                onChange={(e) => {
+                  const f = e.target.files && e.target.files[0];
+                  if (!f) return;
+                  setImageFile(f);
+                  setImagePreview(URL.createObjectURL(f));
+                }}
+              />
+            </label>
+            {record && record.image && !imagePreview && (
+              <span className="image-field-hint">{t('products.image_hint')}</span>
+            )}
+          </div>
+        </section>
         <div className="form-grid">
           <FormField label={t('products.code')} required htmlFor="p-code">
             <input id="p-code" className="input" value={form.product_code} onChange={set('product_code')} required />
@@ -336,6 +376,13 @@ export default function ProductDetail() {
         onConfirm={doDelete}
         onCancel={() => setConfirmDelete(false)}
       />
+      {lightbox && record && record.image && (
+        <ImageLightbox
+          src={pb.files.getURL(record, record.image, { thumb: '1024x1024f' })}
+          alt={form.product_name}
+          onClose={() => setLightbox(false)}
+        />
+      )}
     </div>
   );
 }

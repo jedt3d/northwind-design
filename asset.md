@@ -24,6 +24,7 @@ SQL scripts or data files taken from external repositories are logged here the s
 |---|---|---|---|---|
 | 1 | `backend/seed/seed.mjs` | Product/category/company names and price points adapted from the classic Northwind sample data | https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs | Microsoft sql-server-samples (MIT) |
 | 2 | *(binary, not committed)* PocketBase v0.39.5 | Backend runtime downloaded at deploy time | https://github.com/pocketbase/pocketbase/releases/tag/v0.39.5 | PocketBase (MIT) |
+| 3 | product images (20 files, uploaded to PocketBase `products.image`) | Self-generated flat-style 1024×1024 illustrations (PIL script `backend/seed/gen-images.py`), Greenish palette | — (generated in-project, 2026-07-08) | Own work — no external source |
 
 ## Considered (searched, not used)
 
