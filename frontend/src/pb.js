@@ -10,6 +10,21 @@ export const pb = new PocketBase(baseUrl());
 // Several views fetch the same collection in parallel (dashboard, pickers).
 pb.autoCancellation(false);
 
+// Validate the persisted session against the server on startup.
+// A token from a re-created database looks valid client-side (not expired) but the
+// server treats it as a guest — lists come back empty instead of erroring. Refreshing
+// the auth on boot detects this and forces a clean re-login.
+if (pb.authStore.isValid) {
+  pb.collection('employees')
+    .authRefresh()
+    .catch(() => {
+      pb.authStore.clear();
+      if (!window.location.pathname.startsWith('/login')) {
+        window.location.assign('/login');
+      }
+    });
+}
+
 export function currentUser() {
   return pb.authStore.record || null;
 }
