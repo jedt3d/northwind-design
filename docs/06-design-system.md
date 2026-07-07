@@ -16,8 +16,14 @@ Stable, calm, clean. **Light theme only.** Multilingual: Thai, English, Japanese
 - [ ] Number/currency/date formatting conventions per locale
 
 ## 3. Components (spec + states each)
+Component specs for search, sort, table, and master–detail/forms must follow the conventions decided in `reference/lob-ui-patterns.md`.
+
 - [ ] Buttons (primary/secondary/ghost/danger), inputs, select, date picker
-- [ ] Table/list (desktop) ↔ card list (mobile) pattern
+- [ ] **Search field** (list-level filter; mobile expanding variant)
+- [ ] **Sortable table header** (sort indicator + cycle behavior) / mobile sort control
+- [ ] **Data table** (density, alignment, pagination, row actions) ↔ card list (mobile) pattern
+- [ ] **Master–detail layout** (desktop split / mobile stacked) and **line-item editor** (order/PO lines)
+- [ ] **Lookup picker** (company/product reference selector)
 - [ ] Status badge (order/PO statuses with fixed colors)
 - [ ] Form layout, modal/confirm, toast, empty state, page header, nav (sidebar + mobile)
 
