@@ -9,6 +9,7 @@ Every external image (products, people, illustrations, icons, fonts) fetched fro
 Rules:
 
 1. Free/public sources only (e.g., Unsplash, Pexels, Openverse, Wikimedia Commons, unDraw, Google Fonts).
+   - **Fonts: Google Fonts only.** When matching a typeface seen in reference material, use the closest Google Fonts equivalent and log the family + Google Fonts URL here.
 2. Log the asset here in the same commit that adds it.
 3. Assets searched but not used may be listed in the "Considered" section below for traceability.
 

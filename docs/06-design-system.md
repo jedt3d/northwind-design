@@ -27,7 +27,9 @@ Observed style to carry into our tokens and components:
 - [ ] Tokens shipped as CSS custom properties (`design/tokens.css`)
 
 ## 2. Typography
-- [ ] Font stacks with coverage for all 3 scripts, e.g. `"Noto Sans", "Noto Sans Thai", "Noto Sans JP", sans-serif` (Google Fonts — log in asset.md)
+**Rule: all fonts come from Google Fonts** — for any typeface observed in reference material, pick the closest Google Fonts equivalent (e.g., the grotesque sans in `design/screenshots/` → **Inter**; Thai → **Noto Sans Thai**; Japanese → **Noto Sans JP**). Every font family used is logged in `asset.md` with its Google Fonts URL.
+
+- [ ] Font stacks with coverage for all 3 scripts, e.g. `"Inter", "Noto Sans Thai", "Noto Sans JP", sans-serif` (Google Fonts — log in asset.md)
 - [ ] Type scale + line-height rules per script (Thai/JP need taller line height)
 - [ ] Number/currency/date formatting conventions per locale
 

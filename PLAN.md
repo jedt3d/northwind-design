@@ -53,13 +53,16 @@ Definition of done: all business rules from the Microsoft articles captured per 
 |---|---|---|---|
 | 0 | **LOB UI-pattern research** (search, sorting, data tables, master–detail & forms) — prerequisite for items 2–4 | `docs/09-lob-ui-patterns.md` | designer / dev |
 | 1 | PRD of the final web app (features, user stories, acceptance criteria) | `docs/03-prd.md` | PM / all |
-| 2 | Wireframes — low-fi sketches, mobile + desktop, every screen | `docs/07-wireframes/` (SVG/HTML) | designer / dev |
+| 2 | Wireframes — D2 diagrams (rendered to SVG), mobile + desktop, every screen | `docs/07-wireframes/` | designer / dev |
+| 2a | Wireframe verification gate — cross-check vs BRD, SRS, PRD, UX, LOB patterns, workflows | `docs/07-wireframes/verification.md` | all |
 | 3 | UX design document (flows, navigation, states, validation UX, i18n UX) | `docs/05-ux-design.md` | designer / dev |
 | 4 | Design system (tokens, type scale for th/en/ja, components, light theme) | `docs/06-design-system.md` + `design/` | designer / dev |
 
 Definition of done: UI-pattern research concluded with one documented convention per pattern, applied consistently in all wireframes and component specs; every PRD feature has at least one wireframe; wireframes stay minimum-graphic (sketch level); design system covers color, spacing, typography (Thai/Latin/Japanese font stacks), and core components; all three parties' requirements (BA/SA/UX) cross-referenced without conflicts.
 
-**Phase 1 exit gate:** documents reviewed and approved → tag `v0.1-design`.
+Order within Cycle 1.2: pattern research → PRD → wireframes (D2) → **verification gate** (functionality intact from every angle: BRD, SRS, PRD, UX, patterns, workflows) → graphic design + design tokens → ready for the real web app in Phase 2.
+
+**Phase 1 exit gate:** documents reviewed, wireframe verification passed → tag `v0.1-design`.
 
 ---
 
