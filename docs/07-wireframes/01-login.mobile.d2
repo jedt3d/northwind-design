@@ -1,27 +1,42 @@
 # PRD: F1 Login + language select (mobile 360)
+# GUI wireframe: standalone page (no app chrome), zones stacked vertically.
 direction: down
 
-screen: {
-  label: "Login — mobile 360"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
-  brand: {
-    label: "Northwind Traders"
-    style.fill: "#f4f4f3"
-  }
-  lang: {
-    label: "Language: [ TH ] [ EN ] [ JA ]"
-    style.fill: "#f4f4f3"
-  }
-  form: {
+page: {
+  label: "Login — mobile 360"
+  class: frame
+  grid-columns: 1
+  grid-gap: 12
+  strip: {label: ""; class: plain; width: 330; height: 8}
+  brand: {label: "Northwind Traders"; class: h1; width: 300; height: 44}
+  signin: {
     label: "Sign in"
-    direction: down
-    email: "Email [____________]"
-    password: "Password [____________]"
-    error: "inline error slot"
-    submit: {
-      label: "[ Sign in ] (full width, 44px)"
-      style.fill: "#f4f4f3"
-    }
+    class: zone
+    grid-columns: 1
+    grid-gap: 6
+    ident: {label: "Email or username  [__________]"; class: field; width: 290; height: 40}
+    pw: {label: "Password  [__________]"; class: field; width: 290; height: 40}
+    submit: {label: "Sign in"; class: primary; width: 290; height: 42}
+    lang: {label: "Language: EN ▾"; class: btn; width: 290; height: 36}
   }
+  foot: {label: "Internal system"; class: muted; width: 300; height: 26}
 }

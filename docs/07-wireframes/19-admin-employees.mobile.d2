@@ -1,37 +1,67 @@
 # PRD: F9 Admin — employees & roles (mobile 360)
+# GUI wireframe: one narrow page frame, topbar with hamburger, zones stacked vertically.
 direction: down
 
-screen: {
-  label: "Admin employees — mobile 360"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
+page: {
+  label: "Admin — employees — mobile 360"
+  class: frame
+  grid-columns: 1
+  grid-gap: 8
   topbar: {
-    label: "< Employees | + New"
-    style.fill: "#f4f4f3"
+    label: ""
+    class: bar
+    grid-columns: 3
+    grid-gap: 6
+    menu: {label: "☰"; class: btn; width: 44; height: 36}
+    apptitle: {label: "Northwind Traders"; class: barlbl; width: 190; height: 36}
+    user: {label: "WS ▾"; class: btn; width: 64; height: 36}
   }
-  toolbar: {
-    direction: down
-    search: "Search name or email..."
-    controls: "Role: All v   Sort: Name A-Z v"
+  hdr: {
+    label: ""
+    class: plain
+    grid-columns: 2
+    grid-gap: 8
+    h1: {label: "Employees"; class: h1; width: 210; height: 36}
+    new: {label: "+ New"; class: primary; width: 100; height: 36}
   }
-  cards: {
-    direction: down
-    c1: {
-      label: "Karen Finster | sales | active"
-      style.fill: "#f4f4f3"
+  edit: {
+    label: "New / edit employee"
+    class: zone
+    grid-columns: 1
+    grid-gap: 6
+    f1: {label: "Username  [nancy]"; class: field; width: 290; height: 34}
+    f2: {label: "Email  [nancy@northwind.com]"; class: field; width: 290; height: 34}
+    f3: {label: "Role  [sales ▾]"; class: field; width: 290; height: 34}
+    f4: {label: "Name  [Nancy Freehafer]"; class: field; width: 290; height: 34}
+    act: {
+      label: ""
+      class: plain
+      grid-columns: 2
+      grid-gap: 8
+      s: {label: "Save"; class: primary; width: 140; height: 34}
+      c: {label: "Cancel"; class: btn; width: 140; height: 34}
     }
-    c2: {
-      label: "Andrew Cencini | purchasing | active"
-      style.fill: "#f4f4f3"
-    }
-    c3: {
-      label: "Old Account | warehouse | inactive (muted)"
-      style.fill: "#f4f4f3"
-    }
-    loadmore: "[ Load more ]"
   }
-  bottomnav: {
-    label: "Home | Orders | POs | Inventory | More (active)"
-    style.fill: "#f4f4f3"
-  }
+  c1: {label: "Nancy Freehafer · sales\nnancy@northwind.com · ☑ active"; class: zone; width: 320; height: 58}
+  c2: {label: "Jan Kotas · purchasing\njan@northwind.com · ☑ active"; class: zone; width: 320; height: 58}
+  c3: {label: "M. Sergienko · warehouse\nm.serg@northwind.com · ☐ inactive"; class: zone; width: 320; height: 58}
 }

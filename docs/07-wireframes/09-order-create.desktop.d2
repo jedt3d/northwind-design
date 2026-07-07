@@ -1,46 +1,102 @@
 # PRD: F5 Order create (desktop 1280)
+# GUI wireframe: one page frame, sidebar left, topbar on top, content zones stacked.
 direction: down
 
-screen: {
-  label: "Order create — desktop 1280"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
-  topbar: {
-    label: "Northwind | lang | user"
-    style.fill: "#f4f4f3"
+page: {
+  label: "Order — create — desktop 1280"
+  class: frame
+  grid-columns: 2
+  grid-gap: 0
+  sidebar: {
+    label: ""
+    class: bar
+    grid-columns: 1
+    grid-gap: 6
+    logo: {label: "Northwind Traders"; class: slogo; width: 180; height: 44}
+    n0: {label: "Dashboard"; class: nav; width: 180; height: 34}
+    n1: {label: "Orders"; class: navon; width: 180; height: 34}
+    n2: {label: "Purchase orders"; class: nav; width: 180; height: 34}
+    n3: {label: "Products"; class: nav; width: 180; height: 34}
+    n4: {label: "Categories"; class: nav; width: 180; height: 34}
+    n5: {label: "Inventory"; class: nav; width: 180; height: 34}
+    n6: {label: "Companies"; class: nav; width: 180; height: 34}
+    n7: {label: "Reports"; class: nav; width: 180; height: 34}
+    n8: {label: "Admin"; class: nav; width: 180; height: 34}
+    n9: {label: "Settings"; class: nav; width: 180; height: 34}
   }
   main: {
-    direction: right
-    sidebar: {
-      label: "sidebar: Orders (active)"
-      style.fill: "#f4f4f3"
+    label: ""
+    class: plain
+    grid-columns: 1
+    grid-gap: 10
+    topbar: {
+      label: ""
+      class: bar
+      grid-columns: 3
+      grid-gap: 8
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
+      user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
-    content: {
-      direction: down
-      header: "< back | H1 New order"
-      headerform: {
+    hdr: {
+      label: ""
+      class: plain
+      grid-columns: 2
+      grid-gap: 8
+      back: {label: "‹ Orders"; class: muted; width: 150; height: 40}
+      h1: {label: "New order"; class: h1; width: 782; height: 40}
+    }
+    form: {
+      label: "Order header"
+      class: zone
+      grid-columns: 1
+      grid-gap: 6
+      r1: {
+        label: ""
+        class: plain
         grid-columns: 2
-        customer: "Customer: [lookup picker v] (+ New customer)"
-        employee: "Employee: Karen Finster (me)"
-        date: "Order date: 2026-07-08"
-        notes: "Notes: [__________]"
+        grid-gap: 8
+        cust: {label: "Customer  [Adatum Corporation ▾]"; class: field; width: 610; height: 38}
+        newc: {label: "+ New customer"; class: btn; width: 286; height: 38}
       }
-      lines: {
-        label: "Line items (inline editor)"
-        direction: down
-        head: {
-          label: "Product | Qty | Unit price | Total | Status"
-          style.fill: "#f4f4f3"
-        }
-        l1: "Chai Tea (picker) | 10 | 18.00 | 180.00 | Allocated"
-        l2: "Syrup (picker) | 200 | 10.00 | 2,000.00 | No Stock [Create PO?]"
-        add: "+ Add line"
+      r2: {
+        label: ""
+        class: plain
+        grid-columns: 2
+        grid-gap: 8
+        emp: {label: "Employee  [Worajedt S. ▾]"; class: field; width: 448; height: 38}
+        date: {label: "Order date  [2026-07-08]"; class: field; width: 448; height: 38}
       }
-      totals: "Subtotal 2,180.00 | Taxes | Shipping | Total"
-      footer: {
-        label: "[ Save order ] [ Cancel ] (sticky, unsaved-changes guard)"
-        style.fill: "#f4f4f3"
-      }
+      notes: {label: "Notes  [________________________________________]"; class: field; width: 904; height: 38}
     }
+    save: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 8
+      s: {label: "Save order"; class: primary; width: 180; height: 40}
+      c: {label: "Cancel"; class: btn; width: 180; height: 40}
+      sp: {label: ""; class: plain; width: 564; height: 40}
+    }
+    hint: {label: "Lines are added on the order detail page after saving."; class: muted; width: 940; height: 28}
   }
 }

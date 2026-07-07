@@ -1,36 +1,54 @@
 # PRD: F5 Order create (mobile 360)
+# GUI wireframe: one narrow page frame, topbar with hamburger, zones stacked vertically.
 direction: down
 
-screen: {
-  label: "Order create — mobile 360"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
+page: {
+  label: "Order — create — mobile 360"
+  class: frame
+  grid-columns: 1
+  grid-gap: 8
   topbar: {
-    label: "< New order"
-    style.fill: "#f4f4f3"
+    label: ""
+    class: bar
+    grid-columns: 3
+    grid-gap: 6
+    menu: {label: "☰"; class: btn; width: 44; height: 36}
+    apptitle: {label: "Northwind Traders"; class: barlbl; width: 190; height: 36}
+    user: {label: "WS ▾"; class: btn; width: 64; height: 36}
   }
-  form: {
-    direction: down
-    customer: "Customer: [picker v] (+ New customer)"
-    employee: "Employee: me"
-    date: "Date: 2026-07-08"
+  back: {label: "‹ Orders"; class: muted; width: 320; height: 26}
+  h1: {label: "New order"; class: h1; width: 320; height: 36}
+  cust: {label: "Customer  [Adatum ▾]"; class: field; width: 320; height: 38}
+  newc: {label: "+ New customer"; class: btn; width: 320; height: 36}
+  emp: {label: "Employee  [Worajedt S. ▾]"; class: field; width: 320; height: 38}
+  date: {label: "Order date  [2026-07-08]"; class: field; width: 320; height: 38}
+  notes: {label: "Notes  [__________________]"; class: field; width: 320; height: 38}
+  save: {
+    label: ""
+    class: plain
+    grid-columns: 2
+    grid-gap: 8
+    s: {label: "Save order"; class: primary; width: 150; height: 40}
+    c: {label: "Cancel"; class: btn; width: 150; height: 40}
   }
-  lines: {
-    label: "Lines (cards)"
-    direction: down
-    l1: {
-      label: "Chai Tea | 10 x 18.00 | Allocated"
-      style.fill: "#f4f4f3"
-    }
-    l2: {
-      label: "Syrup | 200 x 10.00 | No Stock [Create PO?]"
-      style.fill: "#f4f4f3"
-    }
-    add: "[ + Add line ]"
-  }
-  totals: "Total 2,180.00"
-  footer: {
-    label: "[ Save order ] (sticky full width)"
-    style.fill: "#f4f4f3"
-  }
+  hint: {label: "Lines are added after saving."; class: muted; width: 320; height: 26}
 }

@@ -1,23 +1,36 @@
 # Flow: create sales order incl. insufficient-stock path (docs/05 §3.2)
+# Layout: ELK (orthogonal right-angle edges), vertical flow for mobile-friendly reading.
+# Palette: happy path=data-green, decisions=data-yellow, purchasing recovery=data-yellow, blocked/error=data-red.
+vars: {d2-config: {layout-engine: elk}}
 direction: down
 
-start: "Sales opens Orders -> New order"
-header: "Fill header\n(customer, date=today, employee=me)"
-new_customer: "Customer missing?\n+ New customer modal\n(create -> auto-select)"
-add_line: "Add line:\npick product, qty\n(unit price auto-fills)"
-stock_check: "Server checks available stock" {shape: diamond}
-allocated: "Line status: Allocated\n(on_hold transaction written)"
-on_order: "Line status: On Order\n(approved PO covers qty)"
-no_stock: "Line status: No Stock\n+ prompt: Create PO?"
-create_po: "Create PO (prefilled\nsupplier + suggested qty)\n-> submit -> approve -> receive"
-realloc: "Receiving reallocates:\nline becomes Allocated"
-more_lines: "More lines?" {shape: diamond}
-save: "Save order (status: New)"
-invoice_gate: "All lines Allocated?" {shape: diamond}
-invoice: "Invoice action\n(sold transactions written,\ninvoice_date set)"
-ship: "Ship action\n(requires shipper + fee,\nshipped_date set)"
-close: "Close order"
-blocked: "Invoice blocked\n(validation message)"
+(* -> *)[*].style.stroke: "#1A1A1A"
+(* -> *)[*].style.font-color: "#8A8A88"
+
+classes: {
+  step: {style: {fill: "#C9F0DC"; stroke: "#1A1A1A"; font-color: "#1A1A1A"; border-radius: 8}}
+  decision: {style: {fill: "#FAE8B8"; stroke: "#1A1A1A"; font-color: "#1A1A1A"}}
+  recover: {style: {fill: "#FAE8B8"; stroke: "#1A1A1A"; font-color: "#1A1A1A"; border-radius: 8}}
+  error: {style: {fill: "#F9D2CE"; stroke: "#1A1A1A"; font-color: "#1A1A1A"; border-radius: 8}}
+}
+
+start: "Sales opens Orders -> New order" {class: step}
+header: "Fill header\n(customer, date=today, employee=me)" {class: step}
+new_customer: "Customer missing?\n+ New customer modal\n(create -> auto-select)" {class: step}
+add_line: "Add line:\npick product, qty\n(unit price auto-fills)" {class: step}
+stock_check: "Server checks available stock" {shape: diamond; class: decision}
+allocated: "Line status: Allocated\n(on_hold transaction written)" {class: step}
+on_order: "Line status: On Order\n(approved PO covers qty)" {class: recover}
+no_stock: "Line status: No Stock\n+ prompt: Create PO?" {class: error}
+create_po: "Create PO (prefilled\nsupplier + suggested qty)\n-> submit -> approve -> receive" {class: recover}
+realloc: "Receiving reallocates:\nline becomes Allocated" {class: recover}
+more_lines: "More lines?" {shape: diamond; class: decision}
+save: "Save order (status: New)" {class: step}
+invoice_gate: "All lines Allocated?" {shape: diamond; class: decision}
+invoice: "Invoice action\n(sold transactions written,\ninvoice_date set)" {class: step}
+ship: "Ship action\n(requires shipper + fee,\nshipped_date set)" {class: step}
+close: "Close order" {class: step}
+blocked: "Invoice blocked\n(validation message)" {class: error}
 
 start -> header
 header -> new_customer: "if new customer"
@@ -41,3 +54,8 @@ invoice_gate -> blocked: "no (No Stock / On Order line)"
 blocked -> create_po
 invoice -> ship
 ship -> close
+
+# invisible ranking hints (keep the flow reading top-to-bottom)
+add_line -> stock_check: {style.opacity: 0}
+start -> header: {style.opacity: 0}
+header -> add_line: {style.opacity: 0}

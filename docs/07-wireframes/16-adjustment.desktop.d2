@@ -1,38 +1,95 @@
 # PRD: F7 Inventory adjustment (desktop 1280)
+# GUI wireframe: one page frame, sidebar left, topbar on top, content zones stacked.
 direction: down
 
-screen: {
-  label: "Adjustment — desktop 1280"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
-  topbar: {
-    label: "Northwind | lang | user"
-    style.fill: "#f4f4f3"
+page: {
+  label: "Inventory — adjustment — desktop 1280"
+  class: frame
+  grid-columns: 2
+  grid-gap: 0
+  sidebar: {
+    label: ""
+    class: bar
+    grid-columns: 1
+    grid-gap: 6
+    logo: {label: "Northwind Traders"; class: slogo; width: 180; height: 44}
+    n0: {label: "Dashboard"; class: nav; width: 180; height: 34}
+    n1: {label: "Orders"; class: nav; width: 180; height: 34}
+    n2: {label: "Purchase orders"; class: nav; width: 180; height: 34}
+    n3: {label: "Products"; class: nav; width: 180; height: 34}
+    n4: {label: "Categories"; class: nav; width: 180; height: 34}
+    n5: {label: "Inventory"; class: navon; width: 180; height: 34}
+    n6: {label: "Companies"; class: nav; width: 180; height: 34}
+    n7: {label: "Reports"; class: nav; width: 180; height: 34}
+    n8: {label: "Admin"; class: nav; width: 180; height: 34}
+    n9: {label: "Settings"; class: nav; width: 180; height: 34}
   }
   main: {
-    direction: right
-    sidebar: {
-      label: "sidebar: Inventory (active)"
-      style.fill: "#f4f4f3"
+    label: ""
+    class: plain
+    grid-columns: 1
+    grid-gap: 10
+    topbar: {
+      label: ""
+      class: bar
+      grid-columns: 3
+      grid-gap: 8
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
+      user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
-    content: {
-      direction: down
-      header: "< back | H1 New stock adjustment"
-      form: {
-        direction: down
-        product: "Product: [lookup picker v]"
-        current: "Current on hand: 22"
-        qty: "Quantity (+/-): [ -2 ]"
-        preview: {
-          label: "Preview: 22 -> 20 (negative result rejected inline)"
-          style.fill: "#f4f4f3"
-        }
-        comment: "Reason (required): [ breakage ]"
+    hdr: {
+      label: ""
+      class: plain
+      grid-columns: 2
+      grid-gap: 8
+      back: {label: "‹ Inventory"; class: muted; width: 150; height: 40}
+      h1: {label: "Stock adjustment"; class: h1; width: 782; height: 40}
+    }
+    form: {
+      label: "Adjustment"
+      class: zone
+      grid-columns: 1
+      grid-gap: 6
+      prod: {label: "Product  [Chai (NWTB-1) ▾]"; class: field; width: 904; height: 38}
+      r1: {
+        label: ""
+        class: plain
+        grid-columns: 2
+        grid-gap: 8
+        dir: {label: "Direction:  ◉ In (+)   ○ Out (−)"; class: field; width: 448; height: 38}
+        qty: {label: "Quantity  [3]"; class: field; width: 448; height: 38}
       }
-      footer: {
-        label: "[ Post adjustment ] [ Cancel ] -> confirm dialog before/after"
-        style.fill: "#f4f4f3"
-      }
+      cmt: {label: "Comment  [cycle count correction]"; class: field; width: 904; height: 38}
+      info: {label: "Current available: 2   →   Resulting available: 5"; class: muted; width: 904; height: 30}
+    }
+    save: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 8
+      s: {label: "Submit adjustment"; class: primary; width: 220; height: 40}
+      c: {label: "Cancel"; class: btn; width: 180; height: 40}
+      sp: {label: ""; class: plain; width: 524; height: 40}
     }
   }
 }

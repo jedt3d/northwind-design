@@ -1,46 +1,88 @@
 # PRD: F6 Purchase orders list (desktop 1280)
+# GUI wireframe: one page frame, sidebar left, topbar on top, content zones stacked.
 direction: down
 
-screen: {
-  label: "PO list — desktop 1280"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
-  topbar: {
-    label: "Northwind | lang | user"
-    style.fill: "#f4f4f3"
+page: {
+  label: "Purchase orders — list — desktop 1280"
+  class: frame
+  grid-columns: 2
+  grid-gap: 0
+  sidebar: {
+    label: ""
+    class: bar
+    grid-columns: 1
+    grid-gap: 6
+    logo: {label: "Northwind Traders"; class: slogo; width: 180; height: 44}
+    n0: {label: "Dashboard"; class: nav; width: 180; height: 34}
+    n1: {label: "Orders"; class: nav; width: 180; height: 34}
+    n2: {label: "Purchase orders"; class: navon; width: 180; height: 34}
+    n3: {label: "Products"; class: nav; width: 180; height: 34}
+    n4: {label: "Categories"; class: nav; width: 180; height: 34}
+    n5: {label: "Inventory"; class: nav; width: 180; height: 34}
+    n6: {label: "Companies"; class: nav; width: 180; height: 34}
+    n7: {label: "Reports"; class: nav; width: 180; height: 34}
+    n8: {label: "Admin"; class: nav; width: 180; height: 34}
+    n9: {label: "Settings"; class: nav; width: 180; height: 34}
   }
   main: {
-    direction: right
-    sidebar: {
-      label: "sidebar: Purchase Orders (active)"
-      style.fill: "#f4f4f3"
+    label: ""
+    class: plain
+    grid-columns: 1
+    grid-gap: 10
+    topbar: {
+      label: ""
+      class: bar
+      grid-columns: 3
+      grid-gap: 8
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
+      user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
-    content: {
-      direction: down
-      header: {
-        grid-columns: 2
-        title: "H1 Purchase orders"
-        action: {
-          label: "[ + New PO ]"
-          style.fill: "#f4f4f3"
-        }
-      }
-      toolbar: {
-        grid-columns: 2
-        search: "Search PO no. or supplier..."
-        filter: "Status: All v (new/submitted/approved/closed/cancelled)"
-      }
-      table: {
-        direction: down
-        head: {
-          label: "PO # | Supplier | Created v | Status | Expected | Total"
-          style.fill: "#f4f4f3"
-        }
-        row1: "PO-2026-0017 | Exotic Liquids | 07-08 | Submitted | 07-15 | 3,210.00"
-        row2: "PO-2026-0016 | New Orleans Cajun | 07-05 | Approved | 07-12 | 940.00"
-        row3: "PO-2026-0015 | Exotic Liquids | 07-01 | Closed | 07-05 | 1,350.00"
-      }
-      pager: "1-20 of 31   < 1 2 >"
+    hdr: {
+      label: ""
+      class: plain
+      grid-columns: 2
+      grid-gap: 8
+      h1: {label: "Purchase orders"; class: h1; width: 710; height: 40}
+      new: {label: "+ New PO"; class: primary; width: 220; height: 40}
     }
+    tools: {
+      label: ""
+      class: plain
+      grid-columns: 2
+      grid-gap: 8
+      search: {label: "🔍 Search PO no. or supplier…"; class: field; width: 620; height: 38}
+      filt: {label: "Status: All ▾"; class: btn; width: 310; height: 38}
+    }
+    table: {
+      label: ""
+      class: plain
+      grid-columns: 1
+      grid-gap: 2
+      hd: {label: "PO # | Supplier | Date ▾ | Expected | Status | Total"; class: head; width: 940; height: 32}
+      r0: {label: "PO-2026-0108 | Exotic Liquids | 2026-07-07 | 2026-07-15 | Submitted | 540.00"; class: cell; width: 940; height: 32}
+      r1: {label: "PO-2026-0104 | Bigfoot Breweries | 2026-07-04 | 2026-07-12 | Approved | 1,120.00"; class: cell; width: 940; height: 32}
+      r2: {label: "PO-2026-0101 | Tokyo Traders | 2026-07-01 | 2026-07-09 | Closed | 300.00"; class: cell; width: 940; height: 32}
+    }
+    pager: {label: "1–20 of 41    ‹  1  2  3  ›"; class: muted; width: 940; height: 28}
   }
 }

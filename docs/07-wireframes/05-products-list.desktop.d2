@@ -1,47 +1,88 @@
 # PRD: F4 Products list (desktop 1280)
+# GUI wireframe: one page frame, sidebar left, topbar on top, content zones stacked.
 direction: down
 
-screen: {
-  label: "Products list — desktop 1280"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
-  topbar: {
-    label: "Northwind | lang | user"
-    style.fill: "#f4f4f3"
+page: {
+  label: "Products — list — desktop 1280"
+  class: frame
+  grid-columns: 2
+  grid-gap: 0
+  sidebar: {
+    label: ""
+    class: bar
+    grid-columns: 1
+    grid-gap: 6
+    logo: {label: "Northwind Traders"; class: slogo; width: 180; height: 44}
+    n0: {label: "Dashboard"; class: nav; width: 180; height: 34}
+    n1: {label: "Orders"; class: nav; width: 180; height: 34}
+    n2: {label: "Purchase orders"; class: nav; width: 180; height: 34}
+    n3: {label: "Products"; class: navon; width: 180; height: 34}
+    n4: {label: "Categories"; class: nav; width: 180; height: 34}
+    n5: {label: "Inventory"; class: nav; width: 180; height: 34}
+    n6: {label: "Companies"; class: nav; width: 180; height: 34}
+    n7: {label: "Reports"; class: nav; width: 180; height: 34}
+    n8: {label: "Admin"; class: nav; width: 180; height: 34}
+    n9: {label: "Settings"; class: nav; width: 180; height: 34}
   }
   main: {
-    direction: right
-    sidebar: {
-      label: "sidebar: Products (active)"
-      style.fill: "#f4f4f3"
+    label: ""
+    class: plain
+    grid-columns: 1
+    grid-gap: 10
+    topbar: {
+      label: ""
+      class: bar
+      grid-columns: 3
+      grid-gap: 8
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
+      user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
-    content: {
-      direction: down
-      header: {
-        grid-columns: 2
-        title: "H1 Products"
-        action: {
-          label: "[ + New product ]"
-          style.fill: "#f4f4f3"
-        }
-      }
-      toolbar: {
-        grid-columns: 3
-        search: "Search code or name..."
-        filter: "Category: All v"
-        low: "[ ] Low stock only"
-      }
-      table: {
-        direction: down
-        head: {
-          label: "Code | Name ^ | Category | List price | Available | Status"
-          style.fill: "#f4f4f3"
-        }
-        row1: "NWTB-1 | Chai Tea | Beverages | 18.00 | 12 (LOW) | active"
-        row2: "NWTCO-3 | Syrup | Condiments | 10.00 | 80 | active"
-        row3: "NWTB-2 | Old Blend | Beverages | 15.00 | 0 | discontinued (muted)"
-      }
-      pager: "1-20 of 77   < 1 2 3 4 >"
+    hdr: {
+      label: ""
+      class: plain
+      grid-columns: 2
+      grid-gap: 8
+      h1: {label: "Products"; class: h1; width: 710; height: 40}
+      new: {label: "+ New product"; class: primary; width: 220; height: 40}
     }
+    tools: {
+      label: ""
+      class: plain
+      grid-columns: 2
+      grid-gap: 8
+      search: {label: "🔍 Search code or name…"; class: field; width: 620; height: 38}
+      filt: {label: "Category: All ▾"; class: btn; width: 310; height: 38}
+    }
+    table: {
+      label: ""
+      class: plain
+      grid-columns: 1
+      grid-gap: 2
+      hd: {label: "Code | Name | Category | List price | Avail. | Reorder"; class: head; width: 940; height: 32}
+      r0: {label: "NWTB-1 | Chai | Beverages | 18.00 | 2  ⚠ low | 10"; class: cell; width: 940; height: 32}
+      r1: {label: "NWTB-34 | Sasquatch Ale | Beverages | 14.00 | 111 | 15"; class: cell; width: 940; height: 32}
+      r2: {label: "NWTCO-3 | Aniseed Syrup | Condiments | 10.00 | 0  ⚠ low | 25"; class: cell; width: 940; height: 32}
+    }
+    pager: {label: "1–20 of 45    ‹  1  2  3  ›"; class: muted; width: 940; height: 28}
   }
 }

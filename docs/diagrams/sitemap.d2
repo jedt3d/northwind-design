@@ -1,9 +1,26 @@
 # Northwind web app — sitemap (docs/05 §2)
+# Layout: ELK (orthogonal right-angle edges), vertical flow for mobile-friendly reading.
+# Palette: master data=data-blue, orders=data-green, purchasing=data-yellow, inventory=data-purple, reports=data-pink.
+vars: {d2-config: {layout-engine: elk}}
 direction: down
+
+(** -> **)[*].style.stroke: "#1A1A1A"
+(** -> **)[*].style.font-color: "#8A8A88"
+
+classes: {
+  shell: {style: {fill: "#FBFBFA"; stroke: "#1A1A1A"; border-radius: 8}}
+  master: {style: {fill: "#CFE5F7"; stroke: "#1A1A1A"; border-radius: 8}}
+  orders: {style: {fill: "#C9F0DC"; stroke: "#1A1A1A"; border-radius: 8}}
+  purchasing: {style: {fill: "#FAE8B8"; stroke: "#1A1A1A"; border-radius: 8}}
+  inventory: {style: {fill: "#E3D9F6"; stroke: "#1A1A1A"; border-radius: 8}}
+  reportsc: {style: {fill: "#F9D3EF"; stroke: "#1A1A1A"; border-radius: 8}}
+  neutral: {style: {fill: "#F4F4F3"; stroke: "#1A1A1A"; border-radius: 8}}
+  leaf: {style: {fill: "#FFFFFF"; stroke: "#1A1A1A"; border-radius: 8}}
+}
 
 login: "Login (+ language)"
 app: {
-  label: "Authenticated app shell\n(sidebar desktop / bottom nav mobile)"
+  label: "Authenticated app shell\n(sidebar desktop / ☰ drawer mobile)"
 
   dashboard: "Dashboard"
 
@@ -68,3 +85,32 @@ app.dashboard -> app.pos.list: "POs to approve"
 app.dashboard -> app.products.list: "low stock"
 app.products.detail -> app.pos.create: "Reorder action"
 app.orders.detail -> app.pos.create: "no-stock line -> create PO"
+
+# color grouping
+login.class: neutral
+app.class: shell
+app.dashboard.class: master
+app.companies.class: master
+app.companies.list.class: leaf
+app.companies.detail.class: leaf
+app.products.class: master
+app.products.list.class: leaf
+app.products.detail.class: leaf
+app.products.categories.class: leaf
+app.orders.class: orders
+app.orders.list.class: leaf
+app.orders.create.class: leaf
+app.orders.detail.class: leaf
+app.pos.class: purchasing
+app.pos.list.class: leaf
+app.pos.create.class: leaf
+app.pos.detail.class: leaf
+app.inventory.class: inventory
+app.inventory.onhand.class: leaf
+app.inventory.transactions.class: leaf
+app.inventory.adjustment.class: leaf
+app.reports.class: reportsc
+app.reports.home.class: leaf
+app.reports.view.class: leaf
+app.admin.class: neutral
+app.settings.class: neutral

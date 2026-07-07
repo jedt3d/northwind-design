@@ -1,34 +1,68 @@
 # PRD: F1 Settings — language & profile (mobile 360)
+# GUI wireframe: one narrow page frame, topbar with hamburger, zones stacked vertically.
 direction: down
 
-screen: {
-  label: "Settings — mobile 360"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
+page: {
+  label: "Settings — mobile 360"
+  class: frame
+  grid-columns: 1
+  grid-gap: 8
   topbar: {
-    label: "< Settings"
-    style.fill: "#f4f4f3"
+    label: ""
+    class: bar
+    grid-columns: 3
+    grid-gap: 6
+    menu: {label: "☰"; class: btn; width: 44; height: 36}
+    apptitle: {label: "Northwind Traders"; class: barlbl; width: 190; height: 36}
+    user: {label: "WS ▾"; class: btn; width: 64; height: 36}
   }
-  content: {
-    direction: down
-    language: {
-      label: "Language"
-      direction: down
-      opts: "( ) ไทย  (x) English  ( ) 日本語"
-    }
-    profile: {
-      label: "My profile"
-      direction: down
-      f1: "Karen Finster | sales"
-      f2: "[ Change password ]"
-    }
+  h1: {label: "Settings"; class: h1; width: 320; height: 36}
+  lang: {
+    label: "Language"
+    class: zone
+    grid-columns: 1
+    grid-gap: 6
+    sel: {label: "Language  [English ▾]"; class: field; width: 290; height: 36}
+    s: {label: "Save"; class: primary; width: 290; height: 34}
   }
-  footer: {
-    label: "[ Save ] (sticky)"
-    style.fill: "#f4f4f3"
+  prof: {
+    label: "Profile"
+    class: zone
+    grid-columns: 1
+    grid-gap: 6
+    f1: {label: "Username [worajedt] · manager"; class: field; width: 290; height: 34}
+    f2: {label: "First name  [Worajedt]"; class: field; width: 290; height: 34}
+    f3: {label: "Last name  [S.]"; class: field; width: 290; height: 34}
+    f4: {label: "Job title · Phone"; class: field; width: 290; height: 34}
+    s: {label: "Save profile"; class: primary; width: 290; height: 34}
   }
-  bottomnav: {
-    label: "Home | Orders | POs | Inventory | More (active)"
-    style.fill: "#f4f4f3"
+  pass: {
+    label: "Change password"
+    class: zone
+    grid-columns: 1
+    grid-gap: 6
+    f1: {label: "Current password  [••••••]"; class: field; width: 290; height: 34}
+    f2: {label: "New password  [••••••]"; class: field; width: 290; height: 34}
+    f3: {label: "Confirm password  [••••••]"; class: field; width: 290; height: 34}
+    s: {label: "Change password"; class: primary; width: 290; height: 34}
   }
 }

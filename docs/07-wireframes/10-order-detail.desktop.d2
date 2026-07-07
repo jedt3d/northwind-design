@@ -1,49 +1,137 @@
 # PRD: F5 Order detail + status actions (desktop 1280)
+# GUI wireframe: one page frame, sidebar left, topbar on top, content zones stacked.
 direction: down
 
-screen: {
-  label: "Order detail — desktop 1280"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
-  topbar: {
-    label: "Northwind | lang | user"
-    style.fill: "#f4f4f3"
+page: {
+  label: "Order — detail — desktop 1280"
+  class: frame
+  grid-columns: 2
+  grid-gap: 0
+  sidebar: {
+    label: ""
+    class: bar
+    grid-columns: 1
+    grid-gap: 6
+    logo: {label: "Northwind Traders"; class: slogo; width: 180; height: 44}
+    n0: {label: "Dashboard"; class: nav; width: 180; height: 34}
+    n1: {label: "Orders"; class: navon; width: 180; height: 34}
+    n2: {label: "Purchase orders"; class: nav; width: 180; height: 34}
+    n3: {label: "Products"; class: nav; width: 180; height: 34}
+    n4: {label: "Categories"; class: nav; width: 180; height: 34}
+    n5: {label: "Inventory"; class: nav; width: 180; height: 34}
+    n6: {label: "Companies"; class: nav; width: 180; height: 34}
+    n7: {label: "Reports"; class: nav; width: 180; height: 34}
+    n8: {label: "Admin"; class: nav; width: 180; height: 34}
+    n9: {label: "Settings"; class: nav; width: 180; height: 34}
   }
   main: {
-    direction: right
-    sidebar: {
-      label: "sidebar: Orders (active)"
-      style.fill: "#f4f4f3"
+    label: ""
+    class: plain
+    grid-columns: 1
+    grid-gap: 10
+    topbar: {
+      label: ""
+      class: bar
+      grid-columns: 3
+      grid-gap: 8
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
+      user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
-    content: {
-      direction: down
-      header: {
+    hdr: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 8
+      back: {label: "‹ Orders"; class: muted; width: 140; height: 40}
+      h1: {label: "SO-2026-0042 · Status: New"; class: h1; width: 570; height: 40}
+      del: {label: "Delete"; class: btn; width: 200; height: 40}
+    }
+    info: {
+      label: "Header"
+      class: zone
+      grid-columns: 1
+      grid-gap: 6
+      r1: {
+        label: ""
+        class: plain
         grid-columns: 2
-        title: "< back | H1 SO-2026-0042 [New]"
-        actions: {
-          label: "[ Invoice (disabled: line 2 No Stock) ] [ Cancel order ]"
-          style.fill: "#f4f4f3"
-        }
+        grid-gap: 8
+        a: {label: "Customer: Adatum Corporation"; class: cell; width: 448; height: 32}
+        b: {label: "Employee: Worajedt S."; class: cell; width: 448; height: 32}
       }
-      fields: {
+      r2: {
+        label: ""
+        class: plain
         grid-columns: 2
-        f1: "Customer: Adatum | Employee: Karen"
-        f2: "Dates: order 07-08 | invoice - | shipped -"
-        f3: "Shipper: - | Shipping fee: -"
-        f4: "Payment: - | Notes"
+        grid-gap: 8
+        a: {label: "Order date: 2026-07-08"; class: cell; width: 448; height: 32}
+        b: {label: "Invoice date: —   Shipped: —"; class: cell; width: 448; height: 32}
       }
-      lines: {
-        label: "Line items (editable while New)"
-        direction: down
-        head: {
-          label: "Product | Qty | Unit price | Total | Status"
-          style.fill: "#f4f4f3"
-        }
-        l1: "Chai Tea | 10 | 18.00 | 180.00 | Allocated"
-        l2: "Syrup | 200 | 10.00 | 2,000.00 | No Stock [Create PO]"
-        add: "+ Add line"
+      r3: {
+        label: ""
+        class: plain
+        grid-columns: 2
+        grid-gap: 8
+        a: {label: "Shipper: —   Shipping fee: —"; class: cell; width: 448; height: 32}
+        b: {label: "Payment: —   Notes: rush"; class: cell; width: 448; height: 32}
       }
-      totals: "Subtotal 2,180.00 | Taxes 152.60 | Total 2,332.60"
+    }
+    actions: {
+      label: ""
+      class: plain
+      grid-columns: 5
+      grid-gap: 8
+      inv: {label: "Invoice"; class: primary; width: 180; height: 40}
+      ship: {label: "Ship…"; class: btn; width: 180; height: 40}
+      close: {label: "Close"; class: btn; width: 180; height: 40}
+      cancel: {label: "Cancel order"; class: btn; width: 180; height: 40}
+      sp: {label: ""; class: plain; width: 188; height: 40}
+    }
+    lines: {
+      label: ""
+      class: plain
+      grid-columns: 1
+      grid-gap: 2
+      hd: {label: "Product | Qty | Unit price | Disc | Line total | Status | Actions"; class: head; width: 940; height: 32}
+      r0: {label: "Chai | 10 | 18.00 | 0% | 180.00 | Allocated | Edit · Del"; class: cell; width: 940; height: 32}
+      r1: {label: "Aniseed Syrup | 4 | 10.00 | 5% | 38.00 | On order | Edit · Del"; class: cell; width: 940; height: 32}
+      r2: {label: "Ikura | 2 | 31.00 | 0% | 62.00 | No stock ⚠ Create PO? | Edit · Del"; class: cell; width: 940; height: 32}
+    }
+    addline: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 8
+      prod: {label: "Add line — Product  [Chang ▾]"; class: field; width: 520; height: 38}
+      qty: {label: "Qty  [1]"; class: field; width: 180; height: 38}
+      add: {label: "Add line"; class: btn; width: 224; height: 38}
+    }
+    totals: {
+      label: "Totals"
+      class: zone
+      grid-columns: 1
+      grid-gap: 6
+      t: {label: "Subtotal 280.00   ·   Shipping 20.00   ·   Taxes 0.00   ·   Total 300.00"; class: cell; width: 904; height: 32}
     }
   }
 }

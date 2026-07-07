@@ -1,30 +1,48 @@
 # Northwind web app — component architecture (SRS docs/02 §2)
-direction: right
+# Layout: ELK (orthogonal right-angle edges), vertical flow for mobile-friendly reading.
+# Palette (design/screenshots/README.md §3): client=data-blue, server=data-green, data=data-purple.
+vars: {d2-config: {layout-engine: elk}}
+direction: down
+
+(** -> **)[*].style.stroke: "#1A1A1A"
+(** -> **)[*].style.font-color: "#8A8A88"
+
+classes: {
+  client: {style: {fill: "#CFE5F7"; stroke: "#1A1A1A"; font-color: "#1A1A1A"; border-radius: 8}}
+  server: {style: {fill: "#C9F0DC"; stroke: "#1A1A1A"; font-color: "#1A1A1A"; border-radius: 8}}
+  data: {style: {fill: "#E3D9F6"; stroke: "#1A1A1A"; font-color: "#1A1A1A"; border-radius: 8}}
+  neutral: {style: {fill: "#F4F4F3"; stroke: "#1A1A1A"; font-color: "#1A1A1A"; border-radius: 8}}
+}
 
 user: {
   label: "User\n(browser, th/en/ja)"
+  class: client
 }
 
 vps: {
   label: "DigitalOcean VPS (Ubuntu 24.04)"
+  class: neutral
 
   nginx: {
     label: "Nginx\nTLS (Let's Encrypt)\nreverse proxy"
+    class: server
   }
 
   spa: {
     label: "React SPA (static files)\nVite build + plain CSS\ni18n th/en/ja"
+    class: client
   }
 
   pocketbase: {
     label: "PocketBase (systemd)"
+    class: server
 
-    api: "REST API + realtime"
-    auth: "Auth (email/password)"
-    rules: "Collection API rules\n(authorization layer 1)"
-    hooks: "pb_hooks JS\nbusiness rules (layer 2)"
-    files: "File storage\n(product/category images)"
-    db: "SQLite (pb_data)"
+    api: {label: "REST API + realtime"; class: server}
+    auth: {label: "Auth (email/password)"; class: server}
+    rules: {label: "Collection API rules\n(authorization layer 1)"; class: server}
+    hooks: {label: "pb_hooks JS\nbusiness rules (layer 2)"; class: server}
+    files: {label: "File storage\n(product/category images)"; class: data}
+    db: {label: "SQLite (pb_data)"; class: data}
 
     api -> rules: "every request"
     rules -> hooks: "create/update/delete"
@@ -35,6 +53,7 @@ vps: {
 
   backup: {
     label: "Nightly backup\ncopy of pb_data"
+    class: data
   }
 
   nginx -> spa: "serves / (static)"

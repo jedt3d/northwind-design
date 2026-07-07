@@ -1,61 +1,113 @@
 # PRD: F2 Dashboard (desktop 1280)
+# GUI wireframe: one page frame, sidebar left, topbar on top, content zones stacked.
 direction: down
 
-screen: {
-  label: "Dashboard — desktop 1280"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
-  topbar: {
-    label: "Northwind | lang | user"
-    style.fill: "#f4f4f3"
+page: {
+  label: "Dashboard — desktop 1280"
+  class: frame
+  grid-columns: 2
+  grid-gap: 0
+  sidebar: {
+    label: ""
+    class: bar
+    grid-columns: 1
+    grid-gap: 6
+    logo: {label: "Northwind Traders"; class: slogo; width: 180; height: 44}
+    n0: {label: "Dashboard"; class: navon; width: 180; height: 34}
+    n1: {label: "Orders"; class: nav; width: 180; height: 34}
+    n2: {label: "Purchase orders"; class: nav; width: 180; height: 34}
+    n3: {label: "Products"; class: nav; width: 180; height: 34}
+    n4: {label: "Categories"; class: nav; width: 180; height: 34}
+    n5: {label: "Inventory"; class: nav; width: 180; height: 34}
+    n6: {label: "Companies"; class: nav; width: 180; height: 34}
+    n7: {label: "Reports"; class: nav; width: 180; height: 34}
+    n8: {label: "Admin"; class: nav; width: 180; height: 34}
+    n9: {label: "Settings"; class: nav; width: 180; height: 34}
   }
   main: {
-    direction: right
-    sidebar: {
-      label: "sidebar 220px"
-      style.fill: "#f4f4f3"
-      direction: down
-      n1: "Dashboard (active)"
-      n2: "Orders"
-      n3: "Purchase Orders"
-      n4: "Products"
-      n5: "Inventory"
-      n6: "Companies"
-      n7: "Reports"
-      n8: "Admin"
-      n9: "Settings"
+    label: ""
+    class: plain
+    grid-columns: 1
+    grid-gap: 10
+    topbar: {
+      label: ""
+      class: bar
+      grid-columns: 3
+      grid-gap: 8
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
+      user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
-    content: {
-      direction: down
-      header: "H1 Dashboard"
-      panels: {
-        grid-columns: 3
-        p1: {
-          label: "My open orders (sales)"
-          direction: down
-          r1: "SO-2026-0042 | Adatum | New"
-          r2: "SO-2026-0041 | Proseware | Invoiced"
-          more: "View all ->"
-        }
-        p2: {
-          label: "Low stock (purchasing)"
-          direction: down
-          r1: "Chai Tea | avail 12 < reorder 50 | [Reorder]"
-          r2: "Syrup | avail 3 < reorder 25 | [Reorder]"
-          more: "View products ->"
-        }
-        p3: {
-          label: "POs awaiting approval (manager)"
-          direction: down
-          r1: "PO-2026-0017 | Exotic Liquids | Submitted"
-          more: "View POs ->"
-        }
+    h1: {label: "Dashboard"; class: h1; width: 940; height: 40}
+    grid1: {
+      label: ""
+      class: plain
+      grid-columns: 2
+      grid-gap: 8
+      p1: {
+        label: "Low stock"
+        class: zone
+        grid-columns: 1
+        grid-gap: 6
+        a: {label: "Chai — Avail. 2 (reorder at 10)"; class: cell; width: 420; height: 28}
+        b: {label: "Aniseed Syrup — Avail. 0 (reorder at 25)"; class: cell; width: 420; height: 28}
+        c: {label: "Ikura — Avail. 5 (reorder at 15)"; class: cell; width: 420; height: 28}
+        lnk: {label: "View products →"; class: muted; width: 420; height: 24}
       }
-      recent: {
-        label: "Recent items (orders / POs)"
-        direction: down
-        r1: "SO-2026-0042 | updated 2h ago"
-        r2: "PO-2026-0017 | updated 5h ago"
+      p2: {
+        label: "POs awaiting approval"
+        class: zone
+        grid-columns: 1
+        grid-gap: 6
+        a: {label: "PO-2026-0108 — Exotic Liquids — Submitted"; class: cell; width: 420; height: 28}
+        b: {label: "PO-2026-0107 — Tokyo Traders — Submitted"; class: cell; width: 420; height: 28}
+        c: {label: ""; class: plain; width: 420; height: 28}
+        lnk: {label: "View purchase orders →"; class: muted; width: 420; height: 24}
+      }
+    }
+    grid2: {
+      label: ""
+      class: plain
+      grid-columns: 2
+      grid-gap: 8
+      p3: {
+        label: "My recent orders"
+        class: zone
+        grid-columns: 1
+        grid-gap: 6
+        a: {label: "SO-2026-0042 — Adatum — New"; class: cell; width: 420; height: 28}
+        b: {label: "SO-2026-0041 — Proseware — Invoiced"; class: cell; width: 420; height: 28}
+        c: {label: "SO-2026-0040 — Wide World — Shipped"; class: cell; width: 420; height: 28}
+        lnk: {label: "View orders →"; class: muted; width: 420; height: 24}
+      }
+      p4: {
+        label: "Recent purchase orders"
+        class: zone
+        grid-columns: 1
+        grid-gap: 6
+        a: {label: "PO-2026-0108 — Exotic Liquids — Submitted"; class: cell; width: 420; height: 28}
+        b: {label: "PO-2026-0104 — Bigfoot Breweries — Approved"; class: cell; width: 420; height: 28}
+        c: {label: "PO-2026-0101 — Tokyo Traders — Closed"; class: cell; width: 420; height: 28}
+        lnk: {label: "View purchase orders →"; class: muted; width: 420; height: 24}
       }
     }
   }

@@ -1,49 +1,141 @@
 # PRD: F6 PO detail — approve / receive (desktop 1280)
+# GUI wireframe: one page frame, sidebar left, topbar on top, content zones stacked.
 direction: down
 
-screen: {
-  label: "PO detail — desktop 1280"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
-  topbar: {
-    label: "Northwind | lang | user"
-    style.fill: "#f4f4f3"
+page: {
+  label: "Purchase order — detail — desktop 1280"
+  class: frame
+  grid-columns: 2
+  grid-gap: 0
+  sidebar: {
+    label: ""
+    class: bar
+    grid-columns: 1
+    grid-gap: 6
+    logo: {label: "Northwind Traders"; class: slogo; width: 180; height: 44}
+    n0: {label: "Dashboard"; class: nav; width: 180; height: 34}
+    n1: {label: "Orders"; class: nav; width: 180; height: 34}
+    n2: {label: "Purchase orders"; class: navon; width: 180; height: 34}
+    n3: {label: "Products"; class: nav; width: 180; height: 34}
+    n4: {label: "Categories"; class: nav; width: 180; height: 34}
+    n5: {label: "Inventory"; class: nav; width: 180; height: 34}
+    n6: {label: "Companies"; class: nav; width: 180; height: 34}
+    n7: {label: "Reports"; class: nav; width: 180; height: 34}
+    n8: {label: "Admin"; class: nav; width: 180; height: 34}
+    n9: {label: "Settings"; class: nav; width: 180; height: 34}
   }
   main: {
-    direction: right
-    sidebar: {
-      label: "sidebar: Purchase Orders (active)"
-      style.fill: "#f4f4f3"
+    label: ""
+    class: plain
+    grid-columns: 1
+    grid-gap: 10
+    topbar: {
+      label: ""
+      class: bar
+      grid-columns: 3
+      grid-gap: 8
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
+      user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
-    content: {
-      direction: down
-      header: {
+    hdr: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 8
+      back: {label: "‹ Purchase orders"; class: muted; width: 190; height: 40}
+      h1: {label: "PO-2026-0108 · Status: Submitted"; class: h1; width: 520; height: 40}
+      del: {label: "Delete"; class: btn; width: 200; height: 40}
+    }
+    info: {
+      label: "Header"
+      class: zone
+      grid-columns: 1
+      grid-gap: 6
+      r1: {
+        label: ""
+        class: plain
         grid-columns: 2
-        title: "< back | H1 PO-2026-0017 [Submitted]"
-        actions: {
-          label: "[ Approve (manager/admin only) ] [ Cancel PO ]"
-          style.fill: "#f4f4f3"
-        }
+        grid-gap: 8
+        a: {label: "Supplier: Exotic Liquids"; class: cell; width: 448; height: 32}
+        b: {label: "Created by: N. Freehafer"; class: cell; width: 448; height: 32}
       }
-      fields: {
+      r2: {
+        label: ""
+        class: plain
         grid-columns: 2
-        f1: "Supplier: Exotic Liquids | Created by: Andrew"
-        f2: "Submitted 07-08 | Approved - by -"
-        f3: "Expected: 07-15 | Shipping fee 300.00"
-        f4: "Payment: - | Notes"
+        grid-gap: 8
+        a: {label: "Submitted: 2026-07-07"; class: cell; width: 448; height: 32}
+        b: {label: "Approved by: — (manager only)"; class: cell; width: 448; height: 32}
       }
-      lines: {
-        label: "Line items (receive controls appear when Approved)"
-        direction: down
-        head: {
-          label: "Product | Qty | Unit cost | Received date | Posted"
-          style.fill: "#f4f4f3"
-        }
-        l1: "Chai Tea | 100 | 13.50 | - | no  [Receive]"
-        l2: "Green Tea | 60 | 11.00 | - | no  [Receive]"
+      r3: {
+        label: ""
+        class: plain
+        grid-columns: 2
+        grid-gap: 8
+        a: {label: "Expected date: 2026-07-15"; class: cell; width: 448; height: 32}
+        b: {label: "Notes: restock beverages"; class: cell; width: 448; height: 32}
       }
-      totals: "Subtotal 2,010.00 | Taxes 210.00 | Total 3,210.00"
-      feedback: "toast after receive: '2 waiting order lines allocated'"
+    }
+    actions: {
+      label: ""
+      class: plain
+      grid-columns: 4
+      grid-gap: 8
+      appr: {label: "Approve"; class: primary; width: 180; height: 40}
+      recv: {label: "Receive…"; class: btn; width: 180; height: 40}
+      cancel: {label: "Cancel PO"; class: btn; width: 180; height: 40}
+      sp: {label: ""; class: plain; width: 376; height: 40}
+    }
+    lines: {
+      label: ""
+      class: plain
+      grid-columns: 1
+      grid-gap: 2
+      hd: {label: "Product | Qty | Unit cost | Line total | Received | Posted"; class: head; width: 940; height: 32}
+      r0: {label: "Chai | 40 | 13.50 | 540.00 | — | ☐"; class: cell; width: 940; height: 32}
+      r1: {label: "Aniseed Syrup | 30 | 7.50 | 225.00 | — | ☐"; class: cell; width: 940; height: 32}
+    }
+    recvbox: {
+      label: "Receive (warehouse)"
+      class: zone
+      grid-columns: 1
+      grid-gap: 6
+      r: {
+        label: ""
+        class: plain
+        grid-columns: 3
+        grid-gap: 8
+        date: {label: "Date received  [2026-07-15]"; class: field; width: 470; height: 38}
+        post: {label: "Post to inventory"; class: primary; width: 240; height: 38}
+        sp: {label: ""; class: plain; width: 170; height: 38}
+      }
+    }
+    totals: {
+      label: "Totals"
+      class: zone
+      grid-columns: 1
+      grid-gap: 6
+      t: {label: "Subtotal 765.00   ·   Shipping 0.00   ·   Taxes 0.00   ·   Total 765.00"; class: cell; width: 904; height: 32}
     }
   }
 }

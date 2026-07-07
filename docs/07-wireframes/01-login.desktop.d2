@@ -1,34 +1,50 @@
 # PRD: F1 Login + language select (desktop 1280)
+# GUI wireframe: standalone page (no app chrome), zones stacked vertically.
 direction: down
 
-screen: {
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
+
+page: {
   label: "Login — desktop 1280"
-  style.fill: "#ffffff"
-
-  topbar: {
-    label: "Northwind Traders"
-    style.fill: "#f4f4f3"
-  }
-
-  center: {
-    label: "centered card on canvas"
-    style.fill: "#ffffff"
-    direction: down
-
-    lang: {
-      label: "Language: [ TH ] [ EN ] [ JA ]"
-      style.fill: "#f4f4f3"
-    }
-    card: {
+  class: frame
+  grid-columns: 1
+  grid-gap: 12
+  strip: {label: ""; class: plain; width: 1180; height: 8}
+  brand: {label: "Northwind Traders"; class: h1; width: 420; height: 48}
+  mid: {
+    label: ""
+    class: plain
+    grid-columns: 3
+    grid-gap: 8
+    sp1: {label: ""; class: plain; width: 360; height: 8}
+    signin: {
       label: "Sign in"
-      direction: down
-      email: "Email [______________]"
-      password: "Password [______________]"
-      error: "inline error slot (invalid / inactive)"
-      submit: {
-        label: "[ Sign in ]"
-        style.fill: "#f4f4f3"
-      }
+      class: zone
+      grid-columns: 1
+      grid-gap: 6
+      ident: {label: "Email or username  [____________________]"; class: field; width: 380; height: 40}
+      pw: {label: "Password  [____________________]"; class: field; width: 380; height: 40}
+      submit: {label: "Sign in"; class: primary; width: 380; height: 42}
+      lang: {label: "Language: EN ▾  (TH / EN / JA)"; class: btn; width: 380; height: 36}
     }
+    sp2: {label: ""; class: plain; width: 360; height: 8}
   }
+  foot: {label: "Internal system — Northwind Traders"; class: muted; width: 420; height: 28}
 }

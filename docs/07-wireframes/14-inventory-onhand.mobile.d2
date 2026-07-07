@@ -1,37 +1,53 @@
 # PRD: F7 Inventory on-hand (mobile 360)
+# GUI wireframe: one narrow page frame, topbar with hamburger, zones stacked vertically.
 direction: down
 
-screen: {
-  label: "Inventory on-hand — mobile 360"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
+page: {
+  label: "Inventory — on hand — mobile 360"
+  class: frame
+  grid-columns: 1
+  grid-gap: 8
   topbar: {
-    label: "< Stock on hand | + Adjust"
-    style.fill: "#f4f4f3"
+    label: ""
+    class: bar
+    grid-columns: 3
+    grid-gap: 6
+    menu: {label: "☰"; class: btn; width: 44; height: 36}
+    apptitle: {label: "Northwind Traders"; class: barlbl; width: 190; height: 36}
+    user: {label: "WS ▾"; class: btn; width: 64; height: 36}
   }
-  toolbar: {
-    direction: down
-    search: "Search product..."
-    controls: "[ ] Low only   Sort: Name A-Z v"
+  h1: {label: "Inventory"; class: h1; width: 320; height: 36}
+  tabs: {
+    label: ""
+    class: plain
+    grid-columns: 2
+    grid-gap: 8
+    t1: {label: "On hand"; class: navon; width: 155; height: 34}
+    t2: {label: "Transactions"; class: btn; width: 155; height: 34}
   }
-  cards: {
-    direction: down
-    c1: {
-      label: "Chai Tea | avail 12 LOW | on hand 22 | on order 100"
-      style.fill: "#f4f4f3"
-    }
-    c2: {
-      label: "Syrup | avail 80 | on hand 80"
-      style.fill: "#f4f4f3"
-    }
-    c3: {
-      label: "Green Tea | avail 0 LOW | on order 60"
-      style.fill: "#f4f4f3"
-    }
-    loadmore: "[ Load more ]"
-  }
-  bottomnav: {
-    label: "Home | Orders | POs | Inventory (active) | More"
-    style.fill: "#f4f4f3"
-  }
+  adj: {label: "New adjustment"; class: primary; width: 320; height: 36}
+  search: {label: "🔍 Search code or name…"; class: field; width: 320; height: 38}
+  flag: {label: "☐ Below reorder only"; class: btn; width: 320; height: 34}
+  c1: {label: "NWTB-1 · Chai\nOn hand 12 · Alloc 10 · Avail 2 ⚠"; class: zone; width: 320; height: 58}
+  c2: {label: "NWTB-34 · Sasquatch Ale\nOn hand 111 · Alloc 0 · Avail 111"; class: zone; width: 320; height: 58}
+  c3: {label: "NWTCO-3 · Aniseed Syrup\nOn hand 20 · Alloc 20 · Avail 0 ⚠"; class: zone; width: 320; height: 58}
 }

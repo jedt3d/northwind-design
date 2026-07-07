@@ -1,37 +1,73 @@
 # PRD: F8 Report view (mobile 360)
+# GUI wireframe: one narrow page frame, topbar with hamburger, zones stacked vertically.
 direction: down
 
-screen: {
-  label: "Report view — mobile 360"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
+page: {
+  label: "Report — sales by period — mobile 360"
+  class: frame
+  grid-columns: 1
+  grid-gap: 8
   topbar: {
-    label: "< Sales by period"
-    style.fill: "#f4f4f3"
+    label: ""
+    class: bar
+    grid-columns: 3
+    grid-gap: 6
+    menu: {label: "☰"; class: btn; width: 44; height: 36}
+    apptitle: {label: "Northwind Traders"; class: barlbl; width: 190; height: 36}
+    user: {label: "WS ▾"; class: btn; width: 64; height: 36}
   }
-  filters: {
-    direction: down
-    range: "Date: last 3 months v"
-    group: "Group: Employee v   Month v"
+  back: {label: "‹ Reports"; class: muted; width: 320; height: 26}
+  h1: {label: "Sales by period"; class: h1; width: 320; height: 36}
+  f12: {
+    label: ""
+    class: plain
+    grid-columns: 2
+    grid-gap: 8
+    f1: {label: "From [2026-01]"; class: field; width: 155; height: 36}
+    f2: {label: "To [2026-07]"; class: field; width: 155; height: 36}
+  }
+  f34: {
+    label: ""
+    class: plain
+    grid-columns: 2
+    grid-gap: 8
+    f3: {label: "Group by [Month ▾]"; class: field; width: 200; height: 36}
+    run: {label: "Run"; class: primary; width: 110; height: 36}
   }
   chart: {
-    label: "chart (full width)"
-    style.fill: "#f4f4f3"
+    label: "Chart"
+    class: zone
+    grid-columns: 1
+    grid-gap: 6
+    bars: {label: "▂  ▄  ▆  ▃  ▇"; class: txt; width: 290; height: 100}
   }
   table: {
-    label: "numbers (cards per row)"
-    direction: down
-    r1: {
-      label: "Karen Finster | 41,400"
-      style.fill: "#f4f4f3"
-    }
-    r2: {
-      label: "Andrew Cencini | 28,950"
-      style.fill: "#f4f4f3"
-    }
-  }
-  bottomnav: {
-    label: "Home | Orders | POs | Inventory | More (active)"
-    style.fill: "#f4f4f3"
+    label: ""
+    class: plain
+    grid-columns: 1
+    grid-gap: 2
+    hd: {label: "Month | Revenue"; class: head; width: 320; height: 32}
+    r0: {label: "2026-05 | 12,480.00"; class: cell; width: 320; height: 32}
+    r1: {label: "2026-06 | 15,930.00"; class: cell; width: 320; height: 32}
+    r2: {label: "2026-07 | 8,210.00"; class: cell; width: 320; height: 32}
   }
 }

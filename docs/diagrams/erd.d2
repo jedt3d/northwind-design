@@ -1,5 +1,19 @@
 # Northwind modernized schema — ERD (docs/04 §2)
-direction: right
+# Layout: ELK (orthogonal right-angle edges), vertical flow for mobile-friendly reading.
+# Palette: master data=data-blue, sales orders=data-green, purchasing=data-yellow, inventory=data-purple.
+vars: {d2-config: {layout-engine: elk}}
+direction: down
+
+(** -> **)[*].style.stroke: "#1A1A1A"
+(** -> **)[*].style.font-color: "#8A8A88"
+
+classes: {
+  master: {style: {fill: "#CFE5F7"; stroke: "#1A1A1A"; border-radius: 8}}
+  orders: {style: {fill: "#C9F0DC"; stroke: "#1A1A1A"; border-radius: 8}}
+  purchasing: {style: {fill: "#FAE8B8"; stroke: "#1A1A1A"; border-radius: 8}}
+  inventory: {style: {fill: "#E3D9F6"; stroke: "#1A1A1A"; border-radius: 8}}
+  neutral: {style: {fill: "#F4F4F3"; stroke: "#1A1A1A"; border-radius: 8}}
+}
 
 companies: {
   shape: sql_table
@@ -158,3 +172,15 @@ purchase_order_details.product -> products.id
 inventory_transactions.product -> products.id
 inventory_transactions.related_order -> orders.id
 inventory_transactions.related_purchase_order -> purchase_orders.id
+
+# color grouping
+companies.class: master
+employees.class: master
+product_categories.class: master
+products.class: master
+users.class: neutral
+orders.class: orders
+order_details.class: orders
+purchase_orders.class: purchasing
+purchase_order_details.class: purchasing
+inventory_transactions.class: inventory

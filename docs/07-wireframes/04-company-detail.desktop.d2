@@ -1,46 +1,134 @@
 # PRD: F3 Company detail (desktop 1280)
+# GUI wireframe: one page frame, sidebar left, topbar on top, content zones stacked.
 direction: down
 
-screen: {
-  label: "Company detail — desktop 1280"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
-  topbar: {
-    label: "Northwind | lang | user"
-    style.fill: "#f4f4f3"
+page: {
+  label: "Company — detail — desktop 1280"
+  class: frame
+  grid-columns: 2
+  grid-gap: 0
+  sidebar: {
+    label: ""
+    class: bar
+    grid-columns: 1
+    grid-gap: 6
+    logo: {label: "Northwind Traders"; class: slogo; width: 180; height: 44}
+    n0: {label: "Dashboard"; class: nav; width: 180; height: 34}
+    n1: {label: "Orders"; class: nav; width: 180; height: 34}
+    n2: {label: "Purchase orders"; class: nav; width: 180; height: 34}
+    n3: {label: "Products"; class: nav; width: 180; height: 34}
+    n4: {label: "Categories"; class: nav; width: 180; height: 34}
+    n5: {label: "Inventory"; class: nav; width: 180; height: 34}
+    n6: {label: "Companies"; class: navon; width: 180; height: 34}
+    n7: {label: "Reports"; class: nav; width: 180; height: 34}
+    n8: {label: "Admin"; class: nav; width: 180; height: 34}
+    n9: {label: "Settings"; class: nav; width: 180; height: 34}
   }
   main: {
-    direction: right
-    sidebar: {
-      label: "sidebar: Companies (active)"
-      style.fill: "#f4f4f3"
+    label: ""
+    class: plain
+    grid-columns: 1
+    grid-gap: 10
+    topbar: {
+      label: ""
+      class: bar
+      grid-columns: 3
+      grid-gap: 8
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
+      user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
-    content: {
-      direction: down
-      header: {
+    hdr: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 8
+      back: {label: "‹ Companies"; class: muted; width: 150; height: 40}
+      h1: {label: "Adatum Corporation"; class: h1; width: 560; height: 40}
+      del: {label: "Delete"; class: btn; width: 200; height: 40}
+    }
+    form: {
+      label: "Company"
+      class: zone
+      grid-columns: 1
+      grid-gap: 6
+      r1: {
+        label: ""
+        class: plain
         grid-columns: 2
-        title: "< back | H1 Adatum Corporation"
-        actions: {
-          label: "[ Edit ] [ Delete (guarded) ]"
-          style.fill: "#f4f4f3"
-        }
+        grid-gap: 8
+        f1: {label: "Company name  [Adatum Corporation]"; class: field; width: 448; height: 38}
+        f2: {label: "Types  [customer ▾]"; class: field; width: 448; height: 38}
       }
-      fields: {
+      r2: {
+        label: ""
+        class: plain
         grid-columns: 2
-        types: "Types: [x] customer [ ] supplier [ ] shipper (in-use disabled)"
-        contact: "Contact: K. Somchai | email | phone"
-        address: "Address: 99 Rama IV Rd, Bangkok 10500 TH"
-        tax: "Tax ID: 0105551234567 | Website: adatum.example"
+        grid-gap: 8
+        f1: {label: "Contact  [Elizabeth Andersen]"; class: field; width: 448; height: 38}
+        f2: {label: "Contact title  [Purchasing Manager]"; class: field; width: 448; height: 38}
       }
-      related: {
-        direction: down
-        tabs: {
-          label: "Orders (12) | Purchase orders (0)"
-          style.fill: "#f4f4f3"
-        }
-        r1: "SO-2026-0042 | 2026-07-08 | New | 1,806.00"
-        r2: "SO-2026-0038 | 2026-06-30 | Closed | 902.00"
+      r3: {
+        label: ""
+        class: plain
+        grid-columns: 2
+        grid-gap: 8
+        f1: {label: "Email  [info@adatum.com]"; class: field; width: 448; height: 38}
+        f2: {label: "Phone  [555-0100]"; class: field; width: 448; height: 38}
       }
+      r4: {
+        label: ""
+        class: plain
+        grid-columns: 2
+        grid-gap: 8
+        f1: {label: "Address  [123 8th Avenue]"; class: field; width: 448; height: 38}
+        f2: {label: "City [Seattle]   State [WA]"; class: field; width: 448; height: 38}
+      }
+      r5: {
+        label: ""
+        class: plain
+        grid-columns: 2
+        grid-gap: 8
+        f1: {label: "Postal [98052]   Country [USA]"; class: field; width: 448; height: 38}
+        f2: {label: "Tax ID [—]   Website [—]"; class: field; width: 448; height: 38}
+      }
+      notes: {label: "Notes  [________________________________________]"; class: field; width: 904; height: 38}
+    }
+    save: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 8
+      s: {label: "Save"; class: primary; width: 180; height: 40}
+      c: {label: "Cancel"; class: btn; width: 180; height: 40}
+      sp: {label: ""; class: plain; width: 564; height: 40}
+    }
+    rel: {
+      label: "Related"
+      class: zone
+      grid-columns: 1
+      grid-gap: 6
+      a: {label: "Orders:  SO-2026-0042 (New) · SO-2026-0038 (Closed)"; class: cell; width: 904; height: 30}
+      b: {label: "Purchase orders:  —"; class: cell; width: 904; height: 30}
     }
   }
 }

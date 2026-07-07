@@ -1,59 +1,151 @@
 # PRD: F4 Product detail (desktop 1280)
+# GUI wireframe: one page frame, sidebar left, topbar on top, content zones stacked.
 direction: down
 
-screen: {
-  label: "Product detail — desktop 1280"
-  style.fill: "#ffffff"
+classes: {
+  frame: {style: {fill: "#ffffff"; stroke: "#999999"; stroke-width: 2; font-size: 16}}
+  plain: {style: {fill: "#ffffff"; stroke: "#ffffff"}}
+  bar: {style: {fill: "#f4f4f3"; stroke: "#999999"}}
+  barlbl: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"}}
+  slogo: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; bold: true; font-size: 16}}
+  nav: {style: {fill: "#f4f4f3"; stroke: "#f4f4f3"; font-size: 14}}
+  navon: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 14}}
+  h1: {style: {fill: "#ffffff"; stroke: "#ffffff"; bold: true; font-size: 20}}
+  txt: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-size: 13}}
+  muted: {style: {fill: "#ffffff"; stroke: "#ffffff"; font-color: "#8a8a88"; font-size: 13}}
+  zone: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  field: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+  btn: {style: {fill: "#e5e6e8"; stroke: "#999999"; font-size: 13}}
+  primary: {style: {fill: "#1a1a1a"; stroke: "#1a1a1a"; font-color: "#ffffff"; font-size: 13}}
+  head: {style: {fill: "#e5e6e8"; stroke: "#999999"; bold: true; font-size: 13}}
+  cell: {style: {fill: "#ffffff"; stroke: "#999999"; font-size: 13}}
+}
 
-  topbar: {
-    label: "Northwind | lang | user"
-    style.fill: "#f4f4f3"
+page: {
+  label: "Product — detail — desktop 1280"
+  class: frame
+  grid-columns: 2
+  grid-gap: 0
+  sidebar: {
+    label: ""
+    class: bar
+    grid-columns: 1
+    grid-gap: 6
+    logo: {label: "Northwind Traders"; class: slogo; width: 180; height: 44}
+    n0: {label: "Dashboard"; class: nav; width: 180; height: 34}
+    n1: {label: "Orders"; class: nav; width: 180; height: 34}
+    n2: {label: "Purchase orders"; class: nav; width: 180; height: 34}
+    n3: {label: "Products"; class: navon; width: 180; height: 34}
+    n4: {label: "Categories"; class: nav; width: 180; height: 34}
+    n5: {label: "Inventory"; class: nav; width: 180; height: 34}
+    n6: {label: "Companies"; class: nav; width: 180; height: 34}
+    n7: {label: "Reports"; class: nav; width: 180; height: 34}
+    n8: {label: "Admin"; class: nav; width: 180; height: 34}
+    n9: {label: "Settings"; class: nav; width: 180; height: 34}
   }
   main: {
-    direction: right
-    sidebar: {
-      label: "sidebar: Products (active)"
-      style.fill: "#f4f4f3"
+    label: ""
+    class: plain
+    grid-columns: 1
+    grid-gap: 10
+    topbar: {
+      label: ""
+      class: bar
+      grid-columns: 3
+      grid-gap: 8
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
+      user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
-    content: {
-      direction: down
-      header: {
+    hdr: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 8
+      back: {label: "‹ Products"; class: muted; width: 150; height: 40}
+      h1: {label: "NWTB-1 — Chai"; class: h1; width: 560; height: 40}
+      del: {label: "Delete"; class: btn; width: 200; height: 40}
+    }
+    stock: {
+      label: "Stock"
+      class: zone
+      grid-columns: 1
+      grid-gap: 6
+      kpi: {
+        label: ""
+        class: plain
+        grid-columns: 4
+        grid-gap: 8
+        a: {label: "On hand: 12"; class: cell; width: 218; height: 34}
+        b: {label: "Allocated: 10"; class: cell; width: 218; height: 34}
+        c: {label: "Available: 2  ⚠"; class: cell; width: 218; height: 34}
+        d: {label: "On order: 40"; class: cell; width: 218; height: 34}
+      }
+      act: {
+        label: ""
+        class: plain
+        grid-columns: 3
+        grid-gap: 8
+        re: {label: "Reorder (create PO)"; class: primary; width: 220; height: 36}
+        note: {label: "Below reorder level (10)"; class: muted; width: 452; height: 36}
+        sp: {label: ""; class: plain; width: 200; height: 36}
+      }
+    }
+    form: {
+      label: "Product"
+      class: zone
+      grid-columns: 1
+      grid-gap: 6
+      r1: {
+        label: ""
+        class: plain
         grid-columns: 2
-        title: "< back | H1 Chai Tea (NWTB-1)"
-        actions: {
-          label: "[ Edit ] [ Reorder ] (shown when low)"
-          style.fill: "#f4f4f3"
-        }
+        grid-gap: 8
+        f1: {label: "Code  [NWTB-1]"; class: field; width: 448; height: 38}
+        f2: {label: "Name  [Chai]"; class: field; width: 448; height: 38}
       }
-      body: {
+      r2: {
+        label: ""
+        class: plain
         grid-columns: 2
-        fields: {
-          direction: down
-          f1: "Category: Beverages | Supplier: Exotic Liquids"
-          f2: "List price 18.00 | Std cost 13.50"
-          f3: "Reorder level 50 | Target level 100"
-          f4: "Qty per unit: 10 boxes x 20 bags"
-          f5: "Image [thumb]  Discontinued: no"
-        }
-        stock: {
-          label: "Stock (derived)"
-          direction: down
-          s1: "On hand: 22"
-          s2: "Allocated: 10"
-          s3: "Available to sell: 12 (LOW < 50)"
-          s4: "On order: 100"
-        }
+        grid-gap: 8
+        f1: {label: "Category  [Beverages ▾]"; class: field; width: 448; height: 38}
+        f2: {label: "Supplier  [Exotic Liquids ▾]"; class: field; width: 448; height: 38}
       }
-      history: {
-        label: "Recent inventory transactions"
-        direction: down
-        head: {
-          label: "Date | Type | Qty | Ref"
-          style.fill: "#f4f4f3"
-        }
-        r1: "2026-07-05 | purchased | +100 | PO-2026-0015"
-        r2: "2026-07-06 | sold | -88 | SO-2026-0040"
+      r3: {
+        label: ""
+        class: plain
+        grid-columns: 2
+        grid-gap: 8
+        f1: {label: "List price  [18.00]"; class: field; width: 448; height: 38}
+        f2: {label: "Standard cost  [13.50]"; class: field; width: 448; height: 38}
       }
+      r4: {
+        label: ""
+        class: plain
+        grid-columns: 2
+        grid-gap: 8
+        f1: {label: "Reorder level  [10]"; class: field; width: 448; height: 38}
+        f2: {label: "Target level  [40]"; class: field; width: 448; height: 38}
+      }
+      r5: {
+        label: ""
+        class: plain
+        grid-columns: 2
+        grid-gap: 8
+        f1: {label: "Qty per unit  [10 boxes x 20 bags]"; class: field; width: 448; height: 38}
+        f2: {label: "☐ Discontinued"; class: field; width: 448; height: 38}
+      }
+      desc: {label: "Description  [__________________________________]"; class: field; width: 904; height: 38}
+    }
+    save: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 8
+      s: {label: "Save"; class: primary; width: 180; height: 40}
+      c: {label: "Cancel"; class: btn; width: 180; height: 40}
+      sp: {label: ""; class: plain; width: 564; height: 40}
     }
   }
 }
