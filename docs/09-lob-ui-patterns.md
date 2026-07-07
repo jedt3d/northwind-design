@@ -35,6 +35,8 @@ Purpose: study how mature LOB applications solve the four patterns below, then p
 - [ ] Lookup/reference-picker pattern (choose company, product) incl. create-on-the-fly
 - [ ] Decision: __
 
+> Note: the UI-preview video frames in `design/screenshots/` are a **visual style** reference for the design system (docs/06 §0) only. The pattern decisions below (search, sorting, tables, master–detail/forms) are made from the research sources in this document, not from that video.
+
 ## Sources to study (log findings per source)
 - [ ] Established design systems with LOB focus: SAP Fiori, Salesforce Lightning, Microsoft Fluent, IBM Carbon, Atlassian
 - [ ] Pattern references: Nielsen Norman Group articles (tables, search, forms), UI Patterns

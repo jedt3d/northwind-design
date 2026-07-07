@@ -4,7 +4,7 @@ Every external image (products, people, illustrations, icons, fonts) fetched fro
 
 | # | File in repo | Description | Original URL | Source / License |
 |---|---|---|---|---|
-| — | *(none yet — populated from Phase 1 Cycle 2 onward)* | | | |
+| 1 | `design/screenshots/frame_01.jpg` … `frame_12.jpg` (12 files) | UI style reference — frames extracted from user-provided UI-preview video (ChartMogul-style report screen) | — (user-provided MP4, 2026-07-08) | Internal reference only; not for redistribution |
 
 Rules:
 
