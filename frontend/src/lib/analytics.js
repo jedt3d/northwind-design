@@ -159,7 +159,7 @@ export function monthlyOrderPoSeries(orders, pos, orderRevenueByOrderId = {}, po
     b.orderValue += Number(orderRevenueByOrderId[o.id]) || 0;
   }
   for (const p of pos || []) {
-    const m = monthKey(p.created || p.submitted_date);
+    const m = monthKey(p.submitted_date || p.created);
     if (!m) continue;
     const b = ensure(m);
     b.pos += 1;
