@@ -182,8 +182,13 @@ export default function DataTable({
                       >
                         {col.sort ? (
                           <button type="button" className="nw-table-sortbtn" onClick={() => cycleSort(col)}>
+                            {col.align === 'right' && (
+                              <span className="nw-table-arrow">{active ? (sort.dir === 'asc' ? '▲' : '▼') : ''}</span>
+                            )}
                             {col.label}
-                            <span className="nw-table-arrow">{active ? (sort.dir === 'asc' ? ' ▲' : ' ▼') : ''}</span>
+                            {col.align !== 'right' && (
+                              <span className="nw-table-arrow">{active ? (sort.dir === 'asc' ? '▲' : '▼') : ''}</span>
+                            )}
                           </button>
                         ) : (
                           col.label

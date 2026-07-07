@@ -1,9 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { pb, currentUser, currentRole } from '../pb';
 import { useT } from '../i18n/index.jsx';
 import { fetchStockMap } from '../lib/stock';
-import { formatDate } from '../lib/calc';
+import { formatDate, formatMoney } from '../lib/calc';
+import {
+  soldLineRevenue,
+  poLineCost,
+  topProductsByRevenue,
+  topCategoriesByRevenue,
+  topCustomers,
+  topSuppliers,
+  categoryInventory,
+  monthlyOrderPoSeries,
+} from '../lib/analytics';
 import StatusBadge from '../components/StatusBadge.jsx';
 
 function Panel({ title, empty, items, renderItem }) {
@@ -21,6 +31,87 @@ function Panel({ title, empty, items, renderItem }) {
   );
 }
 
+/** Same CSS-bar pattern as ReportView, with a pastel token color per panel. */
+function BarChart({ rows, color = 'blue', format }) {
+  const max = Math.max(...rows.map((r) => r.value), 1);
+  return (
+    <div className="bar-chart">
+      {rows.map((r, i) => (
+        <div key={i} className="bar-row">
+          <span className="bar-label" title={r.label}>
+            {r.label}
+          </span>
+          <span className="bar-track">
+            <span
+              className={`bar-fill bar-fill--${color}`}
+              style={{ width: `${(Math.max(r.value, 0) / max) * 100}%` }}
+            />
+          </span>
+          <span className="bar-value">{format ? format(r) : r.value}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/** Paired bars (orders vs POs) per month, counts scaled to a common max. */
+function PairedBarChart({ rows, lang, ordersLabel, posLabel }) {
+  const max = Math.max(...rows.flatMap((r) => [r.orders, r.pos]), 1);
+  return (
+    <div>
+      <div className="chart-legend">
+        <span>
+          <span className="chart-legend-swatch chart-legend-swatch--blue" />
+          {ordersLabel}
+        </span>
+        <span>
+          <span className="chart-legend-swatch chart-legend-swatch--yellow" />
+          {posLabel}
+        </span>
+      </div>
+      <div className="bar-chart">
+        {rows.map((r) => (
+          <div key={r.month} className="pair-group">
+            <div className="bar-row">
+              <span className="bar-label">{r.month}</span>
+              <span className="bar-track">
+                <span className="bar-fill bar-fill--blue" style={{ width: `${(r.orders / max) * 100}%` }} />
+              </span>
+              <span className="bar-value">
+                {r.orders} · {formatMoney(r.orderValue, lang)}
+              </span>
+            </div>
+            <div className="bar-row">
+              <span className="bar-label" />
+              <span className="bar-track">
+                <span className="bar-fill bar-fill--yellow" style={{ width: `${(r.pos / max) * 100}%` }} />
+              </span>
+              <span className="bar-value">
+                {r.pos} · {formatMoney(r.poValue, lang)}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ChartPanel({ title, loading, empty, hasData, wide, children }) {
+  return (
+    <section className={`panel${wide ? ' panel--wide' : ''}`}>
+      <h2 className="panel-title">{title}</h2>
+      {loading ? (
+        <div className="skeleton panel-skeleton" />
+      ) : !hasData ? (
+        <div className="panel-empty">{empty}</div>
+      ) : (
+        children
+      )}
+    </section>
+  );
+}
+
 export default function Dashboard() {
   const { t, lang } = useT();
   const role = currentRole();
@@ -29,6 +120,8 @@ export default function Dashboard() {
   const [approvals, setApprovals] = useState(null);
   const [myOrders, setMyOrders] = useState(null);
   const [recentPos, setRecentPos] = useState(null);
+  const [raw, setRaw] = useState(null);
+  const [analyticsError, setAnalyticsError] = useState('');
 
   const showLowStock = ['purchasing', 'warehouse', 'manager', 'admin'].includes(role);
   const showApprovals = ['manager', 'admin'].includes(role);
@@ -78,6 +171,62 @@ export default function Dashboard() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [role]);
+
+  // Analytics section — visible to all roles. 6 batched fetches, one Promise.all.
+  useEffect(() => {
+    let alive = true;
+    setRaw(null);
+    setAnalyticsError('');
+    Promise.all([
+      pb.collection('order_details').getList(1, 500, { expand: 'order,order.customer,product.category' }),
+      pb.collection('purchase_order_details').getList(1, 500, { expand: 'purchase_order,purchase_order.supplier' }),
+      pb.collection('products').getList(1, 500, { expand: 'category' }),
+      pb.collection('inventory_transactions').getList(1, 500, {}),
+      pb.collection('orders').getList(1, 500, { sort: '-order_date' }),
+      pb.collection('purchase_orders').getList(1, 500, { sort: '-created' }),
+    ])
+      .then(([orderLines, poLines, products, txs, orders, pos]) => {
+        if (!alive) return;
+        setRaw({
+          orderLines: orderLines.items,
+          poLines: poLines.items,
+          products: products.items,
+          txs: txs.items,
+          orders: orders.items,
+          pos: pos.items,
+        });
+      })
+      .catch((err) => {
+        if (alive) setAnalyticsError(err?.message || String(err));
+      });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  const analytics = useMemo(() => {
+    if (!raw) return null;
+    const txByProduct = {};
+    for (const tx of raw.txs) (txByProduct[tx.product] ||= []).push(tx);
+    const inv = categoryInventory(raw.products, txByProduct);
+    const orderRevenueByOrderId = {};
+    for (const l of raw.orderLines) {
+      orderRevenueByOrderId[l.order] = (orderRevenueByOrderId[l.order] || 0) + soldLineRevenue(l);
+    }
+    const poCostByPoId = {};
+    for (const l of raw.poLines) {
+      poCostByPoId[l.purchase_order] = (poCostByPoId[l.purchase_order] || 0) + poLineCost(l);
+    }
+    return {
+      invByValue: inv.slice(0, 5),
+      invByQty: [...inv].sort((a, b) => b.qty - a.qty).slice(0, 5),
+      monthly: monthlyOrderPoSeries(raw.orders, raw.pos, orderRevenueByOrderId, poCostByPoId, 6),
+      products: topProductsByRevenue(raw.orderLines, 10),
+      categories: topCategoriesByRevenue(raw.orderLines, 10),
+      customers: topCustomers(raw.orderLines, 5),
+      suppliers: topSuppliers(raw.poLines, 5),
+    };
+  }, [raw]);
 
   return (
     <div>
@@ -161,6 +310,123 @@ export default function Dashboard() {
           />
         )}
       </div>
+
+      <h2 className="dash-analytics-title">{t('dash.analytics')}</h2>
+      {analyticsError && (
+        <div className="banner banner--error" role="alert">
+          {analyticsError}
+        </div>
+      )}
+      {!analyticsError && (
+        <div className="dash-grid dash-grid--analytics">
+          <ChartPanel
+            title={t('dash.top_cat_value')}
+            loading={!analytics}
+            empty={t('dash.no_data')}
+            hasData={!!analytics && analytics.invByValue.length > 0}
+          >
+            {analytics && (
+              <BarChart
+                rows={analytics.invByValue.map((r) => ({ label: r.category, value: r.value }))}
+                color="blue"
+                format={(r) => formatMoney(r.value, lang)}
+              />
+            )}
+          </ChartPanel>
+
+          <ChartPanel
+            title={t('dash.top_cat_qty')}
+            loading={!analytics}
+            empty={t('dash.no_data')}
+            hasData={!!analytics && analytics.invByQty.length > 0}
+          >
+            {analytics && (
+              <BarChart
+                rows={analytics.invByQty.map((r) => ({ label: r.category, value: r.qty }))}
+                color="green"
+                format={(r) => r.value}
+              />
+            )}
+          </ChartPanel>
+
+          <ChartPanel
+            title={t('dash.orders_vs_pos')}
+            loading={!analytics}
+            empty={t('dash.no_data')}
+            hasData={!!analytics && analytics.monthly.length > 0}
+            wide
+          >
+            {analytics && (
+              <PairedBarChart
+                rows={analytics.monthly}
+                lang={lang}
+                ordersLabel={t('dash.legend_orders')}
+                posLabel={t('dash.legend_pos')}
+              />
+            )}
+          </ChartPanel>
+
+          <ChartPanel
+            title={t('dash.top_products')}
+            loading={!analytics}
+            empty={t('dash.no_data')}
+            hasData={!!analytics && analytics.products.length > 0}
+          >
+            {analytics && (
+              <BarChart
+                rows={analytics.products.map((r) => ({ label: r.name, value: r.revenue, qty: r.qty }))}
+                color="purple"
+                format={(r) => `${formatMoney(r.value, lang)} (${r.qty})`}
+              />
+            )}
+          </ChartPanel>
+
+          <ChartPanel
+            title={t('dash.top_categories')}
+            loading={!analytics}
+            empty={t('dash.no_data')}
+            hasData={!!analytics && analytics.categories.length > 0}
+          >
+            {analytics && (
+              <BarChart
+                rows={analytics.categories.map((r) => ({ label: r.name, value: r.revenue, qty: r.qty }))}
+                color="pink"
+                format={(r) => `${formatMoney(r.value, lang)} (${r.qty})`}
+              />
+            )}
+          </ChartPanel>
+
+          <ChartPanel
+            title={t('dash.top_customers')}
+            loading={!analytics}
+            empty={t('dash.no_data')}
+            hasData={!!analytics && analytics.customers.length > 0}
+          >
+            {analytics && (
+              <BarChart
+                rows={analytics.customers.map((r) => ({ label: r.name, value: r.revenue }))}
+                color="green"
+                format={(r) => formatMoney(r.value, lang)}
+              />
+            )}
+          </ChartPanel>
+
+          <ChartPanel
+            title={t('dash.top_suppliers')}
+            loading={!analytics}
+            empty={t('dash.no_data')}
+            hasData={!!analytics && analytics.suppliers.length > 0}
+          >
+            {analytics && (
+              <BarChart
+                rows={analytics.suppliers.map((r) => ({ label: r.name, value: r.spend }))}
+                color="red"
+                format={(r) => formatMoney(r.value, lang)}
+              />
+            )}
+          </ChartPanel>
+        </div>
+      )}
     </div>
   );
 }

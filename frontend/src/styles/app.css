@@ -675,8 +675,16 @@ select.input {
   border-bottom: 1px solid var(--color-border-hairline);
   white-space: nowrap;
 }
+.nw-table th {
+  text-align: left; /* browsers default th to center — keep headers on the content grid */
+}
 .nw-table-th--right {
   text-align: right;
+}
+.nw-table-arrow {
+  display: inline-block;
+  width: 0.9em;
+  text-align: center;
 }
 .nw-table-th--active {
   color: var(--color-text-primary);
@@ -920,6 +928,72 @@ select.input {
   }
 }
 
+/* dashboard analytics */
+.dash-analytics-title {
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-bold);
+  margin: var(--space-6) 0 var(--space-4);
+}
+.dash-grid--analytics .panel {
+  margin-bottom: 0;
+}
+.panel--wide {
+  grid-column: 1 / -1;
+}
+.bar-fill--blue {
+  background: var(--color-data-blue-bg);
+  border-right-color: var(--color-data-blue-text);
+}
+.bar-fill--green {
+  background: var(--color-data-green-bg);
+  border-right-color: var(--color-data-green-text);
+}
+.bar-fill--yellow {
+  background: var(--color-data-yellow-bg);
+  border-right-color: var(--color-data-yellow-text);
+}
+.bar-fill--purple {
+  background: var(--color-data-purple-bg);
+  border-right-color: var(--color-data-purple-text);
+}
+.bar-fill--pink {
+  background: var(--color-data-pink-bg);
+  border-right-color: var(--color-data-pink-text);
+}
+.bar-fill--red {
+  background: var(--color-data-red-bg);
+  border-right-color: var(--color-data-red-text);
+}
+.chart-legend {
+  display: flex;
+  gap: var(--space-4);
+  font-size: var(--font-size-13);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-3);
+}
+.chart-legend-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+.chart-legend-swatch--blue {
+  background: var(--color-data-blue-bg);
+  border: 1px solid var(--color-data-blue-text);
+}
+.chart-legend-swatch--yellow {
+  background: var(--color-data-yellow-bg);
+  border: 1px solid var(--color-data-yellow-text);
+}
+.pair-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: var(--space-2);
+}
+
 /* ---------- detail pages ---------- */
 .detail-grid {
   display: grid;
@@ -1127,6 +1201,11 @@ select.input {
 .page-skeleton {
   height: 200px;
   margin-top: var(--space-4);
+}
+.cell-skeleton {
+  display: inline-block;
+  width: 64px;
+  min-height: 12px;
 }
 .nw-table-skeletonrow td {
   padding: var(--space-3);

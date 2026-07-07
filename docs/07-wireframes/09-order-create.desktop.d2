@@ -47,22 +47,23 @@ page: {
     label: ""
     class: plain
     grid-columns: 1
-    grid-gap: 10
+    grid-gap: 8
     topbar: {
       label: ""
       class: bar
       grid-columns: 3
       grid-gap: 8
-      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 568; height: 36}
       lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
       user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
     hdr: {
       label: ""
       class: plain
-      grid-columns: 2
-      grid-gap: 8
+      grid-columns: 3
+      grid-gap: 0
       back: {label: "‹ Orders"; class: muted; width: 150; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
       h1: {label: "New order"; class: h1; width: 782; height: 40}
     }
     form: {
@@ -73,28 +74,32 @@ page: {
       r1: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        cust: {label: "Customer  [Adatum Corporation ▾]"; class: field; width: 610; height: 38}
+        grid-columns: 3
+        grid-gap: 0
+        cust: {label: "Customer  [Adatum Corporation ▾]"; class: field; width: 634; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
         newc: {label: "+ New customer"; class: btn; width: 286; height: 38}
       }
       r2: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        emp: {label: "Employee  [Worajedt S. ▾]"; class: field; width: 448; height: 38}
-        date: {label: "Order date  [2026-07-08]"; class: field; width: 448; height: 38}
+        grid-columns: 3
+        grid-gap: 0
+        emp: {label: "Employee  [Worajedt S. ▾]"; class: field; width: 460; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
+        date: {label: "Order date  [2026-07-08]"; class: field; width: 460; height: 38}
       }
-      notes: {label: "Notes  [________________________________________]"; class: field; width: 904; height: 38}
+      notes: {label: "Notes  [________________________________________]"; class: field; width: 928; height: 38}
     }
     save: {
       label: ""
       class: plain
-      grid-columns: 3
-      grid-gap: 8
+      grid-columns: 5
+      grid-gap: 0
       s: {label: "Save order"; class: primary; width: 180; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
       c: {label: "Cancel"; class: btn; width: 180; height: 40}
+      gsp2: {label: ""; class: plain; width: 8; height: 40}
       sp: {label: ""; class: plain; width: 564; height: 40}
     }
     hint: {label: "Lines are added on the order detail page after saving."; class: muted; width: 940; height: 28}

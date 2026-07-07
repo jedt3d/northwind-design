@@ -47,46 +47,51 @@ page: {
     label: ""
     class: plain
     grid-columns: 1
-    grid-gap: 10
+    grid-gap: 8
     topbar: {
       label: ""
       class: bar
       grid-columns: 3
       grid-gap: 8
-      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 568; height: 36}
       lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
       user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
     hdr: {
       label: ""
       class: plain
-      grid-columns: 2
-      grid-gap: 8
-      h1: {label: "Inventory"; class: h1; width: 710; height: 40}
+      grid-columns: 3
+      grid-gap: 0
+      h1: {label: "Inventory"; class: h1; width: 712; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
       adj: {label: "New adjustment"; class: primary; width: 220; height: 40}
     }
     tabs: {
       label: ""
       class: plain
-      grid-columns: 3
-      grid-gap: 8
+      grid-columns: 5
+      grid-gap: 0
       t1: {label: "On hand"; class: btn; width: 180; height: 36}
+      gsp1: {label: ""; class: plain; width: 8; height: 36}
       t2: {label: "Transactions"; class: navon; width: 180; height: 36}
+      gsp2: {label: ""; class: plain; width: 8; height: 36}
       sp: {label: ""; class: plain; width: 564; height: 36}
     }
     tools: {
       label: ""
       class: plain
-      grid-columns: 2
-      grid-gap: 8
+      grid-columns: 3
+      grid-gap: 0
       f1: {label: "Type: All ▾ (purchased / sold / on hold / waiting)"; class: btn; width: 470; height: 38}
+      gsp1: {label: ""; class: plain; width: 8; height: 38}
       f2: {label: "Product: All ▾"; class: btn; width: 462; height: 38}
     }
     table: {
       label: ""
       class: plain
       grid-columns: 1
-      grid-gap: 2
+      horizontal-gap: 0
+      vertical-gap: 2
       hd: {label: "Date ▾ | Type | Product | Qty | Related | Comment"; class: head; width: 940; height: 32}
       r0: {label: "2026-07-08 | on_hold | Chai | −10 | SO-2026-0042 | order allocation"; class: cell; width: 940; height: 32}
       r1: {label: "2026-07-07 | purchased | Chang | +60 | PO-2026-0104 | receiving"; class: cell; width: 940; height: 32}

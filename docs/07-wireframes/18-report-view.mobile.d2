@@ -32,25 +32,27 @@ page: {
     grid-columns: 3
     grid-gap: 6
     menu: {label: "☰"; class: btn; width: 44; height: 36}
-    apptitle: {label: "Northwind Traders"; class: barlbl; width: 190; height: 36}
+    apptitle: {label: "Northwind Traders"; class: barlbl; width: 204; height: 36}
     user: {label: "WS ▾"; class: btn; width: 64; height: 36}
   }
-  back: {label: "‹ Reports"; class: muted; width: 320; height: 26}
-  h1: {label: "Sales by period"; class: h1; width: 320; height: 36}
+  back: {label: "‹ Reports"; class: muted; width: 336; height: 26}
+  h1: {label: "Sales by period"; class: h1; width: 336; height: 36}
   f12: {
     label: ""
     class: plain
-    grid-columns: 2
-    grid-gap: 8
-    f1: {label: "From [2026-01]"; class: field; width: 155; height: 36}
-    f2: {label: "To [2026-07]"; class: field; width: 155; height: 36}
+    grid-columns: 3
+    grid-gap: 0
+    f1: {label: "From [2026-01]"; class: field; width: 164; height: 36}
+    gsp1: {label: ""; class: plain; width: 8; height: 36}
+    f2: {label: "To [2026-07]"; class: field; width: 164; height: 36}
   }
   f34: {
     label: ""
     class: plain
-    grid-columns: 2
-    grid-gap: 8
-    f3: {label: "Group by [Month ▾]"; class: field; width: 200; height: 36}
+    grid-columns: 3
+    grid-gap: 0
+    f3: {label: "Group by [Month ▾]"; class: field; width: 218; height: 36}
+    gsp1: {label: ""; class: plain; width: 8; height: 36}
     run: {label: "Run"; class: primary; width: 110; height: 36}
   }
   chart: {
@@ -58,16 +60,17 @@ page: {
     class: zone
     grid-columns: 1
     grid-gap: 6
-    bars: {label: "▂  ▄  ▆  ▃  ▇"; class: txt; width: 290; height: 100}
+    bars: {label: "▂  ▄  ▆  ▃  ▇"; class: txt; width: 324; height: 100}
   }
   table: {
     label: ""
     class: plain
     grid-columns: 1
-    grid-gap: 2
-    hd: {label: "Month | Revenue"; class: head; width: 320; height: 32}
-    r0: {label: "2026-05 | 12,480.00"; class: cell; width: 320; height: 32}
-    r1: {label: "2026-06 | 15,930.00"; class: cell; width: 320; height: 32}
-    r2: {label: "2026-07 | 8,210.00"; class: cell; width: 320; height: 32}
+    horizontal-gap: 0
+    vertical-gap: 2
+    hd: {label: "Month | Revenue"; class: head; width: 336; height: 32}
+    r0: {label: "2026-05 | 12,480.00"; class: cell; width: 336; height: 32}
+    r1: {label: "2026-06 | 15,930.00"; class: cell; width: 336; height: 32}
+    r2: {label: "2026-07 | 8,210.00"; class: cell; width: 336; height: 32}
   }
 }

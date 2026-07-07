@@ -40,6 +40,8 @@ Inventory is a ledger, not a stored number. Every movement writes a transaction:
 ### 4.6 Reporting needs
 Management needs four recurring views, each filterable by date range where applicable: **sales by period** (grouped by employee or by product, monthly/quarterly), **top-selling products**, **stock on hand** (current ledger position per product, flagging items below reorder level), and **outstanding purchase orders** (submitted/approved POs not yet received, with expected dates). These correspond to the template's shipped sales reports plus the operational views its forms provided implicitly. Employee rosters and the print catalog from the Access template are out of scope for v1.
 
+**Management dashboards (added 2026-07-08).** Beyond the four reports, management wants an at-a-glance analytics section on the dashboard, visible to all roles, covering six views: (1) the top 5 product categories by stored inventory **cost** (on-hand quantity × product standard cost, summed per category) and the top 5 by stock **quantity**; (2) the volume of Orders and Purchase Orders — monthly count and total value over the last 6 months, side by side; (3) the top 10 selling products by revenue (quantity shown); (4) the top 10 selling categories; (5) the top 5 customer companies (top buyers by revenue); (6) the top 5 supplier companies by our purchase spend. In addition, the companies directory must make **lifetime value** visible: every company row shows the total purchased since the beginning — for customers, everything they have bought from Northwind; for suppliers, everything Northwind has bought from them; companies that are both show the sum, split apart on the company detail.
+
 ## 5. Business rules
 Rules below are binding; the system (not user discipline) enforces them. Source: `reference/northwind-notes.md`.
 
@@ -73,6 +75,10 @@ Rules below are binding; the system (not user discipline) enforces them. Source:
 **Pricing**
 - BR-PR1: List price is what customers are charged; standard cost is the purchasing default on PO lines. Both live on the product; documents snapshot their own copies.
 
+**Reporting & analytics**
+- BR-R1: "Selling" figures (top products/categories, customer revenue, lifetime customer value) count **only** orders whose status is invoiced, shipped, or closed. New and cancelled orders never contribute to sales numbers.
+- BR-R2: Purchase-spend figures (supplier ranking, lifetime supplier spend, PO value chart) count **only** purchase orders whose status is approved or closed. Draft, submitted, and cancelled POs never contribute.
+
 ## 6. Success criteria
 - Every workflow in §4 is achievable end-to-end in the web app: directory upkeep, order from creation to Closed (including the no-stock → PO → receive → allocate loop), PO from draft to received, manual adjustment, and all four reports — verified against the wireframe verification gate (`docs/07-wireframes/verification.md`).
 - All §5 rules are enforced server-side; attempts to break them via the raw API are rejected, not just hidden in the UI.
@@ -82,3 +88,5 @@ Rules below are binding; the system (not user discipline) enforces them. Source:
 ## สรุปภาษาไทย
 
 เอกสารนี้แปลงโมเดลธุรกิจของ Northwind 2.0 (Access) เป็นข้อกำหนดเชิงธุรกิจของเว็บแอป ครอบคลุม 6 กระบวนการหลัก: ทะเบียนบริษัท (ลูกค้า/ซัพพลายเออร์/ผู้ส่ง) แคตตาล็อกสินค้า วงจรใบสั่งขาย (New → Invoiced → Shipped → Closed) วงจรใบสั่งซื้อพร้อมการอนุมัติ บัญชีเคลื่อนไหวสต๊อก และรายงาน กฎธุรกิจสำคัญถูกระบุชัดเจน เช่น สต๊อกติดลบไม่ได้ ออกใบแจ้งหนี้ได้ต่อเมื่อจองสต๊อกครบทุกรายการ ต้องอนุมัติใบสั่งซื้อก่อนรับของ และแนะนำสั่งซื้อเมื่อสต๊อกต่ำกว่าจุดสั่งซื้อ โดยทุกกฎต้องถูกบังคับที่ฝั่งเซิร์ฟเวอร์ และเกณฑ์ความสำเร็จคือทำงานครบทุกกระบวนการบนมือถือได้และรองรับ 3 ภาษา
+
+ฉบับปรับปรุง 2026-07-08: §4.6 เพิ่มความต้องการแดชบอร์ดผู้บริหาร 6 มุมมอง (มูลค่า/ปริมาณสต๊อกตามหมวด 5 อันดับ, จำนวนและมูลค่าใบสั่งขาย-ใบสั่งซื้อรายเดือน 6 เดือน, สินค้าและหมวดขายดี 10 อันดับ, ลูกค้าและซัพพลายเออร์ 5 อันดับ) และการแสดงมูลค่าตลอดอายุความสัมพันธ์ของบริษัทในทะเบียน พร้อมกฎใหม่ BR-R1 (ยอดขายนับเฉพาะออเดอร์ invoiced/shipped/closed) และ BR-R2 (ยอดซื้อนับเฉพาะ PO approved/closed)

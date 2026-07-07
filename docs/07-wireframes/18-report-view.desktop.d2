@@ -47,33 +47,38 @@ page: {
     label: ""
     class: plain
     grid-columns: 1
-    grid-gap: 10
+    grid-gap: 8
     topbar: {
       label: ""
       class: bar
       grid-columns: 3
       grid-gap: 8
-      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 568; height: 36}
       lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
       user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
     hdr: {
       label: ""
       class: plain
-      grid-columns: 2
-      grid-gap: 8
+      grid-columns: 3
+      grid-gap: 0
       back: {label: "‹ Reports"; class: muted; width: 150; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
       h1: {label: "Sales by period"; class: h1; width: 782; height: 40}
     }
     filters: {
       label: ""
       class: plain
-      grid-columns: 5
-      grid-gap: 8
+      grid-columns: 9
+      grid-gap: 0
       f1: {label: "From [2026-01]"; class: field; width: 200; height: 38}
+      gsp1: {label: ""; class: plain; width: 8; height: 38}
       f2: {label: "To [2026-07]"; class: field; width: 200; height: 38}
+      gsp2: {label: ""; class: plain; width: 8; height: 38}
       f3: {label: "Group by [Month ▾]"; class: field; width: 240; height: 38}
+      gsp3: {label: ""; class: plain; width: 8; height: 38}
       run: {label: "Run"; class: primary; width: 120; height: 38}
+      gsp4: {label: ""; class: plain; width: 8; height: 38}
       exp: {label: "Export"; class: btn; width: 148; height: 38}
     }
     chart: {
@@ -81,13 +86,14 @@ page: {
       class: zone
       grid-columns: 1
       grid-gap: 6
-      bars: {label: "▂   ▄   ▆   ▃   ▇   ▅   █"; class: txt; width: 904; height: 130}
+      bars: {label: "▂   ▄   ▆   ▃   ▇   ▅   █"; class: txt; width: 928; height: 130}
     }
     table: {
       label: ""
       class: plain
       grid-columns: 1
-      grid-gap: 2
+      horizontal-gap: 0
+      vertical-gap: 2
       hd: {label: "Month | Revenue | Orders"; class: head; width: 940; height: 32}
       r0: {label: "2026-05 | 12,480.00 | 31"; class: cell; width: 940; height: 32}
       r1: {label: "2026-06 | 15,930.00 | 38"; class: cell; width: 940; height: 32}

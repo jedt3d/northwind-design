@@ -47,22 +47,23 @@ page: {
     label: ""
     class: plain
     grid-columns: 1
-    grid-gap: 10
+    grid-gap: 8
     topbar: {
       label: ""
       class: bar
       grid-columns: 3
       grid-gap: 8
-      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 568; height: 36}
       lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
       user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
     hdr: {
       label: ""
       class: plain
-      grid-columns: 2
-      grid-gap: 8
-      h1: {label: "Employees & roles"; class: h1; width: 710; height: 40}
+      grid-columns: 3
+      grid-gap: 0
+      h1: {label: "Employees & roles"; class: h1; width: 712; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
       new: {label: "+ New employee"; class: primary; width: 220; height: 40}
     }
     edit: {
@@ -73,43 +74,50 @@ page: {
       r1: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        f1: {label: "Username  [nancy]"; class: field; width: 448; height: 38}
-        f2: {label: "Email  [nancy@northwind.com]"; class: field; width: 448; height: 38}
+        grid-columns: 3
+        grid-gap: 0
+        f1: {label: "Username  [nancy]"; class: field; width: 460; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
+        f2: {label: "Email  [nancy@northwind.com]"; class: field; width: 460; height: 38}
       }
       r2: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        f1: {label: "Password  [••••••••]"; class: field; width: 448; height: 38}
-        f2: {label: "Role  [sales ▾] (sales/purchasing/warehouse/manager/admin)"; class: field; width: 448; height: 38}
+        grid-columns: 3
+        grid-gap: 0
+        f1: {label: "Password  [••••••••]"; class: field; width: 460; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
+        f2: {label: "Role  [sales ▾] (sales/purchasing/warehouse/manager/admin)"; class: field; width: 460; height: 38}
       }
       r3: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        f1: {label: "First name [Nancy]   Last name [Freehafer]"; class: field; width: 448; height: 38}
-        f2: {label: "Job title [Sales Rep]   Language [EN ▾]"; class: field; width: 448; height: 38}
+        grid-columns: 3
+        grid-gap: 0
+        f1: {label: "First name [Nancy]   Last name [Freehafer]"; class: field; width: 460; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
+        f2: {label: "Job title [Sales Rep]   Language [EN ▾]"; class: field; width: 460; height: 38}
       }
       r4: {
         label: ""
         class: plain
-        grid-columns: 4
-        grid-gap: 8
+        grid-columns: 7
+        grid-gap: 0
         f1: {label: "☑ Active"; class: field; width: 200; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
         s: {label: "Save"; class: primary; width: 160; height: 38}
+        gsp2: {label: ""; class: plain; width: 8; height: 38}
         c: {label: "Cancel"; class: btn; width: 160; height: 38}
-        sp: {label: ""; class: plain; width: 368; height: 38}
+        gsp3: {label: ""; class: plain; width: 8; height: 38}
+        sp: {label: ""; class: plain; width: 384; height: 38}
       }
     }
     table: {
       label: ""
       class: plain
       grid-columns: 1
-      grid-gap: 2
+      horizontal-gap: 0
+      vertical-gap: 2
       hd: {label: "Name | Email | Role | Active | Actions"; class: head; width: 940; height: 32}
       r0: {label: "Nancy Freehafer | nancy@northwind.com | sales | ☑ | Edit"; class: cell; width: 940; height: 32}
       r1: {label: "Jan Kotas | jan@northwind.com | purchasing | ☑ | Edit"; class: cell; width: 940; height: 32}

@@ -47,23 +47,25 @@ page: {
     label: ""
     class: plain
     grid-columns: 1
-    grid-gap: 10
+    grid-gap: 8
     topbar: {
       label: ""
       class: bar
       grid-columns: 3
       grid-gap: 8
-      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 568; height: 36}
       lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
       user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
     hdr: {
       label: ""
       class: plain
-      grid-columns: 3
-      grid-gap: 8
+      grid-columns: 5
+      grid-gap: 0
       back: {label: "‹ Products"; class: muted; width: 150; height: 40}
-      h1: {label: "NWTB-1 — Chai"; class: h1; width: 560; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
+      h1: {label: "NWTB-1 — Chai"; class: h1; width: 574; height: 40}
+      gsp2: {label: ""; class: plain; width: 8; height: 40}
       del: {label: "Delete"; class: btn; width: 200; height: 40}
     }
     stock: {
@@ -74,21 +76,26 @@ page: {
       kpi: {
         label: ""
         class: plain
-        grid-columns: 4
-        grid-gap: 8
-        a: {label: "On hand: 12"; class: cell; width: 218; height: 34}
-        b: {label: "Allocated: 10"; class: cell; width: 218; height: 34}
-        c: {label: "Available: 2  ⚠"; class: cell; width: 218; height: 34}
-        d: {label: "On order: 40"; class: cell; width: 218; height: 34}
+        grid-columns: 7
+        grid-gap: 0
+        a: {label: "On hand: 12"; class: cell; width: 226; height: 34}
+        gsp1: {label: ""; class: plain; width: 8; height: 34}
+        b: {label: "Allocated: 10"; class: cell; width: 226; height: 34}
+        gsp2: {label: ""; class: plain; width: 8; height: 34}
+        c: {label: "Available: 2  ⚠"; class: cell; width: 226; height: 34}
+        gsp3: {label: ""; class: plain; width: 8; height: 34}
+        d: {label: "On order: 40"; class: cell; width: 226; height: 34}
       }
       act: {
         label: ""
         class: plain
-        grid-columns: 3
-        grid-gap: 8
+        grid-columns: 5
+        grid-gap: 0
         re: {label: "Reorder (create PO)"; class: primary; width: 220; height: 36}
+        gsp1: {label: ""; class: plain; width: 8; height: 36}
         note: {label: "Below reorder level (10)"; class: muted; width: 452; height: 36}
-        sp: {label: ""; class: plain; width: 200; height: 36}
+        gsp2: {label: ""; class: plain; width: 8; height: 36}
+        sp: {label: ""; class: plain; width: 240; height: 36}
       }
     }
     form: {
@@ -99,52 +106,59 @@ page: {
       r1: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        f1: {label: "Code  [NWTB-1]"; class: field; width: 448; height: 38}
-        f2: {label: "Name  [Chai]"; class: field; width: 448; height: 38}
+        grid-columns: 3
+        grid-gap: 0
+        f1: {label: "Code  [NWTB-1]"; class: field; width: 460; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
+        f2: {label: "Name  [Chai]"; class: field; width: 460; height: 38}
       }
       r2: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        f1: {label: "Category  [Beverages ▾]"; class: field; width: 448; height: 38}
-        f2: {label: "Supplier  [Exotic Liquids ▾]"; class: field; width: 448; height: 38}
+        grid-columns: 3
+        grid-gap: 0
+        f1: {label: "Category  [Beverages ▾]"; class: field; width: 460; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
+        f2: {label: "Supplier  [Exotic Liquids ▾]"; class: field; width: 460; height: 38}
       }
       r3: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        f1: {label: "List price  [18.00]"; class: field; width: 448; height: 38}
-        f2: {label: "Standard cost  [13.50]"; class: field; width: 448; height: 38}
+        grid-columns: 3
+        grid-gap: 0
+        f1: {label: "List price  [18.00]"; class: field; width: 460; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
+        f2: {label: "Standard cost  [13.50]"; class: field; width: 460; height: 38}
       }
       r4: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        f1: {label: "Reorder level  [10]"; class: field; width: 448; height: 38}
-        f2: {label: "Target level  [40]"; class: field; width: 448; height: 38}
+        grid-columns: 3
+        grid-gap: 0
+        f1: {label: "Reorder level  [10]"; class: field; width: 460; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
+        f2: {label: "Target level  [40]"; class: field; width: 460; height: 38}
       }
       r5: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        f1: {label: "Qty per unit  [10 boxes x 20 bags]"; class: field; width: 448; height: 38}
-        f2: {label: "☐ Discontinued"; class: field; width: 448; height: 38}
+        grid-columns: 3
+        grid-gap: 0
+        f1: {label: "Qty per unit  [10 boxes x 20 bags]"; class: field; width: 460; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
+        f2: {label: "☐ Discontinued"; class: field; width: 460; height: 38}
       }
-      desc: {label: "Description  [__________________________________]"; class: field; width: 904; height: 38}
+      desc: {label: "Description  [__________________________________]"; class: field; width: 928; height: 38}
     }
     save: {
       label: ""
       class: plain
-      grid-columns: 3
-      grid-gap: 8
+      grid-columns: 5
+      grid-gap: 0
       s: {label: "Save"; class: primary; width: 180; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
       c: {label: "Cancel"; class: btn; width: 180; height: 40}
+      gsp2: {label: ""; class: plain; width: 8; height: 40}
       sp: {label: ""; class: plain; width: 564; height: 40}
     }
   }

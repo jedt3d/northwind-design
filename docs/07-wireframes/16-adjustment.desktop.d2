@@ -47,22 +47,23 @@ page: {
     label: ""
     class: plain
     grid-columns: 1
-    grid-gap: 10
+    grid-gap: 8
     topbar: {
       label: ""
       class: bar
       grid-columns: 3
       grid-gap: 8
-      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 568; height: 36}
       lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
       user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
     hdr: {
       label: ""
       class: plain
-      grid-columns: 2
-      grid-gap: 8
+      grid-columns: 3
+      grid-gap: 0
       back: {label: "‹ Inventory"; class: muted; width: 150; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
       h1: {label: "Stock adjustment"; class: h1; width: 782; height: 40}
     }
     form: {
@@ -70,25 +71,28 @@ page: {
       class: zone
       grid-columns: 1
       grid-gap: 6
-      prod: {label: "Product  [Chai (NWTB-1) ▾]"; class: field; width: 904; height: 38}
+      prod: {label: "Product  [Chai (NWTB-1) ▾]"; class: field; width: 928; height: 38}
       r1: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        dir: {label: "Direction:  ◉ In (+)   ○ Out (−)"; class: field; width: 448; height: 38}
-        qty: {label: "Quantity  [3]"; class: field; width: 448; height: 38}
+        grid-columns: 3
+        grid-gap: 0
+        dir: {label: "Direction:  ◉ In (+)   ○ Out (−)"; class: field; width: 460; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
+        qty: {label: "Quantity  [3]"; class: field; width: 460; height: 38}
       }
-      cmt: {label: "Comment  [cycle count correction]"; class: field; width: 904; height: 38}
-      info: {label: "Current available: 2   →   Resulting available: 5"; class: muted; width: 904; height: 30}
+      cmt: {label: "Comment  [cycle count correction]"; class: field; width: 928; height: 38}
+      info: {label: "Current available: 2   →   Resulting available: 5"; class: muted; width: 928; height: 30}
     }
     save: {
       label: ""
       class: plain
-      grid-columns: 3
-      grid-gap: 8
+      grid-columns: 5
+      grid-gap: 0
       s: {label: "Submit adjustment"; class: primary; width: 220; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
       c: {label: "Cancel"; class: btn; width: 180; height: 40}
+      gsp2: {label: ""; class: plain; width: 8; height: 40}
       sp: {label: ""; class: plain; width: 524; height: 40}
     }
   }

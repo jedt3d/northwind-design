@@ -47,23 +47,25 @@ page: {
     label: ""
     class: plain
     grid-columns: 1
-    grid-gap: 10
+    grid-gap: 8
     topbar: {
       label: ""
       class: bar
       grid-columns: 3
       grid-gap: 8
-      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 568; height: 36}
       lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
       user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
     hdr: {
       label: ""
       class: plain
-      grid-columns: 3
-      grid-gap: 8
+      grid-columns: 5
+      grid-gap: 0
       back: {label: "‹ Purchase orders"; class: muted; width: 190; height: 40}
-      h1: {label: "PO-2026-0108 · Status: Submitted"; class: h1; width: 520; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
+      h1: {label: "PO-2026-0108 · Status: Submitted"; class: h1; width: 534; height: 40}
+      gsp2: {label: ""; class: plain; width: 8; height: 40}
       del: {label: "Delete"; class: btn; width: 200; height: 40}
     }
     info: {
@@ -74,43 +76,50 @@ page: {
       r1: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        a: {label: "Supplier: Exotic Liquids"; class: cell; width: 448; height: 32}
-        b: {label: "Created by: N. Freehafer"; class: cell; width: 448; height: 32}
+        grid-columns: 3
+        grid-gap: 0
+        a: {label: "Supplier: Exotic Liquids"; class: cell; width: 460; height: 32}
+        gsp1: {label: ""; class: plain; width: 8; height: 32}
+        b: {label: "Created by: N. Freehafer"; class: cell; width: 460; height: 32}
       }
       r2: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        a: {label: "Submitted: 2026-07-07"; class: cell; width: 448; height: 32}
-        b: {label: "Approved by: — (manager only)"; class: cell; width: 448; height: 32}
+        grid-columns: 3
+        grid-gap: 0
+        a: {label: "Submitted: 2026-07-07"; class: cell; width: 460; height: 32}
+        gsp1: {label: ""; class: plain; width: 8; height: 32}
+        b: {label: "Approved by: — (manager only)"; class: cell; width: 460; height: 32}
       }
       r3: {
         label: ""
         class: plain
-        grid-columns: 2
-        grid-gap: 8
-        a: {label: "Expected date: 2026-07-15"; class: cell; width: 448; height: 32}
-        b: {label: "Notes: restock beverages"; class: cell; width: 448; height: 32}
+        grid-columns: 3
+        grid-gap: 0
+        a: {label: "Expected date: 2026-07-15"; class: cell; width: 460; height: 32}
+        gsp1: {label: ""; class: plain; width: 8; height: 32}
+        b: {label: "Notes: restock beverages"; class: cell; width: 460; height: 32}
       }
     }
     actions: {
       label: ""
       class: plain
-      grid-columns: 4
-      grid-gap: 8
+      grid-columns: 7
+      grid-gap: 0
       appr: {label: "Approve"; class: primary; width: 180; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
       recv: {label: "Receive…"; class: btn; width: 180; height: 40}
+      gsp2: {label: ""; class: plain; width: 8; height: 40}
       cancel: {label: "Cancel PO"; class: btn; width: 180; height: 40}
+      gsp3: {label: ""; class: plain; width: 8; height: 40}
       sp: {label: ""; class: plain; width: 376; height: 40}
     }
     lines: {
       label: ""
       class: plain
       grid-columns: 1
-      grid-gap: 2
+      horizontal-gap: 0
+      vertical-gap: 2
       hd: {label: "Product | Qty | Unit cost | Line total | Received | Posted"; class: head; width: 940; height: 32}
       r0: {label: "Chai | 40 | 13.50 | 540.00 | — | ☐"; class: cell; width: 940; height: 32}
       r1: {label: "Aniseed Syrup | 30 | 7.50 | 225.00 | — | ☐"; class: cell; width: 940; height: 32}
@@ -123,11 +132,13 @@ page: {
       r: {
         label: ""
         class: plain
-        grid-columns: 3
-        grid-gap: 8
+        grid-columns: 5
+        grid-gap: 0
         date: {label: "Date received  [2026-07-15]"; class: field; width: 470; height: 38}
+        gsp1: {label: ""; class: plain; width: 8; height: 38}
         post: {label: "Post to inventory"; class: primary; width: 240; height: 38}
-        sp: {label: ""; class: plain; width: 170; height: 38}
+        gsp2: {label: ""; class: plain; width: 8; height: 38}
+        sp: {label: ""; class: plain; width: 202; height: 38}
       }
     }
     totals: {
@@ -135,7 +146,7 @@ page: {
       class: zone
       grid-columns: 1
       grid-gap: 6
-      t: {label: "Subtotal 765.00   ·   Shipping 0.00   ·   Taxes 0.00   ·   Total 765.00"; class: cell; width: 904; height: 32}
+      t: {label: "Subtotal 765.00   ·   Shipping 0.00   ·   Taxes 0.00   ·   Total 765.00"; class: cell; width: 928; height: 32}
     }
   }
 }

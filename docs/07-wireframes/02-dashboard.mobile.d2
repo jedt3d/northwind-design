@@ -32,44 +32,209 @@ page: {
     grid-columns: 3
     grid-gap: 6
     menu: {label: "☰"; class: btn; width: 44; height: 36}
-    apptitle: {label: "Northwind Traders"; class: barlbl; width: 190; height: 36}
+    apptitle: {label: "Northwind Traders"; class: barlbl; width: 204; height: 36}
     user: {label: "WS ▾"; class: btn; width: 64; height: 36}
   }
-  h1: {label: "Dashboard"; class: h1; width: 320; height: 36}
+  h1: {label: "Dashboard"; class: h1; width: 336; height: 36}
   p1: {
     label: "Low stock"
     class: zone
     grid-columns: 1
     grid-gap: 6
-    a: {label: "Chai — Avail. 2 (reorder 10)"; class: cell; width: 290; height: 26}
-    b: {label: "Aniseed Syrup — Avail. 0"; class: cell; width: 290; height: 26}
-    lnk: {label: "View products →"; class: muted; width: 290; height: 22}
+    a: {label: "Chai — Avail. 2 (reorder 10)"; class: cell; width: 324; height: 26}
+    b: {label: "Aniseed Syrup — Avail. 0"; class: cell; width: 324; height: 26}
+    lnk: {label: "View products →"; class: muted; width: 324; height: 22}
   }
   p2: {
     label: "POs awaiting approval"
     class: zone
     grid-columns: 1
     grid-gap: 6
-    a: {label: "PO-2026-0108 — Exotic Liquids"; class: cell; width: 290; height: 26}
-    b: {label: "PO-2026-0107 — Tokyo Traders"; class: cell; width: 290; height: 26}
-    lnk: {label: "View POs →"; class: muted; width: 290; height: 22}
+    a: {label: "PO-2026-0108 — Exotic Liquids"; class: cell; width: 324; height: 26}
+    b: {label: "PO-2026-0107 — Tokyo Traders"; class: cell; width: 324; height: 26}
+    lnk: {label: "View POs →"; class: muted; width: 324; height: 22}
   }
   p3: {
     label: "My recent orders"
     class: zone
     grid-columns: 1
     grid-gap: 6
-    a: {label: "SO-2026-0042 — Adatum — New"; class: cell; width: 290; height: 26}
-    b: {label: "SO-2026-0041 — Proseware — Invoiced"; class: cell; width: 290; height: 26}
-    lnk: {label: "View orders →"; class: muted; width: 290; height: 22}
+    a: {label: "SO-2026-0042 — Adatum — New"; class: cell; width: 324; height: 26}
+    b: {label: "SO-2026-0041 — Proseware — Invoiced"; class: cell; width: 324; height: 26}
+    lnk: {label: "View orders →"; class: muted; width: 324; height: 22}
   }
   p4: {
     label: "Recent purchase orders"
     class: zone
     grid-columns: 1
     grid-gap: 6
-    a: {label: "PO-2026-0108 — Submitted"; class: cell; width: 290; height: 26}
-    b: {label: "PO-2026-0104 — Approved"; class: cell; width: 290; height: 26}
-    lnk: {label: "View POs →"; class: muted; width: 290; height: 22}
+    a: {label: "PO-2026-0108 — Submitted"; class: cell; width: 324; height: 26}
+    b: {label: "PO-2026-0104 — Approved"; class: cell; width: 324; height: 26}
+    lnk: {label: "View POs →"; class: muted; width: 324; height: 22}
+  }
+  h2: {label: "Analytics (all roles)"; class: h1; width: 336; height: 30}
+  note: {label: "Selling = invoiced/shipped/closed · spend = approved/closed POs"; class: muted; width: 336; height: 22}
+  a1: {
+    label: "1 · Top 5 categories — cost & qty"
+    class: zone
+    grid-columns: 1
+    grid-gap: 6
+    b1: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      bar: {label: "Beverages"; class: btn; width: 210; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "45,200 · 320 u"; class: muted; width: 106; height: 20}
+    }
+    b2: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      bar: {label: "Dairy"; class: btn; width: 160; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "31,850 · 210 u"; class: muted; width: 156; height: 20}
+    }
+    b3: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      bar: {label: "Confections"; class: btn; width: 120; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "22,400 · 480 u"; class: muted; width: 196; height: 20}
+    }
+    more: {label: "… 2 more categories"; class: muted; width: 324; height: 20}
+  }
+  a2: {
+    label: "2 · Orders vs POs — 6 months"
+    class: zone
+    grid-columns: 1
+    grid-gap: 6
+    m1: {
+      label: ""
+      class: plain
+      grid-columns: 5
+      grid-gap: 0
+      ob: {label: "Jun · Orders 38"; class: btn; width: 124; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      pb: {label: "POs 15"; class: btn; width: 76; height: 20}
+      gsp2: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "15,930 / 8,100"; class: muted; width: 108; height: 20}
+    }
+    m2: {
+      label: ""
+      class: plain
+      grid-columns: 5
+      grid-gap: 0
+      ob: {label: "Jul · Orders 19"; class: btn; width: 100; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      pb: {label: "POs 7"; class: btn; width: 60; height: 20}
+      gsp2: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "8,210 / 3,400"; class: muted; width: 148; height: 20}
+    }
+    more: {label: "… Feb–May · count + total value"; class: muted; width: 324; height: 20}
+  }
+  a3: {
+    label: "3 · Top 10 products — revenue (qty)"
+    class: zone
+    grid-columns: 1
+    grid-gap: 6
+    b1: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      bar: {label: "Chai"; class: btn; width: 200; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "9,840 (546)"; class: muted; width: 116; height: 20}
+    }
+    b2: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      bar: {label: "Ikura"; class: btn; width: 160; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "7,750 (250)"; class: muted; width: 156; height: 20}
+    }
+    more: {label: "… 8 more products"; class: muted; width: 324; height: 20}
+  }
+  a4: {
+    label: "4 · Top 10 categories — revenue"
+    class: zone
+    grid-columns: 1
+    grid-gap: 6
+    b1: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      bar: {label: "Beverages"; class: btn; width: 210; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "21,300.00"; class: muted; width: 106; height: 20}
+    }
+    b2: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      bar: {label: "Seafood"; class: btn; width: 150; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "16,900.00"; class: muted; width: 166; height: 20}
+    }
+    more: {label: "… 8 more categories"; class: muted; width: 324; height: 20}
+  }
+  a5: {
+    label: "5 · Top 5 customers — revenue"
+    class: zone
+    grid-columns: 1
+    grid-gap: 6
+    b1: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      bar: {label: "Adatum"; class: btn; width: 200; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "18,650.00"; class: muted; width: 116; height: 20}
+    }
+    b2: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      bar: {label: "Proseware"; class: btn; width: 150; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "14,200.00"; class: muted; width: 166; height: 20}
+    }
+    more: {label: "… 3 more customers"; class: muted; width: 324; height: 20}
+  }
+  a6: {
+    label: "6 · Top 5 suppliers — spend"
+    class: zone
+    grid-columns: 1
+    grid-gap: 6
+    b1: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      bar: {label: "Exotic Liquids"; class: btn; width: 190; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "12,400.00"; class: muted; width: 126; height: 20}
+    }
+    b2: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      bar: {label: "Tokyo Traders"; class: btn; width: 140; height: 20}
+      gsp1: {label: ""; class: plain; width: 8; height: 20}
+      val: {label: "9,150.00"; class: muted; width: 176; height: 20}
+    }
+    more: {label: "… 3 more suppliers"; class: muted; width: 324; height: 20}
   }
 }

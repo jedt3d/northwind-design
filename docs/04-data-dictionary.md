@@ -356,6 +356,25 @@ GROUP BY pod.product;
 
 Via the PocketBase API the same numbers come from filtered list queries summed client-side or from a small custom route in `pb_hooks`; the low-stock flag is `available_to_sell < reorder_level`.
 
+### 3.11 Derived analytics values (dashboard FR-DASH-1..6, companies FR-COM-5 — added 2026-07-08)
+
+All values below are **derived, never stored**, and are computed client-side by aggregating `order_details` / `purchase_order_details` (expanded with their parent document, product, category, and company) fetched in batched list requests of ≤ 500 rows. Status filters follow BR-R1/BR-R2.
+
+| Value | Formula | Statuses that count |
+|---|---|---|
+| Line revenue | `quantity × unit_price × (1 − discount)` per `order_details` row | parent order `invoiced`, `shipped`, `closed` (BR-R1) |
+| Line cost | `quantity × unit_cost` per `purchase_order_details` row | parent PO `approved`, `closed` (BR-R2) |
+| Inventory value per category | `Σ over products in category ( on_hand(product) × standard_cost )`, on_hand from the ledger sum in §3.10 | ledger types `purchased`, `sold` |
+| Inventory quantity per category | `Σ over products in category ( on_hand(product) )` | ledger types `purchased`, `sold` |
+| Monthly order count / value (6 mo) | count of orders per calendar month; value = Σ line revenue of those orders | orders `invoiced`/`shipped`/`closed` (BR-R1) |
+| Monthly PO count / value (6 mo) | count of POs per calendar month; value = Σ line cost of those POs | POs `approved`/`closed` (BR-R2) |
+| Product / category sales rank | Σ line revenue grouped by product, or rolled up product → category; quantity = Σ line quantity | BR-R1 statuses |
+| Lifetime customer value | Σ line revenue of **all** the company's orders since the beginning (no date filter) | orders `invoiced`/`shipped`/`closed` (BR-R1) |
+| Lifetime supplier spend | Σ line cost of **all** POs on the company since the beginning (no date filter) | POs `approved`/`closed` (BR-R2) |
+| Total purchased (companies list) | lifetime customer value + lifetime supplier spend (companies holding both types show the sum; company detail shows the two figures separately) | as above |
+
+Money results follow the 2-decimal money convention in §1; ranks truncate to top 5 / top 10 as required by the consuming chart.
+
 ## 4. Business-rule constraints at data level
 - Stock on hand is derived (queries above); hooks reject any transaction batch that would make on-hand negative (BR-I1).
 - Status enums and their legal transitions (§5) are enforced in `pb_hooks` on update; the status fields are never directly editable in the UI (buttons only).
@@ -403,3 +422,5 @@ Seed data is adapted from the legacy Northwind dataset (northwind-pubs on GitHub
 ## สรุปภาษาไทย
 
 พจนานุกรมข้อมูลนี้กำหนด 9 collections ของ PocketBase สำหรับ Northwind เวอร์ชันเว็บ ได้แก่ companies (ประเภทเลือกได้หลายแบบ), employees (ผูก auth user + role), product_categories, products (ราคา ต้นทุน จุดสั่งซื้อ), orders + order_details (สถานะเอกสารและสถานะรายบรรทัด), purchase_orders + purchase_order_details (วงจรอนุมัติและรับของ) และ inventory_transactions (บัญชีเคลื่อนไหวแบบ append-only ใช้เครื่องหมายบวก/ลบ) ทุกฟิลด์ระบุชนิด ค่าบังคับ ค่าเริ่มต้น ความสัมพันธ์ คำอธิบาย และตัวอย่าง พร้อมสูตรคำนวณสต๊อกคงเหลือจาก ledger ตารางการเปลี่ยนสถานะที่อนุญาต และ ERD เป็นไฟล์ D2 (`docs/diagrams/erd.d2`)
+
+ฉบับปรับปรุง 2026-07-08: เพิ่ม §3.11 สูตรค่าที่คำนวณได้สำหรับ Analytics ได้แก่ รายได้ต่อบรรทัด = quantity × unit_price × (1 − discount), มูลค่าสต๊อกต่อหมวด = Σ(on-hand ของสินค้า × standard_cost), มูลค่าตลอดอายุของลูกค้า (นับเฉพาะออเดอร์ invoiced/shipped/closed ตาม BR-R1) และยอดซื้อจากซัพพลายเออร์ (นับเฉพาะ PO approved/closed ตาม BR-R2) ทั้งหมดคำนวณฝั่ง client จากการดึงข้อมูลเป็นชุดละไม่เกิน 500 แถว ไม่มีการเก็บค่าลงฐานข้อมูล

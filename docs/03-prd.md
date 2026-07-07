@@ -1,6 +1,6 @@
 # Product Requirements Document (PRD) — Northwind Web App
 
-> **Audience:** whole team · **Status:** complete (Phase 1, Cycle 1.2) · **Owner:** —
+> **Audience:** whole team · **Status:** revised 2026-07-08 (dashboard analytics + company lifetime totals) · **Owner:** —
 
 ## 1. Product summary
 A calm, clean, light-themed responsive web app for running Northwind Traders' daily operations — orders, purchasing, inventory, and the company/product master data behind them — in Thai, English, or Japanese. One shared database, five roles, every business rule enforced server-side.
@@ -28,6 +28,9 @@ Priorities: MoSCoW. Wireframes: `docs/07-wireframes/NN-*`.
 - AC: role-aware panels — sales: my recent orders & orders stuck in New/Invoiced; purchasing/warehouse: low-stock products and POs awaiting receipt; manager: POs awaiting approval.
 - AC: low-stock panel lists products with available < reorder level, linking to the reorder flow (F6).
 - AC: recent items (orders/POs) replace the Access MRU list.
+- AC: **Analytics section** below the role panels, visible to **all roles**, containing six charts (FR-DASH-1..6): (1) top 5 categories by stored inventory **cost** (Σ per category of on-hand qty × product standard_cost) *and* top 5 categories by stock **quantity**; (2) Orders and Purchase Orders volume — monthly count **and** total value for the last 6 months, side-by-side bars; (3) top 10 selling products by revenue, with quantity shown; (4) top 10 selling categories by revenue; (5) top 5 customer companies (top buyers by revenue); (6) top 5 supplier companies by our purchase spend.
+- AC: "selling" figures count only orders with status invoiced/shipped/closed (BR-R1); purchase spend counts only POs with status approved/closed (BR-R2).
+- AC: charts are simple CSS horizontal bars paired with their numeric values — design-system compliant, no chart library.
 - Wireframes: `02-dashboard`.
 
 ### F3 Companies directory & detail — Must
@@ -36,6 +39,7 @@ Priorities: MoSCoW. Wireframes: `docs/07-wireframes/NN-*`.
 - AC: create/edit with multi-type, contact, address, tax id, website; validation inline.
 - AC: type-in-use cannot be removed; delete blocked with a reason when orders/POs exist (BR-C1/C2).
 - AC: detail shows the company's orders and POs.
+- AC: list shows a **Total purchased** column — lifetime value since the beginning: customer-type companies show total revenue Northwind invoiced them (invoiced/shipped/closed order lines, BR-R1); supplier-type companies show our total purchase spend with them (approved/closed PO lines, BR-R2); companies holding both roles show the **sum** (the detail view splits the two figures). Column is sortable and formatted as 2-decimal currency.
 - Wireframes: `03-companies-list`, `04-company-detail`.
 
 ### F4 Products & categories — Must
@@ -82,6 +86,7 @@ Priorities: MoSCoW. Wireframes: `docs/07-wireframes/NN-*`.
 - AC: an employee with documents cannot be deleted — only deactivated.
 - AC: settings screen covers language default and profile language.
 - Wireframes: `19-admin-employees`, `20-settings`.
+- **Note:** additional Employees requirements pending — the stakeholder's requirement line for Employees arrived empty/cut off (2026-07-08). Scope above is unchanged; no features are invented until the stakeholder input arrives.
 
 ## 4. Out of scope (v1)
 Dark theme; offline mode; external accounting/email integration; multi-warehouse and bin locations; partial shipments/invoices; returns & RMA; multi-currency; multi-vendor per product; Buddhist-calendar display; the Access print catalog and employee rosters.
@@ -98,3 +103,5 @@ Dark theme; offline mode; external accounting/email integration; multi-warehouse
 ## สรุปภาษาไทย
 
 PRD นี้กำหนดฟีเจอร์ของเว็บแอป Northwind ทั้ง 9 กลุ่ม (F1–F9): การเข้าสู่ระบบพร้อมเลือกภาษา แดชบอร์ดตามบทบาท ทะเบียนบริษัท แคตตาล็อกสินค้า การจัดการใบสั่งขายตามวงจรสถานะ ใบสั่งซื้อพร้อมการอนุมัติและรับของ สต๊อกแบบ ledger รายงาน 4 แบบ และหน้าแอดมิน แต่ละฟีเจอร์มี user story, เกณฑ์การยอมรับ, ลำดับความสำคัญแบบ MoSCoW และอ้างอิง wireframe ชัดเจน มีการระบุ persona 5 บทบาท ขอบเขตที่ไม่ทำใน v1 และตัวชี้วัดความสำเร็จ เช่น ใช้งานได้จริงบนมือถือ 360px ครบ 3 ภาษา
+
+ฉบับปรับปรุง 2026-07-08: แดชบอร์ด (F2) เพิ่มส่วน Analytics ที่ทุกบทบาทมองเห็น ประกอบด้วยกราฟแท่งแนวนอนแบบ CSS 6 รายการ ได้แก่ 5 หมวดสินค้าที่มีมูลค่าสต๊อกสูงสุด (ต้นทุน) และปริมาณสูงสุด, จำนวนและมูลค่าใบสั่งขาย/ใบสั่งซื้อรายเดือนย้อนหลัง 6 เดือน, สินค้าขายดี 10 อันดับ, หมวดขายดี 10 อันดับ, ลูกค้า 5 อันดับ และซัพพลายเออร์ 5 อันดับ โดยยอดขายนับเฉพาะออเดอร์สถานะ invoiced/shipped/closed และยอดซื้อนับเฉพาะ PO สถานะ approved/closed ส่วนหน้ารายชื่อบริษัท (F3) เพิ่มคอลัมน์ "Total purchased" แสดงมูลค่าตลอดอายุความสัมพันธ์ (ลูกค้า = ยอดขาย, ซัพพลายเออร์ = ยอดซื้อ, บริษัทที่เป็นทั้งสองแบบแสดงผลรวมและแยกรายละเอียดในหน้า detail) เรียงลำดับได้และแสดงทศนิยม 2 ตำแหน่ง สำหรับ F9 พนักงาน มีข้อกำหนดเพิ่มเติมที่ยังรอข้อมูลจากผู้มีส่วนได้ส่วนเสีย (requirement pending stakeholder input) จึงยังไม่เพิ่มฟีเจอร์ใด ๆ

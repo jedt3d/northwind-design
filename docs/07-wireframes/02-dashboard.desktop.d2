@@ -47,13 +47,13 @@ page: {
     label: ""
     class: plain
     grid-columns: 1
-    grid-gap: 10
+    grid-gap: 8
     topbar: {
       label: ""
       class: bar
       grid-columns: 3
       grid-gap: 8
-      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 568; height: 36}
       lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
       user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
@@ -61,53 +61,329 @@ page: {
     grid1: {
       label: ""
       class: plain
-      grid-columns: 2
-      grid-gap: 8
+      grid-columns: 3
+      grid-gap: 0
       p1: {
         label: "Low stock"
         class: zone
         grid-columns: 1
         grid-gap: 6
-        a: {label: "Chai — Avail. 2 (reorder at 10)"; class: cell; width: 420; height: 28}
-        b: {label: "Aniseed Syrup — Avail. 0 (reorder at 25)"; class: cell; width: 420; height: 28}
-        c: {label: "Ikura — Avail. 5 (reorder at 15)"; class: cell; width: 420; height: 28}
-        lnk: {label: "View products →"; class: muted; width: 420; height: 24}
+        a: {label: "Chai — Avail. 2 (reorder at 10)"; class: cell; width: 454; height: 28}
+        b: {label: "Aniseed Syrup — Avail. 0 (reorder at 25)"; class: cell; width: 454; height: 28}
+        c: {label: "Ikura — Avail. 5 (reorder at 15)"; class: cell; width: 454; height: 28}
+        lnk: {label: "View products →"; class: muted; width: 454; height: 24}
       }
+      gsp1: {label: ""; class: plain; width: 8; height: 30}
       p2: {
         label: "POs awaiting approval"
         class: zone
         grid-columns: 1
         grid-gap: 6
-        a: {label: "PO-2026-0108 — Exotic Liquids — Submitted"; class: cell; width: 420; height: 28}
-        b: {label: "PO-2026-0107 — Tokyo Traders — Submitted"; class: cell; width: 420; height: 28}
-        c: {label: ""; class: plain; width: 420; height: 28}
-        lnk: {label: "View purchase orders →"; class: muted; width: 420; height: 24}
+        a: {label: "PO-2026-0108 — Exotic Liquids — Submitted"; class: cell; width: 454; height: 28}
+        b: {label: "PO-2026-0107 — Tokyo Traders — Submitted"; class: cell; width: 454; height: 28}
+        c: {label: ""; class: plain; width: 454; height: 28}
+        lnk: {label: "View purchase orders →"; class: muted; width: 454; height: 24}
       }
     }
     grid2: {
       label: ""
       class: plain
-      grid-columns: 2
-      grid-gap: 8
+      grid-columns: 3
+      grid-gap: 0
       p3: {
         label: "My recent orders"
         class: zone
         grid-columns: 1
         grid-gap: 6
-        a: {label: "SO-2026-0042 — Adatum — New"; class: cell; width: 420; height: 28}
-        b: {label: "SO-2026-0041 — Proseware — Invoiced"; class: cell; width: 420; height: 28}
-        c: {label: "SO-2026-0040 — Wide World — Shipped"; class: cell; width: 420; height: 28}
-        lnk: {label: "View orders →"; class: muted; width: 420; height: 24}
+        a: {label: "SO-2026-0042 — Adatum — New"; class: cell; width: 454; height: 28}
+        b: {label: "SO-2026-0041 — Proseware — Invoiced"; class: cell; width: 454; height: 28}
+        c: {label: "SO-2026-0040 — Wide World — Shipped"; class: cell; width: 454; height: 28}
+        lnk: {label: "View orders →"; class: muted; width: 454; height: 24}
       }
+      gsp1: {label: ""; class: plain; width: 8; height: 30}
       p4: {
         label: "Recent purchase orders"
         class: zone
         grid-columns: 1
         grid-gap: 6
-        a: {label: "PO-2026-0108 — Exotic Liquids — Submitted"; class: cell; width: 420; height: 28}
-        b: {label: "PO-2026-0104 — Bigfoot Breweries — Approved"; class: cell; width: 420; height: 28}
-        c: {label: "PO-2026-0101 — Tokyo Traders — Closed"; class: cell; width: 420; height: 28}
-        lnk: {label: "View purchase orders →"; class: muted; width: 420; height: 24}
+        a: {label: "PO-2026-0108 — Exotic Liquids — Submitted"; class: cell; width: 454; height: 28}
+        b: {label: "PO-2026-0104 — Bigfoot Breweries — Approved"; class: cell; width: 454; height: 28}
+        c: {label: "PO-2026-0101 — Tokyo Traders — Closed"; class: cell; width: 454; height: 28}
+        lnk: {label: "View purchase orders →"; class: muted; width: 454; height: 24}
+      }
+    }
+    h2: {label: "Analytics (all roles)"; class: h1; width: 940; height: 34}
+    note: {label: "Selling = invoiced/shipped/closed orders · Purchase spend = approved/closed POs · CSS bars, no chart library"; class: muted; width: 940; height: 24}
+    an1: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      a1: {
+        label: "1 · Top 5 categories — inventory cost & qty"
+        class: zone
+        grid-columns: 1
+        grid-gap: 6
+        b1: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Beverages"; class: btn; width: 300; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "45,200.00 · 320 u"; class: muted; width: 146; height: 22}
+        }
+        b2: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Dairy Products"; class: btn; width: 240; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "31,850.00 · 210 u"; class: muted; width: 206; height: 22}
+        }
+        b3: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Confections"; class: btn; width: 190; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "22,400.00 · 480 u"; class: muted; width: 256; height: 22}
+        }
+        b4: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Condiments"; class: btn; width: 150; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "17,900.00 · 150 u"; class: muted; width: 296; height: 22}
+        }
+        b5: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Seafood"; class: btn; width: 120; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "12,300.00 · 90 u"; class: muted; width: 326; height: 22}
+        }
+      }
+      gsp1: {label: ""; class: plain; width: 8; height: 30}
+      a2: {
+        label: "2 · Orders vs POs — monthly count & value (last 6 mo)"
+        class: zone
+        grid-columns: 1
+        grid-gap: 6
+        m1: {
+          label: ""
+          class: plain
+          grid-columns: 7
+          grid-gap: 0
+          mo: {label: "May"; class: muted; width: 44; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          ob: {label: "Orders 31"; class: btn; width: 170; height: 22}
+          gsp2: {label: ""; class: plain; width: 8; height: 22}
+          pb: {label: "POs 12"; class: btn; width: 90; height: 22}
+          gsp3: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "12,480 / 6,900"; class: muted; width: 126; height: 22}
+        }
+        m2: {
+          label: ""
+          class: plain
+          grid-columns: 7
+          grid-gap: 0
+          mo: {label: "Jun"; class: muted; width: 44; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          ob: {label: "Orders 38"; class: btn; width: 186; height: 22}
+          gsp2: {label: ""; class: plain; width: 8; height: 22}
+          pb: {label: "POs 15"; class: btn; width: 96; height: 22}
+          gsp3: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "15,930 / 8,100"; class: muted; width: 104; height: 22}
+        }
+        m3: {
+          label: ""
+          class: plain
+          grid-columns: 7
+          grid-gap: 0
+          mo: {label: "Jul"; class: muted; width: 44; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          ob: {label: "Orders 19"; class: btn; width: 120; height: 22}
+          gsp2: {label: ""; class: plain; width: 8; height: 22}
+          pb: {label: "POs 7"; class: btn; width: 60; height: 22}
+          gsp3: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "8,210 / 3,400"; class: muted; width: 206; height: 22}
+        }
+        more: {label: "… Feb–Apr rows · bar 1 = orders, bar 2 = POs · count + total value"; class: muted; width: 454; height: 22}
+      }
+    }
+    an2: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      a3: {
+        label: "3 · Top 10 selling products — revenue (qty)"
+        class: zone
+        grid-columns: 1
+        grid-gap: 6
+        b1: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Chai"; class: btn; width: 300; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "9,840.00 (546)"; class: muted; width: 146; height: 22}
+        }
+        b2: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Ikura"; class: btn; width: 250; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "7,750.00 (250)"; class: muted; width: 196; height: 22}
+        }
+        b3: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Chang"; class: btn; width: 200; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "6,080.00 (320)"; class: muted; width: 246; height: 22}
+        }
+        b4: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Aniseed Syrup"; class: btn; width: 160; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "4,100.00 (410)"; class: muted; width: 286; height: 22}
+        }
+        more: {label: "… 6 more products"; class: muted; width: 454; height: 22}
+      }
+      gsp1: {label: ""; class: plain; width: 8; height: 30}
+      a4: {
+        label: "4 · Top 10 selling categories — revenue"
+        class: zone
+        grid-columns: 1
+        grid-gap: 6
+        b1: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Beverages"; class: btn; width: 310; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "21,300.00"; class: muted; width: 136; height: 22}
+        }
+        b2: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Seafood"; class: btn; width: 250; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "16,900.00"; class: muted; width: 196; height: 22}
+        }
+        b3: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Condiments"; class: btn; width: 180; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "11,050.00"; class: muted; width: 266; height: 22}
+        }
+        b4: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Dairy Products"; class: btn; width: 140; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "8,400.00"; class: muted; width: 306; height: 22}
+        }
+        more: {label: "… 6 more categories"; class: muted; width: 454; height: 22}
+      }
+    }
+    an3: {
+      label: ""
+      class: plain
+      grid-columns: 3
+      grid-gap: 0
+      a5: {
+        label: "5 · Top 5 customers — revenue"
+        class: zone
+        grid-columns: 1
+        grid-gap: 6
+        b1: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Adatum Corporation"; class: btn; width: 300; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "18,650.00"; class: muted; width: 146; height: 22}
+        }
+        b2: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Proseware, Inc."; class: btn; width: 230; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "14,200.00"; class: muted; width: 216; height: 22}
+        }
+        b3: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Wide World Importers"; class: btn; width: 180; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "10,980.00"; class: muted; width: 266; height: 22}
+        }
+        more: {label: "… 2 more customers"; class: muted; width: 454; height: 22}
+      }
+      gsp1: {label: ""; class: plain; width: 8; height: 30}
+      a6: {
+        label: "6 · Top 5 suppliers — purchase spend"
+        class: zone
+        grid-columns: 1
+        grid-gap: 6
+        b1: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Exotic Liquids"; class: btn; width: 290; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "12,400.00"; class: muted; width: 156; height: 22}
+        }
+        b2: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Tokyo Traders"; class: btn; width: 220; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "9,150.00"; class: muted; width: 226; height: 22}
+        }
+        b3: {
+          label: ""
+          class: plain
+          grid-columns: 3
+          grid-gap: 0
+          bar: {label: "Bigfoot Breweries"; class: btn; width: 160; height: 22}
+          gsp1: {label: ""; class: plain; width: 8; height: 22}
+          val: {label: "6,700.00"; class: muted; width: 286; height: 22}
+        }
+        more: {label: "… 2 more suppliers"; class: muted; width: 454; height: 22}
       }
     }
   }

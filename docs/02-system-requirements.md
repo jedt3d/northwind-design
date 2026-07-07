@@ -73,8 +73,9 @@ IDs are grouped per module. "Roles" names who may perform the action (admin impl
 - FR-COM-2: Create/edit companies with type (multi-select), contact, address, tax id, website, notes. Roles: sales, purchasing, manager, admin.
 - FR-COM-3: Block removal of a company type still referenced by documents of that kind (BR-C1).
 - FR-COM-4: Block deletion of companies with orders or POs (BR-C2); show the reason.
-- FR-COM-5: Company detail shows related orders and purchase orders.
-- FR-COM-6: Create a new customer inline from the order form without losing order context.
+- FR-COM-5: Companies list shows a **Total purchased** column — lifetime value since the beginning: for customer-type companies the summed revenue of their invoiced/shipped/closed order lines (BR-R1); for supplier-type companies the summed cost of PO lines on approved/closed POs (BR-R2); companies with both types show the sum (company detail splits the two figures). Sortable; 2-decimal currency. *Derivation:* client-side aggregation over `order_details` / `purchase_order_details` (expanded to their parent documents for status + company), fetched in batched list requests of ≤ 500 rows; line revenue = quantity × unit_price × (1 − discount), line cost = quantity × unit_cost (docs/04 §3.11).
+- FR-COM-6: Company detail shows related orders and purchase orders.
+- FR-COM-7: Create a new customer inline from the order form without losing order context.
 
 **FR-EMP — Employees**
 - FR-EMP-1: List/create/edit employees (first/last name, job title required); link an employee to a PocketBase auth user. Roles: admin.
@@ -116,6 +117,15 @@ IDs are grouped per module. "Roles" names who may perform the action (admin impl
 - FR-RPT-3: Stock on hand with reorder flags.
 - FR-RPT-4: Outstanding purchase orders (submitted/approved, not received) with expected dates.
 
+**FR-DASH — Dashboard analytics** *(added 2026-07-08; visible to all roles; charts are CSS horizontal bars paired with their numbers, no chart library)*
+- FR-DASH-1: Top 5 categories by stored inventory **cost** and top 5 by stock **quantity**. Cost per category = Σ over its products of on-hand(product) × standard_cost; quantity = Σ on-hand. *Derivation:* on-hand per product from the `inventory_transactions` ledger sums (docs/04 §3.10), joined client-side to `products` → `product_categories`.
+- FR-DASH-2: Orders and Purchase Orders volume — monthly **count + total value** for the last 6 months, side-by-side bars. Order value = Σ line revenue; PO value = Σ line cost (statuses per BR-R1/BR-R2).
+- FR-DASH-3: Top 10 selling products by revenue, quantity shown (orders invoiced/shipped/closed only, BR-R1).
+- FR-DASH-4: Top 10 selling categories by revenue (BR-R1), via product → category rollup.
+- FR-DASH-5: Top 5 customer companies — top buyers by revenue (BR-R1).
+- FR-DASH-6: Top 5 supplier companies by our purchase spend (approved/closed POs only, BR-R2).
+- *Derivation note (all of FR-DASH):* computed client-side by aggregation over `order_details` / `purchase_order_details` (expanded with parent order/PO status and dates, product, category, company), fetched in batched list requests of ≤ 500 rows per page; formulas in docs/04 §3.11. No server-side reporting endpoint is added in v1.
+
 **FR-AUTH — Authentication & authorization**
 - FR-AUTH-1: Email/password login via PocketBase auth; session persists across reloads; logout everywhere.
 - FR-AUTH-2: Every employee auth user maps to a role; UI menus and API rules both respect it (defense in depth).
@@ -151,16 +161,19 @@ Authorization is declared per collection in PocketBase API rules (layer 1), with
 
 | FR group | BRD process | Collections touched | PRD feature |
 |---|---|---|---|
-| FR-COM | 4.1 Companies | companies | F3 |
+| FR-COM | 4.1 Companies (+ 4.6 lifetime value) | companies, order_details + purchase_order_details (derived, FR-COM-5) | F3 |
 | FR-EMP | 3 roles / 4.1 | employees, users | F9 |
 | FR-PRD | 4.2 Catalog | products, product_categories, inventory_transactions (derived) | F4 |
 | FR-ORD | 4.3 Sales orders | orders, order_details, inventory_transactions, companies, products | F5 |
 | FR-PO | 4.4 Purchasing | purchase_orders, purchase_order_details, inventory_transactions, companies, products | F6 |
 | FR-INV | 4.5 Inventory | inventory_transactions, products | F7 |
 | FR-RPT | 4.6 Reporting | orders, order_details, purchase_orders, inventory_transactions | F8 |
+| FR-DASH | 4.6 Reporting (management dashboards) | orders, order_details, purchase_orders, purchase_order_details, products, product_categories, companies, inventory_transactions (all derived client-side) | F2 |
 | FR-AUTH | §3 stakeholders | users, employees | F1, F9 |
 | FR-I18N | objective 3 | — (frontend) | F1, all |
 
 ## สรุปภาษาไทย
 
 SRS ฉบับนี้กำหนดสถาปัตยกรรมระบบแบบเซิร์ฟเวอร์เดียว: React SPA + PocketBase (SQLite) หลัง Nginx พร้อม TLS โดยมีการควบคุมสิทธิ์สองชั้นคือ API rules ของแต่ละ collection และ hooks ฝั่งเซิร์ฟเวอร์สำหรับกฎธุรกิจ เช่น การเปลี่ยนสถานะเอกสารและการห้ามสต๊อกติดลบ เอกสารระบุ functional requirements ครบทุกโมดูล (บริษัท พนักงาน สินค้า ใบสั่งขาย ใบสั่งซื้อ สต๊อก รายงาน การยืนยันตัวตน และ i18n) พร้อม NFR ด้าน responsive, ความปลอดภัย, ประสิทธิภาพ และการสำรองข้อมูล ท้ายเอกสารมีตาราง traceability เชื่อม FR → กระบวนการธุรกิจ → collection → ฟีเจอร์ใน PRD
+
+ฉบับปรับปรุง 2026-07-08: เพิ่มกลุ่ม FR-DASH-1..6 สำหรับส่วน Analytics บนแดชบอร์ด (กราฟแท่ง CSS 6 รายการ มองเห็นได้ทุกบทบาท คำนวณฝั่ง client โดยรวมยอดจาก order_details / purchase_order_details แบบดึงข้อมูลเป็นชุดละไม่เกิน 500 แถว) และ FR-COM-5 คอลัมน์ "Total purchased" ในหน้ารายชื่อบริษัท (มูลค่าตลอดอายุความสัมพันธ์ตามกฎ BR-R1/BR-R2) โดยเลื่อนข้อเดิมเป็น FR-COM-6/7 และปรับตาราง traceability ให้ครอบคลุม FR-DASH

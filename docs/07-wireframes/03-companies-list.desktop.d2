@@ -47,42 +47,46 @@ page: {
     label: ""
     class: plain
     grid-columns: 1
-    grid-gap: 10
+    grid-gap: 8
     topbar: {
       label: ""
       class: bar
       grid-columns: 3
       grid-gap: 8
-      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 568; height: 36}
       lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
       user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
     hdr: {
       label: ""
       class: plain
-      grid-columns: 2
-      grid-gap: 8
-      h1: {label: "Companies"; class: h1; width: 710; height: 40}
+      grid-columns: 3
+      grid-gap: 0
+      h1: {label: "Companies"; class: h1; width: 712; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
       new: {label: "+ New company"; class: primary; width: 220; height: 40}
     }
     tools: {
       label: ""
       class: plain
-      grid-columns: 2
-      grid-gap: 8
-      search: {label: "🔍 Search name, contact, city…"; class: field; width: 620; height: 38}
+      grid-columns: 3
+      grid-gap: 0
+      search: {label: "🔍 Search name, contact, city…"; class: field; width: 622; height: 38}
+      gsp1: {label: ""; class: plain; width: 8; height: 38}
       filt: {label: "Type: All ▾"; class: btn; width: 310; height: 38}
     }
     table: {
       label: ""
       class: plain
       grid-columns: 1
-      grid-gap: 2
-      hd: {label: "Name | Types | Contact | City | Phone"; class: head; width: 940; height: 32}
-      r0: {label: "Adatum Corporation | customer | Elizabeth Andersen | Seattle | 555-0100"; class: cell; width: 940; height: 32}
-      r1: {label: "Exotic Liquids | supplier | Charlotte Cooper | London | 555-2222"; class: cell; width: 940; height: 32}
-      r2: {label: "Speedy Express | shipper | Alan Brewer | Memphis | 555-3199"; class: cell; width: 940; height: 32}
+      horizontal-gap: 0
+      vertical-gap: 2
+      hd: {label: "Name | Types | Contact | City | Phone | Total purchased ↕"; class: head; width: 940; height: 32}
+      r0: {label: "Adatum Corporation | customer | Elizabeth Andersen | Seattle | 555-0100 | 18,650.00"; class: cell; width: 940; height: 32}
+      r1: {label: "Exotic Liquids | supplier | Charlotte Cooper | London | 555-2222 | 12,400.00"; class: cell; width: 940; height: 32}
+      r2: {label: "Speedy Express | shipper | Alan Brewer | Memphis | 555-3199 | 0.00"; class: cell; width: 940; height: 32}
     }
+    note: {label: "Total purchased = lifetime value: customer revenue (invoiced/shipped/closed) + supplier spend (approved/closed POs) · sortable · 2 decimals"; class: muted; width: 940; height: 24}
     pager: {label: "1–20 of 34    ‹  1  2  ›"; class: muted; width: 940; height: 28}
   }
 }

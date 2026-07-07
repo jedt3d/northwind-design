@@ -47,37 +47,40 @@ page: {
     label: ""
     class: plain
     grid-columns: 1
-    grid-gap: 10
+    grid-gap: 8
     topbar: {
       label: ""
       class: bar
       grid-columns: 3
       grid-gap: 8
-      apptitle: {label: "Northwind Traders"; class: barlbl; width: 560; height: 36}
+      apptitle: {label: "Northwind Traders"; class: barlbl; width: 568; height: 36}
       lang: {label: "Language: EN ▾"; class: btn; width: 170; height: 36}
       user: {label: "Worajedt ▾"; class: btn; width: 170; height: 36}
     }
     hdr: {
       label: ""
       class: plain
-      grid-columns: 2
-      grid-gap: 8
-      h1: {label: "Orders"; class: h1; width: 710; height: 40}
+      grid-columns: 3
+      grid-gap: 0
+      h1: {label: "Orders"; class: h1; width: 712; height: 40}
+      gsp1: {label: ""; class: plain; width: 8; height: 40}
       new: {label: "+ New order"; class: primary; width: 220; height: 40}
     }
     tools: {
       label: ""
       class: plain
-      grid-columns: 2
-      grid-gap: 8
-      search: {label: "🔍 Search order no. or customer…"; class: field; width: 620; height: 38}
+      grid-columns: 3
+      grid-gap: 0
+      search: {label: "🔍 Search order no. or customer…"; class: field; width: 622; height: 38}
+      gsp1: {label: ""; class: plain; width: 8; height: 38}
       filt: {label: "Status: All ▾"; class: btn; width: 310; height: 38}
     }
     table: {
       label: ""
       class: plain
       grid-columns: 1
-      grid-gap: 2
+      horizontal-gap: 0
+      vertical-gap: 2
       hd: {label: "Order # | Customer | Date ▾ | Employee | Status | Total"; class: head; width: 940; height: 32}
       r0: {label: "SO-2026-0042 | Adatum | 2026-07-08 | W. Srisuk | New | 1,806.00"; class: cell; width: 940; height: 32}
       r1: {label: "SO-2026-0041 | Proseware | 2026-07-07 | N. Freehafer | Invoiced | 640.00"; class: cell; width: 940; height: 32}
