@@ -166,11 +166,31 @@ svg.lucide {
     gap: var(--space-2);
     padding: 0 var(--space-3);
   }
+  /* compact pills: language = globe icon only, user = avatar circle only */
   .topbar-user-label {
-    max-width: 64px;
+    display: none;
+  }
+  .topbar-user-btn {
+    padding: 3px;
   }
   .topbar-lang {
-    padding-left: var(--space-2);
+    padding: 0 var(--space-2);
+  }
+  .topbar-lang .topbar-lang-select {
+    width: 28px;
+    color: transparent; /* value hidden; option list still renders normally */
+    appearance: none;
+    -webkit-appearance: none;
+    padding: 0;
+  }
+  /* iOS Safari auto-zooms when a focused control's font-size < 16px —
+     keep all form controls at 16px on small screens to prevent zoom-lock */
+  input.input,
+  select.input,
+  select,
+  textarea,
+  .lookup-picker-open input {
+    font-size: 16px;
   }
 }
 .topbar-avatar {
