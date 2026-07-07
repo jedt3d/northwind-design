@@ -1,0 +1,126 @@
+/* Northwind Calm — design tokens (docs/06-design-system.md)
+   Light theme only. Source palette: design/screenshots/README.md §3,
+   with pastel label text darkened for WCAG AA. */
+
+:root {
+  /* ---------- Color: neutrals / chrome ---------- */
+  --color-canvas: #e5e6e8;        /* page background */
+  --color-surface: #fbfbfa;       /* main elevated sheet */
+  --color-surface-2: #f4f4f3;     /* pills, inactive chips, table stripe */
+  --color-border-hairline: #e3e3e1;
+  --color-text-primary: #111111;
+  --color-text-secondary: #6b6b69; /* darkened from observed #8a8a88 for AA on surface */
+  --color-text-disabled: #9c9c9a;
+  --color-selected-dark: #1a1a1a;  /* active chip/segment, tooltip bg */
+  --color-on-dark: #ffffff;
+  --color-focus-ring: #1d4e7a;
+
+  /* ---------- Color: semantic ---------- */
+  --color-positive: #157a43;       /* darkened from ~#1fa55a for AA text use */
+  --color-positive-bg: #c9f0dc;
+  --color-warning: #7a5b00;
+  --color-warning-bg: #fae8b8;
+  --color-danger: #a4302a;
+  --color-danger-bg: #f9d2ce;
+  --color-info: #1d4e7a;
+  --color-info-bg: #cfe5f7;
+
+  /* ---------- Color: data/status pastels (fill + AA text pair) ---------- */
+  --color-data-blue-bg: #cfe5f7;   --color-data-blue-text: #1d4e7a;
+  --color-data-red-bg: #f9d2ce;    --color-data-red-text: #a4302a;
+  --color-data-yellow-bg: #fae8b8; --color-data-yellow-text: #7a5b00;
+  --color-data-green-bg: #c9f0dc;  --color-data-green-text: #157a43;
+  --color-data-pink-bg: #f9d3ef;   --color-data-pink-text: #94317c;
+  --color-data-purple-bg: #e3d9f6; --color-data-purple-text: #5b3fa8;
+  --color-data-gray-bg: #ececea;   --color-data-gray-text: #55554f;
+
+  /* ---------- Status badge mapping: orders ---------- */
+  --badge-order-new-bg: var(--color-data-blue-bg);
+  --badge-order-new-text: var(--color-data-blue-text);
+  --badge-order-invoiced-bg: var(--color-data-yellow-bg);
+  --badge-order-invoiced-text: var(--color-data-yellow-text);
+  --badge-order-shipped-bg: var(--color-data-purple-bg);
+  --badge-order-shipped-text: var(--color-data-purple-text);
+  --badge-order-closed-bg: var(--color-data-green-bg);
+  --badge-order-closed-text: var(--color-data-green-text);
+  --badge-order-cancelled-bg: var(--color-data-gray-bg);
+  --badge-order-cancelled-text: var(--color-data-gray-text);
+
+  /* ---------- Status badge mapping: purchase orders ---------- */
+  --badge-po-new-bg: var(--color-data-gray-bg);
+  --badge-po-new-text: var(--color-data-gray-text);
+  --badge-po-submitted-bg: var(--color-data-blue-bg);
+  --badge-po-submitted-text: var(--color-data-blue-text);
+  --badge-po-approved-bg: var(--color-data-yellow-bg);
+  --badge-po-approved-text: var(--color-data-yellow-text);
+  --badge-po-closed-bg: var(--color-data-green-bg);
+  --badge-po-closed-text: var(--color-data-green-text);
+  --badge-po-cancelled-bg: var(--color-data-red-bg);
+  --badge-po-cancelled-text: var(--color-data-red-text);
+
+  /* ---------- Status badge mapping: order lines ---------- */
+  --badge-line-none-bg: var(--color-data-gray-bg);
+  --badge-line-none-text: var(--color-data-gray-text);
+  --badge-line-allocated-bg: var(--color-data-green-bg);
+  --badge-line-allocated-text: var(--color-data-green-text);
+  --badge-line-on-order-bg: var(--color-data-blue-bg);
+  --badge-line-on-order-text: var(--color-data-blue-text);
+  --badge-line-no-stock-bg: var(--color-data-red-bg);
+  --badge-line-no-stock-text: var(--color-data-red-text);
+  --badge-line-invoiced-bg: var(--color-data-yellow-bg);
+  --badge-line-invoiced-text: var(--color-data-yellow-text);
+  --badge-line-shipped-bg: var(--color-data-purple-bg);
+  --badge-line-shipped-text: var(--color-data-purple-text);
+
+  /* ---------- Typography ---------- */
+  --font-family-base: "Inter", "Noto Sans Thai", "Noto Sans JP", sans-serif;
+  --font-size-11: 11px;  /* axis, dates, delta badges */
+  --font-size-13: 13px;  /* labels, nav, table body */
+  --font-size-14: 14px;  /* body, inputs */
+  --font-size-16: 16px;  /* emphasized body, card titles */
+  --font-size-20: 20px;  /* H2 section titles */
+  --font-size-28: 28px;  /* H1 page titles */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --line-height-latin: 1.5;
+  --line-height-thai: 1.6;
+  --font-variant-numeric-tables: tabular-nums;
+
+  /* ---------- Spacing (4px base) ---------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* ---------- Radius ---------- */
+  --radius-sm: 6px;    /* badges, data labels */
+  --radius-md: 8px;    /* inputs, buttons, dropdowns */
+  --radius-lg: 12px;   /* cards, modals */
+  --radius-xl: 16px;   /* main content sheet */
+
+  /* ---------- Elevation (max 2 levels) ---------- */
+  --shadow-sheet: 0 1px 3px rgba(17, 17, 17, 0.06);
+  --shadow-overlay: 0 8px 24px rgba(17, 17, 17, 0.16);
+
+  /* ---------- Layout ---------- */
+  --breakpoint-mobile: 360px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-wide: 1440px;
+  --content-max-width: 1200px;
+  --sidebar-width: 220px;
+  --topbar-height: 56px;
+  --bottomnav-height: 56px;
+  --table-row-height: 44px;
+  --touch-target-min: 44px;
+
+  /* ---------- Motion ---------- */
+  --motion-fast: 150ms;
+  --motion-base: 250ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+}
