@@ -678,7 +678,7 @@ select.input {
 .nw-table th {
   text-align: left; /* browsers default th to center — keep headers on the content grid */
 }
-.nw-table-th--right {
+.nw-table th.nw-table-th--right {
   text-align: right;
 }
 .nw-table-arrow {
