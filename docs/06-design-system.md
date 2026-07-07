@@ -6,7 +6,7 @@ Stable, calm, clean. **Light theme only.** Multilingual: Thai, English, Japanese
 
 ## 0. Style reference (analyzed 2026-07-08)
 
-Source: user-provided UI-preview video (ChartMogul-style report screen); 12 extracted frames in `design/screenshots/`. **Scope: visual style only** — workflows, LOB interaction patterns, and UX structure follow `docs/09-lob-ui-patterns.md` and `docs/05-ux-design.md`, not this video.
+Source: user-provided UI-preview video; 12 extracted frames in `design/screenshots/`, with the full structured definition (frame index, layout anatomy, color/type/component/motion definitions) in `design/screenshots/README.md`. **Scope: visual style only** — workflows, LOB interaction patterns, and UX structure follow `docs/09-lob-ui-patterns.md` and `docs/05-ux-design.md`, not this video.
 
 Observed style to carry into our tokens and components:
 
