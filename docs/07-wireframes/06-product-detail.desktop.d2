@@ -1,0 +1,59 @@
+# PRD: F4 Product detail (desktop 1280)
+direction: down
+
+screen: {
+  label: "Product detail — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Products (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: {
+        grid-columns: 2
+        title: "< back | H1 Chai Tea (NWTB-1)"
+        actions: {
+          label: "[ Edit ] [ Reorder ] (shown when low)"
+          style.fill: "#f4f4f3"
+        }
+      }
+      body: {
+        grid-columns: 2
+        fields: {
+          direction: down
+          f1: "Category: Beverages | Supplier: Exotic Liquids"
+          f2: "List price 18.00 | Std cost 13.50"
+          f3: "Reorder level 50 | Target level 100"
+          f4: "Qty per unit: 10 boxes x 20 bags"
+          f5: "Image [thumb]  Discontinued: no"
+        }
+        stock: {
+          label: "Stock (derived)"
+          direction: down
+          s1: "On hand: 22"
+          s2: "Allocated: 10"
+          s3: "Available to sell: 12 (LOW < 50)"
+          s4: "On order: 100"
+        }
+      }
+      history: {
+        label: "Recent inventory transactions"
+        direction: down
+        head: {
+          label: "Date | Type | Qty | Ref"
+          style.fill: "#f4f4f3"
+        }
+        r1: "2026-07-05 | purchased | +100 | PO-2026-0015"
+        r2: "2026-07-06 | sold | -88 | SO-2026-0040"
+      }
+    }
+  }
+}

@@ -1,0 +1,62 @@
+# PRD: F2 Dashboard (desktop 1280)
+direction: down
+
+screen: {
+  label: "Dashboard — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar 220px"
+      style.fill: "#f4f4f3"
+      direction: down
+      n1: "Dashboard (active)"
+      n2: "Orders"
+      n3: "Purchase Orders"
+      n4: "Products"
+      n5: "Inventory"
+      n6: "Companies"
+      n7: "Reports"
+      n8: "Admin"
+      n9: "Settings"
+    }
+    content: {
+      direction: down
+      header: "H1 Dashboard"
+      panels: {
+        grid-columns: 3
+        p1: {
+          label: "My open orders (sales)"
+          direction: down
+          r1: "SO-2026-0042 | Adatum | New"
+          r2: "SO-2026-0041 | Proseware | Invoiced"
+          more: "View all ->"
+        }
+        p2: {
+          label: "Low stock (purchasing)"
+          direction: down
+          r1: "Chai Tea | avail 12 < reorder 50 | [Reorder]"
+          r2: "Syrup | avail 3 < reorder 25 | [Reorder]"
+          more: "View products ->"
+        }
+        p3: {
+          label: "POs awaiting approval (manager)"
+          direction: down
+          r1: "PO-2026-0017 | Exotic Liquids | Submitted"
+          more: "View POs ->"
+        }
+      }
+      recent: {
+        label: "Recent items (orders / POs)"
+        direction: down
+        r1: "SO-2026-0042 | updated 2h ago"
+        r2: "PO-2026-0017 | updated 5h ago"
+      }
+    }
+  }
+}

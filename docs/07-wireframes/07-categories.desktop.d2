@@ -1,0 +1,41 @@
+# PRD: F4 Product categories (desktop 1280)
+direction: down
+
+screen: {
+  label: "Categories — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Products > Categories (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: {
+        grid-columns: 2
+        title: "H1 Product categories"
+        action: {
+          label: "[ + New category ] (manager/admin)"
+          style.fill: "#f4f4f3"
+        }
+      }
+      toolbar: "Search categories..."
+      table: {
+        direction: down
+        head: {
+          label: "Image | Name ^ | Description | Products"
+          style.fill: "#f4f4f3"
+        }
+        row1: "[img] | Beverages | Coffee, tea, juice | 12"
+        row2: "[img] | Condiments | Sauces and spreads | 9"
+        row3: "[img] | Dried fruit | Nuts and dried fruit | 15"
+      }
+    }
+  }
+}

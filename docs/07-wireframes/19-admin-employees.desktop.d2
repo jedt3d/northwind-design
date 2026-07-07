@@ -1,0 +1,46 @@
+# PRD: F9 Admin — employees & roles (desktop 1280)
+direction: down
+
+screen: {
+  label: "Admin employees — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Admin (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: {
+        grid-columns: 2
+        title: "H1 Employees"
+        action: {
+          label: "[ + New employee ]"
+          style.fill: "#f4f4f3"
+        }
+      }
+      toolbar: {
+        grid-columns: 2
+        search: "Search name or email..."
+        filter: "Role: All v"
+      }
+      table: {
+        direction: down
+        head: {
+          label: "Name ^ | Job title | Role | Login user | Active"
+          style.fill: "#f4f4f3"
+        }
+        row1: "Karen Finster | Sales Rep | sales | karen@... | yes"
+        row2: "Andrew Cencini | Buyer | purchasing | andrew@... | yes"
+        row3: "Suda W. | Ops Manager | manager | suda@... | yes"
+        row4: "Old Account | - | warehouse | - | no (muted, delete replaced by deactivate)"
+      }
+    }
+  }
+}

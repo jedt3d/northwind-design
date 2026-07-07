@@ -1,0 +1,36 @@
+# PRD: F2 Dashboard (mobile 360)
+direction: down
+
+screen: {
+  label: "Dashboard — mobile 360"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  content: {
+    direction: down
+    header: "H1 Dashboard"
+    p1: {
+      label: "My open orders"
+      direction: down
+      r1: "SO-2026-0042 | Adatum | New"
+      r2: "SO-2026-0041 | Proseware | Invoiced"
+    }
+    p2: {
+      label: "Low stock"
+      direction: down
+      r1: "Chai Tea | 12 < 50 | [Reorder]"
+    }
+    p3: {
+      label: "POs awaiting approval"
+      direction: down
+      r1: "PO-2026-0017 | Submitted"
+    }
+  }
+  bottomnav: {
+    label: "Home (active) | Orders | POs | Inventory | More"
+    style.fill: "#f4f4f3"
+  }
+}

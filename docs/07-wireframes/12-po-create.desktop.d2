@@ -1,0 +1,46 @@
+# PRD: F6 PO create (desktop 1280)
+direction: down
+
+screen: {
+  label: "PO create — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Purchase Orders (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: "< back | H1 New purchase order"
+      note: "(prefilled when opened from product Reorder)"
+      headerform: {
+        grid-columns: 2
+        supplier: "Supplier: [lookup picker v]"
+        creator: "Created by: Andrew (me)"
+        expected: "Expected date: [2026-07-15]"
+        notes: "Notes: [__________]"
+      }
+      lines: {
+        label: "Line items (inline editor)"
+        direction: down
+        head: {
+          label: "Product | Qty (suggested: target - available) | Unit cost | Total"
+          style.fill: "#f4f4f3"
+        }
+        l1: "Chai Tea | 88 | 13.50 | 1,188.00"
+        add: "+ Add line"
+      }
+      totals: "Subtotal 1,188.00 | Shipping | Taxes | Total"
+      footer: {
+        label: "[ Save draft ] [ Submit ] [ Cancel ] (sticky)"
+        style.fill: "#f4f4f3"
+      }
+    }
+  }
+}

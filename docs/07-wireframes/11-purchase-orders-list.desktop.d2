@@ -1,0 +1,46 @@
+# PRD: F6 Purchase orders list (desktop 1280)
+direction: down
+
+screen: {
+  label: "PO list — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Purchase Orders (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: {
+        grid-columns: 2
+        title: "H1 Purchase orders"
+        action: {
+          label: "[ + New PO ]"
+          style.fill: "#f4f4f3"
+        }
+      }
+      toolbar: {
+        grid-columns: 2
+        search: "Search PO no. or supplier..."
+        filter: "Status: All v (new/submitted/approved/closed/cancelled)"
+      }
+      table: {
+        direction: down
+        head: {
+          label: "PO # | Supplier | Created v | Status | Expected | Total"
+          style.fill: "#f4f4f3"
+        }
+        row1: "PO-2026-0017 | Exotic Liquids | 07-08 | Submitted | 07-15 | 3,210.00"
+        row2: "PO-2026-0016 | New Orleans Cajun | 07-05 | Approved | 07-12 | 940.00"
+        row3: "PO-2026-0015 | Exotic Liquids | 07-01 | Closed | 07-05 | 1,350.00"
+      }
+      pager: "1-20 of 31   < 1 2 >"
+    }
+  }
+}

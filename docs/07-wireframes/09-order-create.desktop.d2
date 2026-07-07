@@ -1,0 +1,46 @@
+# PRD: F5 Order create (desktop 1280)
+direction: down
+
+screen: {
+  label: "Order create — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Orders (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: "< back | H1 New order"
+      headerform: {
+        grid-columns: 2
+        customer: "Customer: [lookup picker v] (+ New customer)"
+        employee: "Employee: Karen Finster (me)"
+        date: "Order date: 2026-07-08"
+        notes: "Notes: [__________]"
+      }
+      lines: {
+        label: "Line items (inline editor)"
+        direction: down
+        head: {
+          label: "Product | Qty | Unit price | Total | Status"
+          style.fill: "#f4f4f3"
+        }
+        l1: "Chai Tea (picker) | 10 | 18.00 | 180.00 | Allocated"
+        l2: "Syrup (picker) | 200 | 10.00 | 2,000.00 | No Stock [Create PO?]"
+        add: "+ Add line"
+      }
+      totals: "Subtotal 2,180.00 | Taxes | Shipping | Total"
+      footer: {
+        label: "[ Save order ] [ Cancel ] (sticky, unsaved-changes guard)"
+        style.fill: "#f4f4f3"
+      }
+    }
+  }
+}

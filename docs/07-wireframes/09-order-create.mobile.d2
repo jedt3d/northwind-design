@@ -1,0 +1,36 @@
+# PRD: F5 Order create (mobile 360)
+direction: down
+
+screen: {
+  label: "Order create — mobile 360"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "< New order"
+    style.fill: "#f4f4f3"
+  }
+  form: {
+    direction: down
+    customer: "Customer: [picker v] (+ New customer)"
+    employee: "Employee: me"
+    date: "Date: 2026-07-08"
+  }
+  lines: {
+    label: "Lines (cards)"
+    direction: down
+    l1: {
+      label: "Chai Tea | 10 x 18.00 | Allocated"
+      style.fill: "#f4f4f3"
+    }
+    l2: {
+      label: "Syrup | 200 x 10.00 | No Stock [Create PO?]"
+      style.fill: "#f4f4f3"
+    }
+    add: "[ + Add line ]"
+  }
+  totals: "Total 2,180.00"
+  footer: {
+    label: "[ Save order ] (sticky full width)"
+    style.fill: "#f4f4f3"
+  }
+}

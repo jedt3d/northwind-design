@@ -1,0 +1,37 @@
+# PRD: F6 PO detail — approve / receive (mobile 360)
+direction: down
+
+screen: {
+  label: "PO detail — mobile 360"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "< PO-2026-0017 [Submitted]"
+    style.fill: "#f4f4f3"
+  }
+  content: {
+    direction: down
+    fields: {
+      direction: down
+      f1: "Exotic Liquids | by Andrew"
+      f2: "Expected 07-15"
+    }
+    lines: {
+      label: "Lines"
+      direction: down
+      l1: {
+        label: "Chai Tea | 100 x 13.50 | [Receive]"
+        style.fill: "#f4f4f3"
+      }
+      l2: {
+        label: "Green Tea | 60 x 11.00 | [Receive]"
+        style.fill: "#f4f4f3"
+      }
+    }
+    totals: "Total 3,210.00"
+  }
+  actionbar: {
+    label: "[ Approve ] (manager only, sticky 44px)"
+    style.fill: "#f4f4f3"
+  }
+}

@@ -1,0 +1,160 @@
+# Northwind modernized schema — ERD (docs/04 §2)
+direction: right
+
+companies: {
+  shape: sql_table
+  id: text {constraint: primary_key}
+  company_type: "select multi: customer|supplier|shipper"
+  company_name: text
+  contact_name: text
+  email: email
+  phone: text
+  address: text
+  city: text
+  state_province: text
+  postal_code: text
+  country: text
+  tax_id: text
+  website: url
+  notes: text
+}
+
+employees: {
+  shape: sql_table
+  id: text {constraint: primary_key}
+  user: "relation users (optional)" {constraint: foreign_key}
+  first_name: text
+  last_name: text
+  title: text
+  email: email
+  phone: text
+  job_title: text
+  role: "select: sales|purchasing|warehouse|manager|admin"
+  active: bool
+}
+
+product_categories: {
+  shape: sql_table
+  id: text {constraint: primary_key}
+  category_name: text
+  description: text
+  image: file
+}
+
+products: {
+  shape: sql_table
+  id: text {constraint: primary_key}
+  product_code: text
+  product_name: text
+  description: text
+  category: "relation product_categories" {constraint: foreign_key}
+  supplier: "relation companies" {constraint: foreign_key}
+  list_price: number
+  standard_cost: number
+  reorder_level: number
+  target_level: number
+  quantity_per_unit: text
+  discontinued: bool
+  image: file
+}
+
+orders: {
+  shape: sql_table
+  id: text {constraint: primary_key}
+  order_number: text
+  customer: "relation companies" {constraint: foreign_key}
+  employee: "relation employees" {constraint: foreign_key}
+  shipper: "relation companies (optional)" {constraint: foreign_key}
+  order_date: date
+  invoice_date: date
+  shipped_date: date
+  paid_date: date
+  status: "select: new|invoiced|shipped|closed|cancelled"
+  ship_name: text
+  ship_address: text
+  ship_city: text
+  ship_postal_code: text
+  ship_country: text
+  shipping_fee: number
+  taxes: number
+  payment_method: "select: cash|card|transfer|check"
+  notes: text
+}
+
+order_details: {
+  shape: sql_table
+  id: text {constraint: primary_key}
+  order: "relation orders" {constraint: foreign_key}
+  product: "relation products" {constraint: foreign_key}
+  quantity: number
+  unit_price: number
+  discount: number
+  status: "select: none|allocated|invoiced|shipped|on_order|no_stock"
+  date_allocated: date
+}
+
+purchase_orders: {
+  shape: sql_table
+  id: text {constraint: primary_key}
+  po_number: text
+  supplier: "relation companies" {constraint: foreign_key}
+  created_by: "relation employees" {constraint: foreign_key}
+  submitted_date: date
+  approved_by: "relation employees (optional)" {constraint: foreign_key}
+  approved_date: date
+  status: "select: new|submitted|approved|closed|cancelled"
+  expected_date: date
+  shipping_fee: number
+  taxes: number
+  payment_amount: number
+  payment_date: date
+  payment_method: "select: cash|card|transfer|check"
+  notes: text
+}
+
+purchase_order_details: {
+  shape: sql_table
+  id: text {constraint: primary_key}
+  purchase_order: "relation purchase_orders" {constraint: foreign_key}
+  product: "relation products" {constraint: foreign_key}
+  quantity: number
+  unit_cost: number
+  date_received: date
+  posted_to_inventory: bool
+}
+
+inventory_transactions: {
+  shape: sql_table
+  id: text {constraint: primary_key}
+  transaction_type: "select: purchased|sold|on_hold|waiting"
+  transaction_date: date
+  product: "relation products" {constraint: foreign_key}
+  quantity: "number (signed)"
+  related_order: "relation orders (optional)" {constraint: foreign_key}
+  related_purchase_order: "relation purchase_orders (optional)" {constraint: foreign_key}
+  comments: text
+}
+
+users: {
+  shape: sql_table
+  id: text {constraint: primary_key}
+  email: email
+  password: hidden
+}
+
+employees.user -> users.id
+products.category -> product_categories.id
+products.supplier -> companies.id
+orders.customer -> companies.id
+orders.shipper -> companies.id
+orders.employee -> employees.id
+order_details.order -> orders.id
+order_details.product -> products.id
+purchase_orders.supplier -> companies.id
+purchase_orders.created_by -> employees.id
+purchase_orders.approved_by -> employees.id
+purchase_order_details.purchase_order -> purchase_orders.id
+purchase_order_details.product -> products.id
+inventory_transactions.product -> products.id
+inventory_transactions.related_order -> orders.id
+inventory_transactions.related_purchase_order -> purchase_orders.id

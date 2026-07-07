@@ -5,6 +5,9 @@ Every external image (products, people, illustrations, icons, fonts) fetched fro
 | # | File in repo | Description | Original URL | Source / License |
 |---|---|---|---|---|
 | 1 | `design/screenshots/frame_01.jpg` … `frame_12.jpg` (12 files) | UI style reference — frames extracted from user-provided UI-preview video (ChartMogul-style report screen) | — (user-provided MP4, 2026-07-08) | Internal reference only; not for redistribution |
+| 2 | *(loaded via Google Fonts in Phase 2; referenced in `design/tokens.css`)* | Font family **Inter** — Latin UI typeface (closest match to the grotesque sans in the style reference) | https://fonts.google.com/specimen/Inter | Google Fonts / SIL Open Font License 1.1 |
+| 3 | *(loaded via Google Fonts in Phase 2; referenced in `design/tokens.css`)* | Font family **Noto Sans Thai** — Thai script coverage | https://fonts.google.com/noto/specimen/Noto+Sans+Thai | Google Fonts / SIL Open Font License 1.1 |
+| 4 | *(loaded via Google Fonts in Phase 2; referenced in `design/tokens.css`)* | Font family **Noto Sans JP** — Japanese script coverage | https://fonts.google.com/noto/specimen/Noto+Sans+JP | Google Fonts / SIL Open Font License 1.1 |
 
 Rules:
 

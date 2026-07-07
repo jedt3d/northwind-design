@@ -1,0 +1,41 @@
+# PRD: F7 Inventory transactions ledger (desktop 1280)
+direction: down
+
+screen: {
+  label: "Inventory transactions — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Inventory (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: "H1 Inventory transactions (read-only ledger)"
+      toolbar: {
+        grid-columns: 3
+        search: "Search product..."
+        type: "Type: All v (purchased/sold/on_hold/waiting)"
+        range: "Date: last 30 days v"
+      }
+      table: {
+        direction: down
+        head: {
+          label: "Date v | Product | Type | Qty | Ref | Comment"
+          style.fill: "#f4f4f3"
+        }
+        row1: "07-08 | Chai Tea | on_hold | -10 | SO-2026-0042 | -"
+        row2: "07-06 | Chai Tea | sold | -88 | SO-2026-0040 | -"
+        row3: "07-05 | Chai Tea | purchased | +100 | PO-2026-0015 | -"
+        row4: "07-04 | Syrup | sold | -5 | - | count correction"
+      }
+      pager: "1-20 of 402   < 1 2 ... 21 >"
+    }
+  }
+}

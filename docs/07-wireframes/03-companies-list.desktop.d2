@@ -1,0 +1,46 @@
+# PRD: F3 Companies list (desktop 1280)
+direction: down
+
+screen: {
+  label: "Companies list — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Companies (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: {
+        grid-columns: 2
+        title: "H1 Companies"
+        action: {
+          label: "[ + New company ]"
+          style.fill: "#f4f4f3"
+        }
+      }
+      toolbar: {
+        grid-columns: 2
+        search: "Search name or contact... (300ms)"
+        filter: "Type: All v (customer/supplier/shipper)"
+      }
+      table: {
+        direction: down
+        head: {
+          label: "Name ^ | Types | Contact | City | Phone"
+          style.fill: "#f4f4f3"
+        }
+        row1: "Adatum Corporation | customer | K. Somchai | Bangkok | +66 2 ..."
+        row2: "Exotic Liquids | supplier | Ms. Lee | Tokyo | +81 3 ..."
+        row3: "Shipping Alliance | shipper | Mr. Wong | Bangkok | +66 2 ..."
+      }
+      pager: "1-20 of 43   < 1 2 3 >"
+    }
+  }
+}

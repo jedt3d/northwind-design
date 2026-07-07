@@ -1,0 +1,37 @@
+# PRD: F4 Product detail (mobile 360)
+direction: down
+
+screen: {
+  label: "Product detail — mobile 360"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "< Chai Tea | Edit"
+    style.fill: "#f4f4f3"
+  }
+  content: {
+    direction: down
+    stock: {
+      label: "On hand 22 | Allocated 10 | Avail 12 LOW | On order 100"
+      style.fill: "#f4f4f3"
+    }
+    reorder: "[ Reorder product ] (primary, low stock)"
+    fields: {
+      direction: down
+      f1: "Category: Beverages"
+      f2: "Supplier: Exotic Liquids"
+      f3: "List 18.00 | Cost 13.50"
+      f4: "Reorder 50 | Target 100"
+    }
+    history: {
+      label: "Transactions"
+      direction: down
+      r1: "07-05 purchased +100"
+      r2: "07-06 sold -88"
+    }
+  }
+  bottomnav: {
+    label: "Home | Orders | POs | Inventory | More"
+    style.fill: "#f4f4f3"
+  }
+}

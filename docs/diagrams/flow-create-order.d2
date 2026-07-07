@@ -1,0 +1,43 @@
+# Flow: create sales order incl. insufficient-stock path (docs/05 §3.2)
+direction: down
+
+start: "Sales opens Orders -> New order"
+header: "Fill header\n(customer, date=today, employee=me)"
+new_customer: "Customer missing?\n+ New customer modal\n(create -> auto-select)"
+add_line: "Add line:\npick product, qty\n(unit price auto-fills)"
+stock_check: "Server checks available stock" {shape: diamond}
+allocated: "Line status: Allocated\n(on_hold transaction written)"
+on_order: "Line status: On Order\n(approved PO covers qty)"
+no_stock: "Line status: No Stock\n+ prompt: Create PO?"
+create_po: "Create PO (prefilled\nsupplier + suggested qty)\n-> submit -> approve -> receive"
+realloc: "Receiving reallocates:\nline becomes Allocated"
+more_lines: "More lines?" {shape: diamond}
+save: "Save order (status: New)"
+invoice_gate: "All lines Allocated?" {shape: diamond}
+invoice: "Invoice action\n(sold transactions written,\ninvoice_date set)"
+ship: "Ship action\n(requires shipper + fee,\nshipped_date set)"
+close: "Close order"
+blocked: "Invoice blocked\n(validation message)"
+
+start -> header
+header -> new_customer: "if new customer"
+new_customer -> header: "back with selection"
+header -> add_line
+add_line -> stock_check
+stock_check -> allocated: "enough free stock"
+stock_check -> on_order: "covered by approved PO"
+stock_check -> no_stock: "not available"
+no_stock -> create_po: "user accepts prompt"
+create_po -> realloc
+realloc -> invoice_gate
+allocated -> more_lines
+on_order -> more_lines
+no_stock -> more_lines: "decide later"
+more_lines -> add_line: "yes"
+more_lines -> save: "no"
+save -> invoice_gate
+invoice_gate -> invoice: "yes"
+invoice_gate -> blocked: "no (No Stock / On Order line)"
+blocked -> create_po
+invoice -> ship
+ship -> close

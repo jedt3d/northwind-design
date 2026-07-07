@@ -1,0 +1,70 @@
+# Northwind web app — sitemap (docs/05 §2)
+direction: down
+
+login: "Login (+ language)"
+app: {
+  label: "Authenticated app shell\n(sidebar desktop / bottom nav mobile)"
+
+  dashboard: "Dashboard"
+
+  companies: {
+    label: "Companies"
+    list: "Companies list"
+    detail: "Company detail\n(+ related orders/POs)"
+    list -> detail
+  }
+
+  products: {
+    label: "Products"
+    list: "Products list"
+    detail: "Product detail\n(+ stock levels, reorder)"
+    categories: "Categories (admin)"
+    list -> detail
+  }
+
+  orders: {
+    label: "Orders"
+    list: "Orders list"
+    create: "Order create"
+    detail: "Order detail\n(lines + status actions)"
+    list -> create
+    list -> detail
+    create -> detail
+  }
+
+  pos: {
+    label: "Purchase orders"
+    list: "PO list"
+    create: "PO create"
+    detail: "PO detail\n(submit/approve/receive)"
+    list -> create
+    list -> detail
+    create -> detail
+  }
+
+  inventory: {
+    label: "Inventory"
+    onhand: "On-hand view"
+    transactions: "Transaction ledger"
+    adjustment: "Adjustment form"
+    onhand -> transactions
+    onhand -> adjustment
+  }
+
+  reports: {
+    label: "Reports"
+    home: "Reports home"
+    view: "Report view\n(sales, top products,\nstock, outstanding POs)"
+    home -> view
+  }
+
+  admin: "Admin: employees & roles"
+  settings: "Settings (language, profile)"
+}
+
+login -> app.dashboard: "auth ok"
+app.dashboard -> app.orders.list: "orders to process"
+app.dashboard -> app.pos.list: "POs to approve"
+app.dashboard -> app.products.list: "low stock"
+app.products.detail -> app.pos.create: "Reorder action"
+app.orders.detail -> app.pos.create: "no-stock line -> create PO"

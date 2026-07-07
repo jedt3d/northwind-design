@@ -1,0 +1,37 @@
+# PRD: F5 Orders list (mobile 360)
+direction: down
+
+screen: {
+  label: "Orders list — mobile 360"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "< Orders | + New"
+    style.fill: "#f4f4f3"
+  }
+  toolbar: {
+    direction: down
+    search: "Search order no. or customer..."
+    controls: "Status: All v   Sort: Newest v"
+  }
+  cards: {
+    direction: down
+    c1: {
+      label: "SO-2026-0042 | Adatum | New | 1,806.00"
+      style.fill: "#f4f4f3"
+    }
+    c2: {
+      label: "SO-2026-0041 | Proseware | Invoiced | 640.00"
+      style.fill: "#f4f4f3"
+    }
+    c3: {
+      label: "SO-2026-0040 | Wide World | Shipped | 2,120.00"
+      style.fill: "#f4f4f3"
+    }
+    loadmore: "[ Load more ]"
+  }
+  bottomnav: {
+    label: "Home | Orders (active) | POs | Inventory | More"
+    style.fill: "#f4f4f3"
+  }
+}

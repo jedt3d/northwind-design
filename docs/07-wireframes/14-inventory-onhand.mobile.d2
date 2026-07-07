@@ -1,0 +1,37 @@
+# PRD: F7 Inventory on-hand (mobile 360)
+direction: down
+
+screen: {
+  label: "Inventory on-hand — mobile 360"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "< Stock on hand | + Adjust"
+    style.fill: "#f4f4f3"
+  }
+  toolbar: {
+    direction: down
+    search: "Search product..."
+    controls: "[ ] Low only   Sort: Name A-Z v"
+  }
+  cards: {
+    direction: down
+    c1: {
+      label: "Chai Tea | avail 12 LOW | on hand 22 | on order 100"
+      style.fill: "#f4f4f3"
+    }
+    c2: {
+      label: "Syrup | avail 80 | on hand 80"
+      style.fill: "#f4f4f3"
+    }
+    c3: {
+      label: "Green Tea | avail 0 LOW | on order 60"
+      style.fill: "#f4f4f3"
+    }
+    loadmore: "[ Load more ]"
+  }
+  bottomnav: {
+    label: "Home | Orders | POs | Inventory (active) | More"
+    style.fill: "#f4f4f3"
+  }
+}

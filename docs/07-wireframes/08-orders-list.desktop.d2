@@ -1,0 +1,46 @@
+# PRD: F5 Orders list (desktop 1280)
+direction: down
+
+screen: {
+  label: "Orders list — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Orders (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: {
+        grid-columns: 2
+        title: "H1 Orders"
+        action: {
+          label: "[ + New order ]"
+          style.fill: "#f4f4f3"
+        }
+      }
+      toolbar: {
+        grid-columns: 2
+        search: "Search order no. or customer..."
+        filter: "Status: All v (new/invoiced/shipped/closed/cancelled)"
+      }
+      table: {
+        direction: down
+        head: {
+          label: "Order # | Customer | Date v | Status | Total"
+          style.fill: "#f4f4f3"
+        }
+        row1: "SO-2026-0042 | Adatum | 2026-07-08 | New | 1,806.00"
+        row2: "SO-2026-0041 | Proseware | 2026-07-07 | Invoiced | 640.00"
+        row3: "SO-2026-0040 | Wide World | 2026-07-06 | Shipped | 2,120.00"
+      }
+      pager: "1-20 of 96   < 1 2 3 4 5 >"
+    }
+  }
+}

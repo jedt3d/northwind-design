@@ -1,0 +1,42 @@
+# PRD: F8 Reports home (desktop 1280)
+direction: down
+
+screen: {
+  label: "Reports home — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Reports (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: "H1 Reports"
+      cardgrid: {
+        grid-columns: 2
+        c1: {
+          label: "Sales by period (employee/product, month/quarter)"
+          style.fill: "#f4f4f3"
+        }
+        c2: {
+          label: "Top-selling products"
+          style.fill: "#f4f4f3"
+        }
+        c3: {
+          label: "Stock on hand (reorder flags)"
+          style.fill: "#f4f4f3"
+        }
+        c4: {
+          label: "Outstanding purchase orders"
+          style.fill: "#f4f4f3"
+        }
+      }
+    }
+  }
+}

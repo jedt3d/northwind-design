@@ -1,0 +1,49 @@
+# PRD: F6 PO detail — approve / receive (desktop 1280)
+direction: down
+
+screen: {
+  label: "PO detail — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Purchase Orders (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: {
+        grid-columns: 2
+        title: "< back | H1 PO-2026-0017 [Submitted]"
+        actions: {
+          label: "[ Approve (manager/admin only) ] [ Cancel PO ]"
+          style.fill: "#f4f4f3"
+        }
+      }
+      fields: {
+        grid-columns: 2
+        f1: "Supplier: Exotic Liquids | Created by: Andrew"
+        f2: "Submitted 07-08 | Approved - by -"
+        f3: "Expected: 07-15 | Shipping fee 300.00"
+        f4: "Payment: - | Notes"
+      }
+      lines: {
+        label: "Line items (receive controls appear when Approved)"
+        direction: down
+        head: {
+          label: "Product | Qty | Unit cost | Received date | Posted"
+          style.fill: "#f4f4f3"
+        }
+        l1: "Chai Tea | 100 | 13.50 | - | no  [Receive]"
+        l2: "Green Tea | 60 | 11.00 | - | no  [Receive]"
+      }
+      totals: "Subtotal 2,010.00 | Taxes 210.00 | Total 3,210.00"
+      feedback: "toast after receive: '2 waiting order lines allocated'"
+    }
+  }
+}

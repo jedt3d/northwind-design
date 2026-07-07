@@ -1,0 +1,45 @@
+# PRD: F8 Report view (desktop 1280)
+direction: down
+
+screen: {
+  label: "Report view — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Reports (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: "< back | H1 Sales by period"
+      filterbar: {
+        grid-columns: 3
+        range: "Date: 2026-04-08 -> 2026-07-08"
+        group: "Group by: Employee v / Product"
+        gran: "Month v / Quarter"
+      }
+      chart: {
+        label: "chart area (bar per month)"
+        style.fill: "#f4f4f3"
+      }
+      table: {
+        label: "numbers table (always paired with chart)"
+        direction: down
+        head: {
+          label: "Employee | Apr | May | Jun | Total"
+          style.fill: "#f4f4f3"
+        }
+        row1: "Karen Finster | 12,400 | 15,100 | 13,900 | 41,400"
+        row2: "Andrew Cencini | 8,200 | 9,700 | 11,050 | 28,950"
+        foot: "Total | 20,600 | 24,800 | 24,950 | 70,350"
+      }
+      empty: "empty state when range has no data"
+    }
+  }
+}

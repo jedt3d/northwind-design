@@ -1,0 +1,33 @@
+# PRD: F3 Company detail (mobile 360)
+direction: down
+
+screen: {
+  label: "Company detail — mobile 360"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "< Adatum Corporation | Edit"
+    style.fill: "#f4f4f3"
+  }
+  content: {
+    direction: down
+    badge: "customer"
+    fields: {
+      direction: down
+      contact: "Contact: K. Somchai | phone | email"
+      address: "Address: 99 Rama IV Rd, Bangkok"
+      tax: "Tax ID | Website"
+    }
+    related: {
+      label: "Orders (12)"
+      direction: down
+      r1: "SO-2026-0042 | New"
+      r2: "SO-2026-0038 | Closed"
+      loadmore: "[ Load more ]"
+    }
+  }
+  bottomnav: {
+    label: "Home | Orders | POs | Inventory | More"
+    style.fill: "#f4f4f3"
+  }
+}

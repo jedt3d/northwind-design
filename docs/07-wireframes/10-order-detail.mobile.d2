@@ -1,0 +1,37 @@
+# PRD: F5 Order detail + status actions (mobile 360)
+direction: down
+
+screen: {
+  label: "Order detail — mobile 360"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "< SO-2026-0042 [New]"
+    style.fill: "#f4f4f3"
+  }
+  content: {
+    direction: down
+    fields: {
+      direction: down
+      f1: "Adatum | Karen | 2026-07-08"
+      f2: "Shipper - | Fee -"
+    }
+    lines: {
+      label: "Lines"
+      direction: down
+      l1: {
+        label: "Chai Tea | 10 x 18.00 | Allocated"
+        style.fill: "#f4f4f3"
+      }
+      l2: {
+        label: "Syrup | 200 x 10.00 | No Stock"
+        style.fill: "#f4f4f3"
+      }
+    }
+    totals: "Total 2,332.60"
+  }
+  actionbar: {
+    label: "[ Invoice (disabled + reason) ] [ Cancel ] (sticky)"
+    style.fill: "#f4f4f3"
+  }
+}

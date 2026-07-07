@@ -1,0 +1,49 @@
+# PRD: F5 Order detail + status actions (desktop 1280)
+direction: down
+
+screen: {
+  label: "Order detail — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Orders (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: {
+        grid-columns: 2
+        title: "< back | H1 SO-2026-0042 [New]"
+        actions: {
+          label: "[ Invoice (disabled: line 2 No Stock) ] [ Cancel order ]"
+          style.fill: "#f4f4f3"
+        }
+      }
+      fields: {
+        grid-columns: 2
+        f1: "Customer: Adatum | Employee: Karen"
+        f2: "Dates: order 07-08 | invoice - | shipped -"
+        f3: "Shipper: - | Shipping fee: -"
+        f4: "Payment: - | Notes"
+      }
+      lines: {
+        label: "Line items (editable while New)"
+        direction: down
+        head: {
+          label: "Product | Qty | Unit price | Total | Status"
+          style.fill: "#f4f4f3"
+        }
+        l1: "Chai Tea | 10 | 18.00 | 180.00 | Allocated"
+        l2: "Syrup | 200 | 10.00 | 2,000.00 | No Stock [Create PO]"
+        add: "+ Add line"
+      }
+      totals: "Subtotal 2,180.00 | Taxes 152.60 | Total 2,332.60"
+    }
+  }
+}

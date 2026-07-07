@@ -25,16 +25,18 @@ Only after this gate passes do we proceed to graphic design + design tokens (doc
 `NN-screen-name.mobile.d2` / `NN-screen-name.desktop.d2` (+ rendered `.svg`)
 
 ## Screen checklist (from PRD features)
-- [ ] 01-login (+ language select)
-- [ ] 02-dashboard
-- [ ] 03-companies-list / 04-company-detail
-- [ ] 05-products-list / 06-product-detail
-- [ ] 07-categories
-- [ ] 08-orders-list / 09-order-create / 10-order-detail
-- [ ] 11-purchase-orders-list / 12-po-create / 13-po-detail (approve/receive)
-- [ ] 14-inventory-onhand / 15-inventory-transactions / 16-adjustment
-- [ ] 17-reports-home / 18-report-view
-- [ ] 19-admin-employees
-- [ ] 20-settings (language)
+- [x] 01-login (+ language select)
+- [x] 02-dashboard
+- [x] 03-companies-list / 04-company-detail
+- [x] 05-products-list / 06-product-detail
+- [x] 07-categories
+- [x] 08-orders-list / 09-order-create / 10-order-detail
+- [x] 11-purchase-orders-list / 12-po-create / 13-po-detail (approve/receive)
+- [x] 14-inventory-onhand / 15-inventory-transactions / 16-adjustment
+- [x] 17-reports-home / 18-report-view
+- [x] 19-admin-employees
+- [x] 20-settings (language)
+
+All 20 screens exist as `.desktop.d2` + `.mobile.d2` (40 files, 2026-07-08); each file's first line is a comment naming the PRD feature it implements. SVG rendering pending (`d2` not run in this environment).
 
 Each wireframe must reference the PRD feature ID it implements.

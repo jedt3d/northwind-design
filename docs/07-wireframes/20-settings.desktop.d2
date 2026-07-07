@@ -1,0 +1,40 @@
+# PRD: F1 Settings — language & profile (desktop 1280)
+direction: down
+
+screen: {
+  label: "Settings — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Settings (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: "H1 Settings"
+      language: {
+        label: "Language"
+        direction: down
+        opts: "( ) ไทย   (x) English   ( ) 日本語"
+        note: "saved to profile + localStorage, applies instantly"
+      }
+      profile: {
+        label: "My profile"
+        direction: down
+        f1: "Name: Karen Finster | Role: sales (read-only)"
+        f2: "Email | Phone"
+        f3: "[ Change password ]"
+      }
+      footer: {
+        label: "[ Save ] [ Cancel ]"
+        style.fill: "#f4f4f3"
+      }
+    }
+  }
+}

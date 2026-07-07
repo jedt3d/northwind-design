@@ -1,0 +1,38 @@
+# PRD: F7 Inventory adjustment (desktop 1280)
+direction: down
+
+screen: {
+  label: "Adjustment — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Inventory (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: "< back | H1 New stock adjustment"
+      form: {
+        direction: down
+        product: "Product: [lookup picker v]"
+        current: "Current on hand: 22"
+        qty: "Quantity (+/-): [ -2 ]"
+        preview: {
+          label: "Preview: 22 -> 20 (negative result rejected inline)"
+          style.fill: "#f4f4f3"
+        }
+        comment: "Reason (required): [ breakage ]"
+      }
+      footer: {
+        label: "[ Post adjustment ] [ Cancel ] -> confirm dialog before/after"
+        style.fill: "#f4f4f3"
+      }
+    }
+  }
+}

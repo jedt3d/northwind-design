@@ -1,0 +1,34 @@
+# PRD: F1 Login + language select (desktop 1280)
+direction: down
+
+screen: {
+  label: "Login — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind Traders"
+    style.fill: "#f4f4f3"
+  }
+
+  center: {
+    label: "centered card on canvas"
+    style.fill: "#ffffff"
+    direction: down
+
+    lang: {
+      label: "Language: [ TH ] [ EN ] [ JA ]"
+      style.fill: "#f4f4f3"
+    }
+    card: {
+      label: "Sign in"
+      direction: down
+      email: "Email [______________]"
+      password: "Password [______________]"
+      error: "inline error slot (invalid / inactive)"
+      submit: {
+        label: "[ Sign in ]"
+        style.fill: "#f4f4f3"
+      }
+    }
+  }
+}

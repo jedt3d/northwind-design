@@ -1,0 +1,46 @@
+# PRD: F3 Company detail (desktop 1280)
+direction: down
+
+screen: {
+  label: "Company detail — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Companies (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: {
+        grid-columns: 2
+        title: "< back | H1 Adatum Corporation"
+        actions: {
+          label: "[ Edit ] [ Delete (guarded) ]"
+          style.fill: "#f4f4f3"
+        }
+      }
+      fields: {
+        grid-columns: 2
+        types: "Types: [x] customer [ ] supplier [ ] shipper (in-use disabled)"
+        contact: "Contact: K. Somchai | email | phone"
+        address: "Address: 99 Rama IV Rd, Bangkok 10500 TH"
+        tax: "Tax ID: 0105551234567 | Website: adatum.example"
+      }
+      related: {
+        direction: down
+        tabs: {
+          label: "Orders (12) | Purchase orders (0)"
+          style.fill: "#f4f4f3"
+        }
+        r1: "SO-2026-0042 | 2026-07-08 | New | 1,806.00"
+        r2: "SO-2026-0038 | 2026-06-30 | Closed | 902.00"
+      }
+    }
+  }
+}

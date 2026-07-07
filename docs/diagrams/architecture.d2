@@ -1,0 +1,45 @@
+# Northwind web app — component architecture (SRS docs/02 §2)
+direction: right
+
+user: {
+  label: "User\n(browser, th/en/ja)"
+}
+
+vps: {
+  label: "DigitalOcean VPS (Ubuntu 24.04)"
+
+  nginx: {
+    label: "Nginx\nTLS (Let's Encrypt)\nreverse proxy"
+  }
+
+  spa: {
+    label: "React SPA (static files)\nVite build + plain CSS\ni18n th/en/ja"
+  }
+
+  pocketbase: {
+    label: "PocketBase (systemd)"
+
+    api: "REST API + realtime"
+    auth: "Auth (email/password)"
+    rules: "Collection API rules\n(authorization layer 1)"
+    hooks: "pb_hooks JS\nbusiness rules (layer 2)"
+    files: "File storage\n(product/category images)"
+    db: "SQLite (pb_data)"
+
+    api -> rules: "every request"
+    rules -> hooks: "create/update/delete"
+    hooks -> db: "validated writes"
+    api -> auth
+    api -> files
+  }
+
+  backup: {
+    label: "Nightly backup\ncopy of pb_data"
+  }
+
+  nginx -> spa: "serves / (static)"
+  nginx -> pocketbase.api: "proxies /api, /_"
+  pocketbase.db -> backup: "cron copy"
+}
+
+user -> vps.nginx: "HTTPS only\nnorthwind.raawww.com"

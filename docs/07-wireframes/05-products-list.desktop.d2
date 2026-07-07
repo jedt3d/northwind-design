@@ -1,0 +1,47 @@
+# PRD: F4 Products list (desktop 1280)
+direction: down
+
+screen: {
+  label: "Products list — desktop 1280"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "Northwind | lang | user"
+    style.fill: "#f4f4f3"
+  }
+  main: {
+    direction: right
+    sidebar: {
+      label: "sidebar: Products (active)"
+      style.fill: "#f4f4f3"
+    }
+    content: {
+      direction: down
+      header: {
+        grid-columns: 2
+        title: "H1 Products"
+        action: {
+          label: "[ + New product ]"
+          style.fill: "#f4f4f3"
+        }
+      }
+      toolbar: {
+        grid-columns: 3
+        search: "Search code or name..."
+        filter: "Category: All v"
+        low: "[ ] Low stock only"
+      }
+      table: {
+        direction: down
+        head: {
+          label: "Code | Name ^ | Category | List price | Available | Status"
+          style.fill: "#f4f4f3"
+        }
+        row1: "NWTB-1 | Chai Tea | Beverages | 18.00 | 12 (LOW) | active"
+        row2: "NWTCO-3 | Syrup | Condiments | 10.00 | 80 | active"
+        row3: "NWTB-2 | Old Blend | Beverages | 15.00 | 0 | discontinued (muted)"
+      }
+      pager: "1-20 of 77   < 1 2 3 4 >"
+    }
+  }
+}

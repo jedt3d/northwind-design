@@ -1,0 +1,27 @@
+# PRD: F7 Inventory adjustment (mobile 360)
+direction: down
+
+screen: {
+  label: "Adjustment — mobile 360"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "< New adjustment"
+    style.fill: "#f4f4f3"
+  }
+  form: {
+    direction: down
+    product: "Product: [picker v]"
+    current: "On hand: 22"
+    qty: "Qty (+/-): [ -2 ] (large numeric input)"
+    preview: {
+      label: "22 -> 20"
+      style.fill: "#f4f4f3"
+    }
+    comment: "Reason (required): [________]"
+  }
+  footer: {
+    label: "[ Post adjustment ] (sticky 44px)"
+    style.fill: "#f4f4f3"
+  }
+}

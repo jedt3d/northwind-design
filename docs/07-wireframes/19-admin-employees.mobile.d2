@@ -1,0 +1,37 @@
+# PRD: F9 Admin — employees & roles (mobile 360)
+direction: down
+
+screen: {
+  label: "Admin employees — mobile 360"
+  style.fill: "#ffffff"
+
+  topbar: {
+    label: "< Employees | + New"
+    style.fill: "#f4f4f3"
+  }
+  toolbar: {
+    direction: down
+    search: "Search name or email..."
+    controls: "Role: All v   Sort: Name A-Z v"
+  }
+  cards: {
+    direction: down
+    c1: {
+      label: "Karen Finster | sales | active"
+      style.fill: "#f4f4f3"
+    }
+    c2: {
+      label: "Andrew Cencini | purchasing | active"
+      style.fill: "#f4f4f3"
+    }
+    c3: {
+      label: "Old Account | warehouse | inactive (muted)"
+      style.fill: "#f4f4f3"
+    }
+    loadmore: "[ Load more ]"
+  }
+  bottomnav: {
+    label: "Home | Orders | POs | Inventory | More (active)"
+    style.fill: "#f4f4f3"
+  }
+}
